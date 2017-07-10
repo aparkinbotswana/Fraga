@@ -6,10 +6,7 @@
 <%= form_tag posts_path, :method => 'get' do %>
   <p>
     <%= text_field_tag :query, params[:query] %>
-    <!-- <%= text_field_tag :longitude, params[:longitude] %>
-    <%= text_field_tag :latitude, params[:latitude] %> -->
 
-    <!-- <%= hidden_field :user, :value => @current_user %> -->
     <%= submit_tag "Search", :name => nil %>
   </p>
 

@@ -20,8 +20,6 @@ class PostsController < ApplicationController
 
      @locationPost = Post.location_search(params[:user])
 
-
-
    end
 
   # GET /posts/1

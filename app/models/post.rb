@@ -42,6 +42,8 @@ class Post < ApplicationRecord
 
   def self.location_search(user)
 
+ 
+
   # Post.near([user.latitude, user.longitude], 50, :units => :km)
 
   end
