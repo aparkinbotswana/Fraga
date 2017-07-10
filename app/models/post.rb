@@ -40,6 +40,13 @@ class Post < ApplicationRecord
   # end
   #end julian code
 
+  def self.location_search(query, user)
+
+  raise 'hell'
+  Post.near([user.latitude, user.longitude], 50, :units => :km)
+
+  end
+
   def self.text_search query
 
   # old new code

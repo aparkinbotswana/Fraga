@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # route map erb to map controller - Andy
   get '/posts/map' => 'posts#map'
 
-
+  post '/posts' => 'posts#do_search'
 
   resources :comments
   resources :users

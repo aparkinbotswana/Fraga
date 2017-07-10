@@ -3,7 +3,7 @@
 <h1>Posts</h1>
 
 
-<%= form_tag posts_path, :method => 'get' do %>
+<%= form_tag posts_path do %>
   <p>
     <%= text_field_tag :query, params[:query] %>
     <!-- <%= text_field_tag :longitude, params[:longitude] %>
@@ -16,7 +16,7 @@
 <% end %>
 
 
-<%= form_tag posts_path, :method => 'get' do %>
+<%= form_tag posts_path do %>
 <%= hidden_field :user, :value => @current_user %>
 <%= submit_tag "Near me", :name => nil %>
 <% end %>
