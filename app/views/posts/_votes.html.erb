@@ -1,0 +1,6 @@
+<!--11 July(ML): votes partial  -->
+
+<%count = pluralize(post.votes.count, 'vote') %>
+  <td class='vote-count' id="p<%=post.id%>"><%=post.votes.count%></td>
+  <td><%=button_to 'vote', upvote_post_path(post), method: :post, :class=> 'vote-button', remote: true%></td>
+<!-- end upvote -->
