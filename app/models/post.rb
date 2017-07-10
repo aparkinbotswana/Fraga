@@ -66,10 +66,11 @@ class Post < ApplicationRecord
   RANK
   # raise 'hell'
 
-  Post.near([user.latitude, user.longitude], 50, :units => :km).where("question @@ :q", q: query).order("#{rank} desc")
+  Post.near([user.latitude, user.longitude], 8_000_000, :units => :km, order: 'distance').where("question @@ :q", q: query).order("#{rank} desc")
   else
   self.all
   end
+
 
 
   end
