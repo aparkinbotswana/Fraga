@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
 
   def index
+<<<<<<< HEAD
     #  julian - old code
     # @posts = Post.all
 
@@ -22,6 +23,13 @@ class PostsController < ApplicationController
 
 
 
+=======
+    @posts = Post.all
+   end
+
+   def do_search
+     @posts = Post.text_search(params[:query], @current_user)
+>>>>>>> 9588a809cf6b0288a2995ddb49bbd1df66393a32
    end
 
   # GET /posts/1
@@ -50,6 +58,11 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9588a809cf6b0288a2995ddb49bbd1df66393a32
     @post = Post.new
 
     # Detect IP and obtain location information through Geocoder
@@ -81,8 +94,8 @@ class PostsController < ApplicationController
     loc = Geocoder.search(ip)
 
     if @post.location == ""
-      @post.latitude = loc[0].data['latitude']
-      @post.longitude = loc[0].data['longitude']
+       @post.latitude = loc[0].data['latitude']
+       @post.longitude = loc[0].data['longitude']
     end
 
     respond_to do |format|
@@ -94,6 +107,9 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
+
+
   end
 
   # PATCH/PUT /posts/1

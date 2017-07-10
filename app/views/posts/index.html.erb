@@ -2,35 +2,23 @@
 
 <h1>Posts</h1>
 
-
-<%= form_tag posts_path do %>
+<!-- 10 July
+Julian and Andy
+Form for searching by keyword and closest posts -->
+<%= form_tag posts_search_path, :method => 'post' do %>
   <p>
     <%= text_field_tag :query, params[:query] %>
-    <!-- <%= text_field_tag :longitude, params[:longitude] %>
-    <%= text_field_tag :latitude, params[:latitude] %> -->
 
-    <!-- <%= hidden_field :user, :value => @current_user %> -->
     <%= submit_tag "Search", :name => nil %>
   </p>
-
 <% end %>
-
-
-<%= form_tag posts_path do %>
-<%= hidden_field :user, :value => @current_user %>
-<%= submit_tag "Near me", :name => nil %>
-<% end %>
-
-
-
-
 
 <table>
   <thead>
     <tr>
       <th>Question</th>
-      <!-- <th>Latitude</th>
-      <th>Longitude</th> -->
+      <th>Latitude</th>
+      <th>Longitude</th>
       <th>User</th>
       <th>Active</th>
       <!-- <th>Emjoi</th> -->
@@ -43,8 +31,8 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.question %></td>
-        <!-- <td><%= post.latitude %></td>
-        <td><%= post.longitude %></td> -->
+        <td><%= post.latitude %></td>
+        <td><%= post.longitude %></td>
         <td><%= post.user_id %></td>
         <td><%= post.active %></td>
         <!-- <td><%= post.emjoi %></td> -->
@@ -59,7 +47,7 @@
         <!-- end upvote -->
 
         <td><%= link_to 'Show', post %></td>
-<%raise 'hell'%>
+
         <% if @current_user %>
           <% if post.user_id == @current_user || @current_user.is_admin == true %>
             <td><%= link_to 'Edit', edit_post_path(post) %></td>

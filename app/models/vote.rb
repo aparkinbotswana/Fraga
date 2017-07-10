@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: votes
+#
+#  id         :integer          not null, primary key
+#  post_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Vote < ApplicationRecord
   #9 July 2017
   #By: Michsmelle

@@ -10,6 +10,7 @@
 #  image           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  is_admin        :boolean
 #
 
 class User < ApplicationRecord
