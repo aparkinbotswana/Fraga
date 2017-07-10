@@ -9,25 +9,12 @@ class PostsController < ApplicationController
 
 
   def index
-    #  julian - old code
     @posts = Post.all
-
-     # new julian code
-    #  @posts = Post.search(params[:search])
-     # end julian code
-
-
-
    end
 
    def do_search
-
-     @posts = Post.text_search(params[:query])
-
-     @locationPost = Post.location_search(params[:query], @current_user)
-
+     @posts = Post.text_search(params[:query], @current_user)
    end
-
 
   # GET /posts/1
   # GET /posts/1.json
@@ -55,7 +42,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    raise 'hell'
+    # raise 'hell'
 
     @post = Post.new
 
