@@ -21,13 +21,8 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find params["id"]
-    @hash = Gmaps4rails.build_markers(@post) do |post, marker|
-    location_link = view_context.link_to post.question, post_path(post.id)
-    marker.lat post.latitude
-    marker.lng post.longitude
-    marker.json({:id => post.id })
-    marker.infowindow "<p><strong><u>#{location_link}</u></strong></p><p></p><p>#{post.location}</p>"
-    end
+    @comment = Comment.new
+    @user = User.all
   end
 
   def map
@@ -90,8 +85,6 @@ class PostsController < ApplicationController
       end
     end
 
-
-
   end
 
   # PATCH/PUT /posts/1
@@ -123,7 +116,6 @@ class PostsController < ApplicationController
     #For upvoting
     def upvote
       @post = Post.find(params[:id])
-      # raise 'hell'
       Vote.find_or_create_by(post: @post, user: @current_user)
       respond_to do |format|
         # if the response fomat is html, redirect as usual

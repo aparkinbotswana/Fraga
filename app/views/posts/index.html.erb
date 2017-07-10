@@ -12,7 +12,6 @@ Form for searching by keyword and closest posts -->
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
-<!-- <%raise 'hell'%> -->
 
 <table>
   <thead>
@@ -31,7 +30,7 @@ Form for searching by keyword and closest posts -->
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.question %></td>
+        <td><%= link_to post.question, post_path(post.id) %></td><p>
         <td><%= post.latitude %></td>
         <td><%= post.longitude %></td>
         <td><%= post.user_id %></td>
