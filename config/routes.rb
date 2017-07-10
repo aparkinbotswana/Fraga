@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/posts/map' => 'posts#map'
 
   post '/posts/search' => 'posts#do_search'
+  # post '/posts/search' => 'posts#do_search'
 
   resources :comments
   resources :users
