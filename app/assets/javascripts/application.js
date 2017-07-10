@@ -15,4 +15,5 @@
 //= require semantic-ui
 //= require_tree .
 //= require underscore
+//= require rails_emoji_picker
 //= require gmaps/google

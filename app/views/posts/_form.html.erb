@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field emoji-picker-container">
     <%= f.label :question %>
-    <%= f.text_area :question %>
+    <%= f.text_area :question, class: 'form-control', data: { emojiable: true } %>
   </div>
 
   <p>Pinpoint where you want to ask your question, or leave it blank and we will use your location based on your IP</p>
@@ -32,11 +32,14 @@
     <%= f.label :active %>
     <%= f.check_box :active %>
   </div> -->
-
   <div class="field">
-    <%= f.label :emjoi %>
-    <%= f.text_area :emjoi %>
+  <%= f.select :emjoi, options_for_select([["Select Map Icon", ""], "happy", "sad"])%>
   </div>
+
+
+
+
+
 
   <div class="actions">
     <%= f.submit %>
