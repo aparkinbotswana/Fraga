@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Question:</strong>
-  <%= @post.question %>
-</p>
+  <h2><%= @post.question %></h2>
 
+  <p>
+    <strong>Posted by:</strong>
+    <%= @user.find(@post.user_id).username %>
+  </p>
   <!-- #9 July 2017
   # By: Michelle
   # post route amended to allow for upvotes
@@ -15,33 +16,7 @@
   <!-- end upvote -->
 </p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @post.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @post.longitude %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @post.active %>
-</p>
-
-<p>
-  <strong>Emjoi:</strong>
-  <%= @post.emjoi %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Edit', edit_post_path(@post) %>
 
 <br><br><br>
 
@@ -70,34 +45,42 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
+
+  <!-- <form class="ui reply form">
+    <div class="field">
+      <textarea></textarea>
+    </div>
+    <div class="ui blue labeled submit icon button">
+      <i class="icon edit"></i> Add Reply
+    </div>
+  </form> -->
+
+
 <% end %>
 
+
 <br><br><br>
 
-<table>
-<thead>
-  <tr>
-    <th>Content</th>
-    <th>Post</th>
-    <th>User</th>
-    <th colspan="3"></th>
-  </tr>
-</thead>
-
-<tbody>
+<div class="ui threaded comments">
+  <h3 class="ui dividing header">Comments</h3>
   <% @post.comments.each do |comment| %>
-    <tr>
-
-      <td><%= @user.find(comment.user_id).username %></td>
-      <td><%= comment.content %></td>
-      <td><%= comment.post_id %></td>
-      <td><%= comment.user_id %></td>
-      <td><%= link_to 'Show', comment %></td>
-      <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-      <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+  <div class="comment">
+    <a class="avatar">
+      <img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+    </a>
+    <div class="content">
+      <a class="author"><%= @user.find(comment.user_id).username %></a>
+      <div class="metadata">
+        <span class="date"><%= comment.created_at %></span>
+      </div>
+      <div class="text">
+        <%= comment.content %>
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
   <% end %>
-</tbody>
-</table>
-
-<br><br><br>
+</div>
