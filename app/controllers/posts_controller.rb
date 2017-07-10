@@ -113,14 +113,13 @@ class PostsController < ApplicationController
     end
   end
 
-
   #9 July 2017
     #By: Michelle
     #For upvoting
     def upvote
       @post = Post.find(params[:id])
-
-      Vote.create(post: @post, user: @current_user)
+      # raise 'hell'
+      Vote.find_or_create_by(post: @post, user: @current_user)
       respond_to do |format|
         # if the response fomat is html, redirect as usual
         format.html { redirect_to root_path }

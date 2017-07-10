@@ -45,12 +45,12 @@ Form for searching by keyword and closest posts -->
         # post route amended to allow for upvotes
          -->
          <%count = pluralize(post.votes.count, 'vote') %>
-        <td class='vote-count'><%=count%></td>
+        <td class='vote-count' id="p<%=post.id%>"><%=count%></td>
           <td><%=button_to 'vote', upvote_post_path(post), method: :post, :class=> 'vote-button', remote: true%></td>
         <!-- end upvote -->
 
         <td><%= link_to 'Show', post %></td>
-
+<%raise 'hell'%>
         <% if @current_user %>
           <% if post.user_id == @current_user || @current_user.is_admin == true %>
             <td><%= link_to 'Edit', edit_post_path(post) %></td>
