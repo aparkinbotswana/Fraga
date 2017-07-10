@@ -5,14 +5,10 @@
 <!-- 10 July
 Julian and Andy
 Form for searching by keyword and closest posts -->
-<%= form_tag posts_path do %>
+<%= form_tag posts_path, :method => 'post' do %>
   <p>
     <%= text_field_tag :query, params[:query] %>
-    <!-- <%= text_field_tag :longitude, params[:longitude] %>
-    <%= text_field_tag :latitude, params[:latitude] %> -->
-
-    <!-- <%= hidden_field :user, :value => @current_user %> -->
-    <%= submit_tag "Search", :name => nil %>
+    <%= submit_tag, "Search"%>
   </p>
 <% end %>
 

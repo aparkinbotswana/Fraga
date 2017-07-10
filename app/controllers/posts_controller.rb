@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    # raise 'hell'
+
 
     @post = Post.new
 
@@ -74,8 +74,8 @@ class PostsController < ApplicationController
     loc = Geocoder.search(ip)
 
     if @post.location == ""
-      @post.latitude = loc[0].data['latitude']
-      @post.longitude = loc[0].data['longitude']
+       @post.latitude = loc[0].data['latitude']
+       @post.longitude = loc[0].data['longitude']
     end
 
     respond_to do |format|
@@ -87,6 +87,9 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
+
+
   end
 
   # PATCH/PUT /posts/1
