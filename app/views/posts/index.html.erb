@@ -47,7 +47,7 @@ Form for searching by keyword and closest posts -->
         <!-- end upvote -->
 
         <td><%= link_to 'Show', post %></td>
-<%raise 'hell'%>
+
         <% if @current_user %>
           <% if post.user_id == @current_user || @current_user.is_admin == true %>
             <td><%= link_to 'Edit', edit_post_path(post) %></td>

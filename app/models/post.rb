@@ -11,6 +11,7 @@
 #  emjoi      :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  location   :string
 #
 
 class Post < ApplicationRecord
