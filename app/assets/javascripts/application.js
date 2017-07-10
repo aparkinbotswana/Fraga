@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require semantic-ui
-//= require_tree .
 //= require underscore
+//= require leaflet
 //= require gmaps/google
+//= require_tree .

@@ -5,13 +5,28 @@
 
 <div id="map" style='width: 800px; height: 83vh; top:17vh'></div>
 
+
 <script type="text/javascript">
 
+
   handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  handler.buildMap({ provider: {styles: myStyle}, internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
-  });
 
+  });
 </script>
+
+<!-- var handler = Gmaps.build('Google');
+handler.buildMap({
+    internal: {id: 'custom_style'},
+    provider: {
+      zoom:      15,
+      center:    new google.maps.LatLng(53.385873, -1.471471),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      styles:    mapStyle
+    }
+  },
+  function(){ }
+); -->
