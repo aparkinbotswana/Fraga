@@ -40,7 +40,7 @@ class Post < ApplicationRecord
   # end
   #end julian code
 
-  def self.text_search(query)
+  def self.text_search query
 
   # old new code
   # if query.present?
@@ -60,7 +60,7 @@ class Post < ApplicationRecord
   ts_rank(to_tsvector(question), plainto_tsquery(#{sanitize(query)}))
   RANK
   # raise 'hell'
-  # Post.near([user.latitude, user.longitude], 50, :units => :km)
+  Post.near([33, 155], 50, :units => :km)
 
   where("question @@ :q", q: query).order("#{rank} desc")
   else
