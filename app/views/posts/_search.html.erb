@@ -29,7 +29,7 @@ Form for searching by keyword and closest posts -->
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.question %></td>
+        <td><%= link_to post.question, post_path(post.id) %></td><p>
         <td><%= post.latitude %></td>
         <td><%= post.longitude %></td>
         <td><%= post.user_id %></td>
@@ -41,7 +41,7 @@ Form for searching by keyword and closest posts -->
         # post route amended to allow for upvotes
          -->
          <%count = pluralize(post.votes.count, 'vote') %>
-        <td class='vote-count'><%=count%></td>
+        <td class='vote-count'  id="p<%=post.id%>"><%=count%></td>
           <td><%=button_to 'vote', upvote_post_path(post), method: :post, :class=> 'vote-button', remote: true%></td>
         <!-- end upvote -->
 
