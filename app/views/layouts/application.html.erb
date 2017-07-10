@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body style="max-width: 800px; margin: 0 auto; border: 1px solid gray">
+  <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray">
 
   <h1><%= link_to "FRÅGA", posts_path() %></h1>
 
@@ -22,7 +22,7 @@
       <%= link_to 'Logout', login_path, method: :delete %>
   <% end %> -->
 
-    <nav>
+    <nav style="float:right">
       <% unless @current_user.present? %>
       <%= link_to 'Login',  login_path, class: "ui button" %>  <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
       <% else %>
