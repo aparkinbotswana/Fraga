@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
      @posts = Post.text_search(params[:query])
 
-     @locationPost = Post.location_search(params[:query], @current_user)
+    #  @locationPost = Post.location_search(params[:query], @current_user)
 
    end
 
