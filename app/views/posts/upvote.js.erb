@@ -1,0 +1,11 @@
+// Date:
+// By: Michelle
+// to handle upvote ajax request
+//NEED TO ASK LUKE/MATT ABOUT JQUERY - currently I cannot distinguish between different vote-count <p> tags
+
+// className = '.vote-count-'+ <%@post.id%>
+console.log(<%=@post.votes.count%>);
+//NEED POST ID
+console.log(<%@post.id%>);
+$('.vote-count').html('<%=@post.votes.count%>');
+// $('.vote-button').click(false)

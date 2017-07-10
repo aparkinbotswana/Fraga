@@ -1,0 +1,68 @@
+<!-- <% if flash[:error].present? %>
+<p><strong><%= flash[:error]  %></strong></p>
+<% end  %>
+
+<%= form_tag login_path, class: "ui form" do %>
+
+<%= label_tag 'User' %>
+<%= text_field_tag :username, nil %>
+<br>
+
+<%= label_tag 'Password' %>
+<%= password_field_tag :password, nil %>
+<br>
+<%= submit_tag 'Login' %>
+
+<% end %> -->
+
+<% if flash[:error].present? %>
+<div class="ui icon warning message">
+    <i class="lock icon"></i>
+    <div class="content">
+      <div class="header">
+        Login failed you bastard!
+      </div>
+      <p>You might have misspelled your username or password dummy!</p>
+    </div>
+  </div>
+<% end  %>
+
+
+<div class="page-login">
+  <div class="ui centered grid container">
+    <div class="nine wide column">
+
+      <div class="ui fluid card">
+        <div class="content">
+
+        <%= form_tag login_path, class: "ui form" do %>
+        <!-- <form class="ui form" method="POST"> -->
+
+          <div class="field">
+          <%= label_tag 'User' %>
+          <%= text_field_tag :username, nil %>
+          </div>
+
+          <div class="field">
+          <%= label_tag 'Password' %>
+          <%= password_field_tag :password, nil %>
+          </div>
+
+          <%= submit_tag 'Login', class:"ui primary labeled icon button" %>
+            <i class="unlock alternate icon"></i>
+
+
+        <% end %>
+
+
+
+
+        </div>
+      </div>
+      <!-- <div class="ui message">
+      <%= label_tag 'New to us?' %>
+      <%= link_to 'Signup', new_user_path %>
+      </div> -->
+    </div>
+  </div>
+</div>
