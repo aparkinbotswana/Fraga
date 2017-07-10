@@ -11,9 +11,12 @@
 
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {styles: myStyle}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(13);
+    handler.map.centerOn({ lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %> });
+  });
 
   });
 </script>

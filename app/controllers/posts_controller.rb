@@ -14,19 +14,15 @@ class PostsController < ApplicationController
 
    def do_search
      @posts = Post.text_search(params[:query], @current_user)
+
    end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @post = Post.find params["id"]
-    @hash = Gmaps4rails.build_markers(@post) do |post, marker|
-    location_link = view_context.link_to post.question, post_path(post.id)
-    marker.lat post.latitude
-    marker.lng post.longitude
-    marker.json({:id => post.id })
-    marker.infowindow "<p><strong><u>#{location_link}</u></strong></p><p></p><p>#{post.location}</p>"
-    end
+    @comment = Comment.new
+    @user = User.all
   end
 
   def map
@@ -66,8 +62,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
+    # Michelle - to create post in current user's name
+    @post = @current_user.posts.new(post_params)
+    # @post = Post.new(post_params)
     # Get user ip parse through geocoder to get lat/long. use this as default if location field is left blanque.
 
     ip = request.remote_ip;
@@ -87,8 +84,6 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
-
-
 
   end
 
@@ -122,7 +117,10 @@ class PostsController < ApplicationController
     def upvote
       @post = Post.find(params[:id])
       # raise 'hell'
-      Vote.find_or_create_by(post: @post, user: @current_user)
+
+      # the following line to be uncommented when we go live to allow for 1 vote per user
+      # Vote.find_or_create_by(post: @post, user: @current_user)
+      Vote.create(post: @post, user: @current_user)
       respond_to do |format|
         # if the response fomat is html, redirect as usual
         format.html { redirect_to root_path }
