@@ -11,32 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="ui form">
+  <div class="field emoji-picker-container">
     <%= f.label :question %>
-    <%= f.text_area :question %>
+    <%= f.text_area :question, class: 'form-control', data: { emojiable: true } %>
   </div>
+</div>
 
   <p>Pinpoint where you want to ask your question, or leave it blank and we will use your location based on your IP</p>
 
+
+
+
+<div class="ui form">
   <div class="field">
     <%= f.label :location %>
     <%= f.text_field :location %>
   </div>
+</div>
 
-  <!-- <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div> -->
 
-  <!-- <div class="field">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
-  </div> -->
-
+  <div class="ui form">
   <div class="field">
-    <%= f.label :emjoi %>
-    <%= f.text_area :emjoi %>
+  <%= f.select :emjoi, options_for_select([["How ya feel??", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>
   </div>
+  </div>
+
+
+
 
   <div class="actions">
     <%= f.submit %>

@@ -31,6 +31,22 @@ class PostsController < ApplicationController
     location_link = view_context.link_to post.question, post_path(post.id)
     marker.lat post.latitude
     marker.lng post.longitude
+    marker.picture({
+      :url => ActionController::Base.helpers.asset_path("assets/mapicons/#{post.emjoi}.png"),
+      width: 60,
+      height: 60,
+      })
+
+      # :url => ActionController::Base.helpers.asset_path("repository_icon_for_map.png"),
+
+
+    # marker.picture({
+    #         #  "picture" => view_context.image_path('assets/happy.png'),
+    #          "picture" => "assets/alien.png",
+    #         #  "picture" => "/images/#{happy}.png",
+    #          "width" => 32,
+    #          "height" => 37
+    #      })
     marker.json({:id => post.id })
     marker.infowindow "<p><strong><u>#{location_link}</u></strong></p><p></p><p>#{post.location}</p>"
     end

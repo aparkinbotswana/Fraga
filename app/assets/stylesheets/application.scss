@@ -10,7 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+
  *= require_tree .
+ *= require rails_emoji_picker
  *= require_self
+ *= require leaflet
  */
  @import "semantic-ui";
+ @import 'rails_emoji_picker'

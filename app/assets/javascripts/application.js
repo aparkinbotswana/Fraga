@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require semantic-ui
-//= require_tree .
 //= require underscore
+//= require leaflet
+//= require rails_emoji_picker
 //= require gmaps/google
+//= require_tree .
