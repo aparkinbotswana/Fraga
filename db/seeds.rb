@@ -39,5 +39,5 @@ p3.comments << c4 << c5
 
 u1.comments << c4
 u2.comments << c1 << c2
-u3.comments << c4
+u3.comments << c3
 u4.comments << c5
