@@ -67,8 +67,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
+    # Michelle - to create post in current user's name
+    @post = @current_user.posts.new(post_params)
+    # @post = Post.new(post_params)
     # Get user ip parse through geocoder to get lat/long. use this as default if location field is left blanque.
 
     ip = request.remote_ip;
