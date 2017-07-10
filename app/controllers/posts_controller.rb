@@ -116,7 +116,11 @@ class PostsController < ApplicationController
     #For upvoting
     def upvote
       @post = Post.find(params[:id])
-      Vote.find_or_create_by(post: @post, user: @current_user)
+      # raise 'hell'
+
+      # the following line to be uncommented when we go live to allow for 1 vote per user
+      # Vote.find_or_create_by(post: @post, user: @current_user)
+      Vote.create(post: @post, user: @current_user)
       respond_to do |format|
         # if the response fomat is html, redirect as usual
         format.html { redirect_to root_path }
