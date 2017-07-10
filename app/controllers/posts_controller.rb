@@ -9,27 +9,11 @@ class PostsController < ApplicationController
 
 
   def index
-<<<<<<< HEAD
-    #  julian - old code
-    # @posts = Post.all
-
-     # new julian code
-    #  @posts = Post.search(params[:search])
-     # end julian code
-
-     @posts = Post.text_search(params[:query])
-
-     @locationPost = Post.location_search(params[:user])
-
-
-
-=======
     @posts = Post.all
    end
 
    def do_search
      @posts = Post.text_search(params[:query], @current_user)
->>>>>>> 9588a809cf6b0288a2995ddb49bbd1df66393a32
    end
 
   # GET /posts/1
@@ -58,11 +42,8 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 9588a809cf6b0288a2995ddb49bbd1df66393a32
     @post = Post.new
 
     # Detect IP and obtain location information through Geocoder
@@ -85,9 +66,9 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    # @post =
-    @post = Post.new(post_params)
-
+    # Michelle - to create post in current user's name
+    @post = @current_user.posts.new(post_params)
+    # @post = Post.new(post_params)
     # Get user ip parse through geocoder to get lat/long. use this as default if location field is left blanque.
 
     ip = request.remote_ip;
