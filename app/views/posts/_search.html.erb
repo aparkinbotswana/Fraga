@@ -5,14 +5,12 @@
 <!-- 10 July
 Julian and Andy
 Form for searching by keyword and closest posts -->
-<%= form_tag posts_search_path, :method => 'post' do %>
+<%= form_tag posts_search_path do %>
   <p>
     <%= text_field_tag :query, params[:query] %>
-
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
-<!-- <%raise 'hell'%> -->
 
 <table>
   <thead>
@@ -43,7 +41,7 @@ Form for searching by keyword and closest posts -->
         # post route amended to allow for upvotes
          -->
          <%count = pluralize(post.votes.count, 'vote') %>
-        <td class='vote-count' id="p<%=post.id%>"><%=count%></td>
+        <td class='vote-count'><%=count%></td>
           <td><%=button_to 'vote', upvote_post_path(post), method: :post, :class=> 'vote-button', remote: true%></td>
         <!-- end upvote -->
 

@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
    def do_search
      @posts = Post.text_search(params[:query], @current_user)
+
    end
 
   # GET /posts/1
