@@ -11,7 +11,6 @@
 #  emjoi      :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  location   :string
 #
 
 class Post < ApplicationRecord
@@ -72,6 +71,8 @@ class Post < ApplicationRecord
   else
   self.all
   end
+
+
 
 
   end
