@@ -18,10 +18,11 @@ class PostsController < ApplicationController
 
      @posts = Post.text_search(params[:query])
 
+     @locationPost = Post.location_search(params[:user])
 
 
 
-  end
+   end
 
   # GET /posts/1
   # GET /posts/1.json
