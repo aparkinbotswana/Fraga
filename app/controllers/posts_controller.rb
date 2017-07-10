@@ -9,25 +9,12 @@ class PostsController < ApplicationController
 
 
   def index
-    #  julian - old code
     @posts = Post.all
-
-     # new julian code
-    #  @posts = Post.search(params[:search])
-     # end julian code
-
-
-
    end
 
    def do_search
-
-     @posts = Post.text_search(params[:query])
-
-    #  @locationPost = Post.location_search(params[:query], @current_user)
-
+     @posts = Post.text_search(params[:query], @current_user)
    end
-
 
   # GET /posts/1
   # GET /posts/1.json
@@ -55,7 +42,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    raise 'hell'
+    # raise 'hell'
 
     @post = Post.new
 
@@ -126,14 +113,13 @@ class PostsController < ApplicationController
     end
   end
 
-
   #9 July 2017
     #By: Michelle
     #For upvoting
     def upvote
       @post = Post.find(params[:id])
-
-      Vote.create(post: @post, user: @current_user)
+      # raise 'hell'
+      Vote.find_or_create_by(post: @post, user: @current_user)
       respond_to do |format|
         # if the response fomat is html, redirect as usual
         format.html { redirect_to root_path }

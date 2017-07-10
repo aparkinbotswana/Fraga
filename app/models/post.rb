@@ -43,11 +43,11 @@ class Post < ApplicationRecord
   def self.location_search(query, user)
 
   # raise 'hell'
-  # Post.near([user.latitude, user.longitude], 50, :units => :km)
+  Post.near([user.latitude, user.longitude], 50, :units => :km)
 
   end
 
-  def self.text_search(query)
+  def self.text_search(query, user)
 
   # old new code
   # if query.present?
@@ -66,11 +66,7 @@ class Post < ApplicationRecord
   RANK
   # raise 'hell'
 
-
-# Post.near([user.latitude, user.longitude], 50, :units => :km)
-  where("question @@ :q", q: query).order("#{rank} desc")
-
-
+  Post.near([user.latitude, user.longitude], 50, :units => :km).where("question @@ :q", q: query).order("#{rank} desc")
   else
   self.all
   end
