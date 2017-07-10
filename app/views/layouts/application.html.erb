@@ -12,6 +12,16 @@
 
   <h1><%= link_to "FRÅGA", posts_path() %></h1>
 
+  <!-- search page -->
+
+  <%= form_tag posts_search_path, :method => 'post' do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 
 
   <!-- Login menu - Andy -->
