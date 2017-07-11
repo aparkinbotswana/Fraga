@@ -1,0 +1,9 @@
+// Date: 9 July
+// By: Michelle
+// to handle upvote ajax request
+
+// className = '.vote-count-'+ <%@post.id%>
+console.log("TOTAL IS ", <%=@post.score%>);
+
+$('#p<%=@post.id%>').html('<%=@post.score%>');
+// $('.vote-button').click(false)
