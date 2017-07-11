@@ -8,31 +8,72 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray">
+  <!-- <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray"> -->
+  <style>
+    body {
+      padding: 0;
+      margin: 0 auto;
+    }
 
-  <h1><%= link_to "FRÅGA", posts_path() %></h1>
+  </style>
 
 
+  <!-- James: Sliding Nav Bar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="#" id='navClose' class="closebtn">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
 
-  <!-- Login menu - Andy -->
-  <!-- <% unless @current_user.present? %>
-      <%= link_to 'Login', login_path %> | <%= link_to 'Signup', new_user_path %>
-    <% else %>
-      <%= link_to @current_user.username, user_path(@current_user) %> |
-      <%= link_to 'Logout', login_path, method: :delete %>
-  <% end %> -->
+  <!-- James: Click button to open nav bar -->
+  <span id='navOpen'>open</span>
 
-    <nav style="float:right">
+  <div class="ui centered grid ">
+
+    <div class="four wide column">
+
+      <div class="ui right aligned category search searchbar">
+        <div class="ui icon input">
+          <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
+          <i class="search icon"></i>
+        </div>
+
+        <button id="searchbutton">Search</button>
+        <div id="results"></div>
+      </div>
+
+    </div>
+
+    <div class="twelve wide column main">
+
+      <h1><%= link_to "FRÅGA", posts_path() %></h1>
+
+      <!-- <nav style="float:right"> -->
       <% unless @current_user.present? %>
-      <%= link_to 'Login',  login_path, class: "ui button" %>  <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
-      <% else %>
-      Welcome, <%= @current_user.username %>
+      <%= link_to 'Login',  login_path, class: "ui button" %>
+      <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
+    <% else %>
+      Welcome,
+      <%= @current_user.username %>
 
       <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
       <% end %>
-    </nav>
+      <!-- </nav> -->
 
-  <%= yield %>
+      <%= yield %>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
 
   </body>
 

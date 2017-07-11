@@ -18,3 +18,106 @@
 //= require rails_emoji_picker
 //= require gmaps/google
 //= require_tree .
+
+
+$( document ).ready(function() {
+
+
+
+
+  $('#searchbutton').click(function(){
+
+    $('#results').empty();
+
+    var queryinput = $('#queryinput').val();
+    $('#queryinput').empty();
+
+
+
+    $.ajax({
+      url: "/posts/search",
+      dataType: "json",
+      method: "POST",
+      data: {
+        query: queryinput
+      }
+    }).done(function(data){
+      // debugger;
+
+      // remove existing markers
+      markers.forEach(function(m){
+        m.setMap(null);
+      });
+      markers = [];
+
+      console.log('Search results:', data.length);
+      console.log('markers', markers);
+      for (var i = 0; i < data.length; i++) {
+
+        var post = data[i];
+
+        var user = $('<p>').text(post.username);
+        var location= $('<p>').text(post.location);
+        var userid = post.user_id;
+        var user = post.user.username;
+        var emoji = post.emjoi;
+        var $question = $('<p>').text(post.question)
+                                .addClass("questionlist")
+                                .attr('post-id', post.id);
+
+        $('#results').append('<img>').attr("src", "/assets/images/mapicons/happy.png");
+
+        $('#results').append(user,":").append($question);
+        // $('#results').append(question);
+
+        // $('#results').append("Location:", location);
+
+        var m = handler.addMarker({
+          id: post.id,
+          infowindow: '<p><strong><u><a href="/posts/' + post.id + '">What is the meaning of life?</a></u></strong></p><p></p><p></p>',
+          lat: post.latitude,
+          lng: post.longitude,
+          picture: {
+            height: 60,
+            width: 60,
+            url: '/assets/mapicons/' + emoji + '.png'
+          }
+        });
+        markers.push( m );
+
+      } // for data.posts
+
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+
+    })
+    .fail(function(xhr, err, status) {
+      console.log(xhr, err, status);
+    });
+
+
+
+  });
+
+  // Use event delegation
+  $(document).on('click', '.questionlist', function(){
+    var url = '/posts/' + $(this).attr('post-id');
+    document.location.href = url;
+  });
+
+
+  /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
+      $("#navOpen").click(function(){
+        $('#mySidenav').css('width', "250px");
+      console.log('open, says me');
+    })
+
+
+
+  /* James: Set the width of the side navigation to 0 for sliding nav bar*/
+      $("#navClose").click(function(){
+        $('#mySidenav').css('width', "0");
+      console.log('close, says me');
+    })
+
+});

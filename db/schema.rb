@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170711021234) do
+=======
+ActiveRecord::Schema.define(version: 20170711020715) do
+>>>>>>> e6b32527522f8299b0a7980b0231206584f89575
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,9 +36,10 @@ ActiveRecord::Schema.define(version: 20170711021234) do
     t.integer  "user_id"
     t.boolean  "active"
     t.text     "emjoi"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "location"
+    t.integer  "score",      default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,9 +55,11 @@ ActiveRecord::Schema.define(version: 20170711021234) do
 
   create_table "votes", force: :cascade do |t|
     t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "user_id"
+    t.integer  "upvote",     default: 0
+    t.integer  "downvote",   default: 0
   end
 
 end

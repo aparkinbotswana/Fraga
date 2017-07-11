@@ -1,26 +1,26 @@
 <p id="notice"><%= notice %></p>
 
   <h2><%= @post.question %></h2>
+<table>
 
-  <p>
-    <strong>Posted by:</strong>
-    <%= @user.find(@post.user_id).username %>
-  </p>
-  <!-- #9 July 2017
-  # By: Michelle
-  # post route amended to allow for upvotes
-   -->
-<p>
-  <%=button_to 'vote', upvote_post_path(@post), method: :post, :class=> 'vote-button', remote: true%>
-  <strong>Votes:</strong> <p class='vote-count' id="p<%=@post.id%>"><%=@post.votes.count%></p>
-  <!-- end upvote -->
-</p>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Posted by:</strong>
+        <%= @user.find(@post.user_id).username %>
+      </td>
 
-<%= link_to 'Edit', edit_post_path(@post) %>
+        <%= render 'votes', post: @post %>
 
-<br><br><br>
+    <td>
+    <%= link_to 'Edit', edit_post_path(@post) %>
+    </td>
+    </tr>
+  </tbody>
+</table>
 
 
+<<<<<<< HEAD
 <br><br><br>
 
 <h3 class="ui dividing header">Comments</h3>
@@ -30,6 +30,65 @@
     <%= f.text_area :content, placeholder: "Add a comment" %><br/>
     <%= f.hidden_field :user_id, :value => @current_user.id %>
     <%= f.submit "Add Comment" %>
+=======
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <%= f.hidden_field :post_id, :value => @post.id %>
+
+  <%= f.hidden_field :user_id, :value => @current_user.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+  <!-- <form class="ui reply form">
+    <div class="field">
+      <textarea></textarea>
+    </div>
+    <div class="ui blue labeled submit icon button">
+      <i class="icon edit"></i> Add Reply
+    </div>
+  </form> -->
+
+
+<% end %>
+<br>
+<hr>
+
+<h3 class="ui-dividing header">Comments</h3>
+<div id='commentViewport' class="ui-threaded-comments">
+
+  <% @post.comments.each do |comment| %>
+  <div class="comment">
+    <a class="avatar">
+      <img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
+    </a>
+    <div class="content">
+      <a class="author"><%= @user.find(comment.user_id).username %></a>
+      <div class="metadata">
+        <span class="date"><%= comment.created_at %></span>
+      </div>
+      <div class="text">
+        <%= comment.content %>
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+>>>>>>> e6b32527522f8299b0a7980b0231206584f89575
   <% end %>
 
 <ul style="list-style-type: none;">
