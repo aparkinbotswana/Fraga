@@ -79,3 +79,9 @@
     .sidenav a {font-size: 18px;}
 }
 /*James: End CSS for sliding nav bar*/
+
+/*James: CSS to allow scroll within comments section*/
+#commentViewport{
+  overflow-y: auto;
+  height: 500px;
+}

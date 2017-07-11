@@ -19,67 +19,17 @@
   </tbody>
 </table>
 
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
-
-  <%= f.hidden_field :post_id, :value => @post.id %>
-
-  <%= f.hidden_field :user_id, :value => @current_user.id %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
-
-  <!-- <form class="ui reply form">
-    <div class="field">
-      <textarea></textarea>
-    </div>
-    <div class="ui blue labeled submit icon button">
-      <i class="icon edit"></i> Add Reply
-    </div>
-  </form> -->
-
-
-<% end %>
-
-
 <br><br><br>
 
-<div class="ui threaded comments">
-  <h3 class="ui dividing header">Comments</h3>
-  <% @post.comments.each do |comment| %>
-  <div class="comment">
-    <a class="avatar">
-      <img src="https://semantic-ui.com/images/avatar/small/joe.jpg">
-    </a>
-    <div class="content">
-      <a class="author"><%= @user.find(comment.user_id).username %></a>
-      <div class="metadata">
-        <span class="date"><%= comment.created_at %></span>
-      </div>
-      <div class="text">
-        <%= comment.content %>
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-  </div>
+<h3 class="ui dividing header">Comments</h3>
+
+
+  <%= form_for [@post, Comment.new] do |f| %>
+    <%= f.text_area :content, placeholder: "Add a comment" %><br/>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.submit "Add Comment" %>
   <% end %>
-</div>
+
+<ul style="list-style-type: none;">
+  <%= render(partial: 'comments/comment', collection: @post.comments) %>
+</ul>

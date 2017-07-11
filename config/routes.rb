@@ -17,20 +17,23 @@ Rails.application.routes.draw do
   post '/posts/search' => 'posts#do_search'
   # post '/posts/search' => 'posts#do_search'
 
-  resources :comments
+  resources :comments do
+    resources :comments
+  end
   resources :users
 
   # 9 July 2017
   # By: Michelle
   # post route amended to allow for upvotes
   resources :posts do
-
     member do
       post 'upvote'
       post 'downvote'
     end
-
-
+  # 11 July 2017
+  # By: Andy
+  # Post route to access comments
+    resources :comments
   end
 
 end
