@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'   # check credentials and attempt login
   delete '/login' => 'session#destroy'  # log out destroy session
 
+  # James - route to render Profile
+  get '/users/:id' => 'users#show'
 
   # route map erb to map controller - Andy
   get '/posts/map' => 'posts#map'
