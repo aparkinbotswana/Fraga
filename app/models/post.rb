@@ -72,8 +72,6 @@ class Post < ApplicationRecord
     end
   end
 
-<<<<<<< HEAD
-=======
   # Michelle / 11 July
   # for upvotes/downvotes
   def upvotes
@@ -82,7 +80,6 @@ class Post < ApplicationRecord
 
   def downvotes
     votes.sum(:downvote)
->>>>>>> e6b32527522f8299b0a7980b0231206584f89575
   end
 
 end
