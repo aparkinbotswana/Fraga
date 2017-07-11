@@ -1,8 +1,21 @@
 <p id="notice"><%= notice %></p>
 
   <h2><%= @post.question %></h2>
-<table>
 
+  <div id="translate" class="col-md-6 col-md-offset-3">
+  <select id="language">
+    <option value="en-fr">English to French</option>
+    <option value="fr-en">French to English</option>
+    <option value="en-el">English to Greek</option>
+    <option value="en-no">English to Norwegian</option>
+    <option value="en-ja">English to Japanese</option>
+    <option value="en-de">English to German</option>
+    <option value="en-sv">English to Swedish</option>
+    <option value="en-zh">English to Mandarin</option>
+  </select>
+  <button id="postLanguageButton">translate</button>
+
+<table>
   <tbody>
     <tr>
       <td>
@@ -19,7 +32,12 @@
   </tbody>
 </table>
 
-<br><br><br>
+<button id="commentsLanguageButton">translate</button>
+
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
 <h3 class="ui dividing header">Comments</h3>
 
