@@ -1,8 +1,22 @@
 <p id="notice"><%= notice %></p>
 
   <h2><%= @post.question %></h2>
-<table>
 
+<!--Michelle - translation options  -->
+  <select id="language">
+    <option value="en-fr">English to French</option>
+    <option value="fr-en">French to English</option>
+    <option value="en-el">English to Greek</option>
+    <option value="en-no">English to Norwegian</option>
+    <option value="en-ja">English to Japanese</option>
+    <option value="en-de">English to German</option>
+    <option value="en-sv">English to Swedish</option>
+    <option value="en-zh">English to Mandarin</option>
+  </select>
+  <!--button to trigger translation of post (see application.js file)  -->
+  <button id="postLanguageButton">translate</button>
+
+<table>
   <tbody>
     <tr>
       <td>
@@ -19,7 +33,14 @@
   </tbody>
 </table>
 
-<br><br><br>
+<!--button to trigger translation of comments (see application.js file)  -->
+
+<button id="commentsLanguageButton">translate</button>
+
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
 <h3 class="ui dividing header">Comments</h3>
 
@@ -27,6 +48,7 @@
   <%= f.text_area :content, placeholder: "Add a comment" %><br/>
   <%= f.hidden_field :user_id, :value => @current_user.id %>
   <%= f.submit "Add Comment" %>
+<% end %>
 <% end %>
 
 <div id='commentViewport'>
@@ -50,3 +72,5 @@
       });
   });
 </script>
+
+<% end %>
