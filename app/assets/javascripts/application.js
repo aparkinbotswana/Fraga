@@ -95,8 +95,6 @@ $( document ).ready(function() {
       console.log(xhr, err, status);
     });
 
-
-
   });
 
   // Use event delegation
@@ -104,20 +102,4 @@ $( document ).ready(function() {
     var url = '/posts/' + $(this).attr('post-id');
     document.location.href = url;
   });
-
-
-  /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
-      $("#navOpen").click(function(){
-        $('#mySidenav').css('width', "250px");
-      console.log('open, says me');
-    })
-
-
-
-  /* James: Set the width of the side navigation to 0 for sliding nav bar*/
-      $("#navClose").click(function(){
-        $('#mySidenav').css('width', "0");
-      console.log('close, says me');
-    })
-
 });

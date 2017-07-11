@@ -23,6 +23,7 @@
 
 <h3 class="ui dividing header">Comments</h3>
 
+<div id='commentViewport'>
 
   <%= form_for [@post, Comment.new] do |f| %>
     <%= f.text_area :content, placeholder: "Add a comment" %><br/>
