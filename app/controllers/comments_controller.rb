@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
+  before_action :find_commentable
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :check_if_logged_in
+
 
   # GET /comments
   # GET /comments.json
@@ -26,17 +28,15 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to post_path(@comment.post_id)}
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    @comment = @commentable.comments.new comment_params
+    @comment.user_id = @current_user.id
+    if @comment.save
+      redirect_to :back, notice: 'Your comment was successfully posted!'
+    else
+      redirect_to :back, notice: "Your comment wasn't posted!"
     end
   end
+
 
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
@@ -70,6 +70,12 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content, :post_id, :user_id)
+      params.require(:comment).permit(:content)
+      # params.require(:comment).permit(:content, :post_id, :user_id)
+    end
+
+    def find_commentable
+      @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
+      @commentable = Post.find_by_id(params[:post_id]) if params[:post_id]
     end
 end

@@ -11,11 +11,12 @@
 #  emjoi      :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  location   :string
 #
 
 class Post < ApplicationRecord
+  has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user, optional: true
-  has_many :comments, dependent: :destroy
 
   #9 July 2017
   #By: Andy
