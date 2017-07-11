@@ -42,5 +42,9 @@
       $(this).closest('.content').find('.comment-submit').show();
       $(this).hide();
      });
+
+     $('.collapse-comments').click(function() {
+       $(this).closest('li').children('ul').toggle();
+      });
   });
 </script>

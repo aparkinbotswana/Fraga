@@ -5,7 +5,7 @@
     <div class="comment" style="padding:4px 0px 0px 4px;">
 
       <div class="content">
-        <a class="author"><%= @user.find(comment.user_id).username %></a>
+        <a class="collapse-comments">[-] </a><a class="author"></span><%= @user.find(comment.user_id).username %></a>
         <div class="metadata">
           <span><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
         </div>
