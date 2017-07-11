@@ -79,3 +79,9 @@
     .sidenav a {font-size: 18px;}
 }
 /*James: End CSS for sliding nav bar*/
+
+
+#commentViewport{
+  overflow-y: auto;
+  height: 500px;
+}

@@ -59,12 +59,12 @@
 
 
 <% end %>
+<br>
+<hr>
 
+<h3 class="ui-dividing header">Comments</h3>
+<div id='commentViewport' class="ui-threaded-comments">
 
-<br><br><br>
-
-<div class="ui threaded comments">
-  <h3 class="ui dividing header">Comments</h3>
   <% @post.comments.each do |comment| %>
   <div class="comment">
     <a class="avatar">
