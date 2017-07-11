@@ -131,19 +131,26 @@ class PostsController < ApplicationController
     #By: Michelle
     #For upvoting
     def upvote
-      @post = Post.find(params[:id])
+      @post = Post.find_by(id: params[:id])
       # raise 'hell'
 
       # the following line to be uncommented when we go live to allow for 1 vote per user
       # Vote.find_or_create_by(post: @post, user: @current_user)
-      Vote.create(post: @post, user: @current_user)
-      respond_to do |format|
-        # if the response fomat is html, redirect as usual
-        format.html { redirect_to root_path }
-        # if the response format is javascript, do something else...
-        format.js { }
-      end
-      # redirect_to(posts_path)
+      Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
+      # respond_to do |format|
+      # #   # if the response format is html, redirect as usual
+      #   format.html { redirect_to root_path }
+      # #   # if the response format is javascript, do something else...
+      #   format.js { }
+      # end
+      redirect_to posts_path
+    end
+
+    def downvote
+      @post = Post.find_by(id: params[:id])
+      Vote.find_or_create_by(downvote: 1, post: @post, user: @current_user)
+      redirect_to posts_path
+
     end
 
   private
