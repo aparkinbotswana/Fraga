@@ -1,15 +1,17 @@
+<% if comment.commentable_type == "Post"%>
+  <li style="margin: 8px 0 5px 0; border: 1px solid gray;">
+<% elsif %>
+  <li style="margin: 5px 0 5px 0; border-left: 1px dotted gray;">
+<% end %>
 
-<li style="margin: 2px 0 2px 0; border: 1px solid black">
+<!-- Andy - Render new comment form and loop through comments for post -->
   <%= form_for [comment, Comment.new] do |f| %>
 
     <div class="comment" style="padding:4px 0px 4px 4px;">
 
       <div class="content">
-        <a class="collapse-comments">[-]</a><a class="author"></span> <%= @user.find(comment.user_id).username %></a>
+        <a class="collapse-comments">[-]</a><a></span> <%= @user.find(comment.user_id).username %></a><span><small>  <%= time_ago_in_words(comment.created_at) %> ago</small></span>
         <div class="in-content">
-          <div class="metadata">
-            <span><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
-          </div>
           <div class="text t<%=comment.id%>">
             <%= comment.content %>
           </div>
@@ -28,10 +30,9 @@
 
   <% end %>
 
-
-
-<ul style="list-style-type: none; margin:2px">
-<%= render partial: 'comments/comment', collection: comment.comments %>
-</ul>
+  <!-- Andy - Render nested comment form and display nested comments -->
+  <ul style="list-style-type: none; margin:2px">
+    <%= render partial: 'comments/comment', collection: comment.comments %>
+  </ul>
 
 </li>

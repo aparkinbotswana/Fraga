@@ -43,11 +43,13 @@
 
 <!-- Andy - Form to render first level comment on post -->
 
-<%= form_for [@post, Comment.new] do |f| %>
-  <%= f.text_area :content, placeholder: "Add a comment" %><br/>
-  <%= f.hidden_field :user_id, :value => @current_user.id %>
-  <%= f.submit "Add Comment" %>
-<% end %>
+<ul style="list-style-type: none; padding: 0;">
+  <%= form_for [@post, Comment.new] do |f| %>
+    <%= f.text_area :content, placeholder: "Add a comment" %><br/>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.submit "Add Comment" %>
+  <% end %>
+</ul>
 
 <div id='commentViewport'>
 
