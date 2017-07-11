@@ -47,6 +47,8 @@ $( document ).ready(function() {
       // remove existing markers
       markers.forEach(function(m){
         m.setMap(null);
+        
+
       });
       markers = [];
 
@@ -65,7 +67,8 @@ $( document ).ready(function() {
                                 .addClass("questionlist")
                                 .attr('post-id', post.id);
 
-        $('#results').append('<img>').attr("src", "/assets/images/mapicons/happy.png");
+        // $('#results').append('<img>').attr("src", "/assets/images/mapicons/happy.png");
+        $('#results').html('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
 
         $('#results').append(user,":").append($question);
         // $('#results').append(question);
