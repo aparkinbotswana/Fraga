@@ -36,14 +36,9 @@ Form for searching by keyword and closest posts -->
         <td><%= post.active %></td>
         <!-- <td><%= post.emjoi %></td> -->
 
-        <!-- #9 July 2017
-        # By: Michelle
-        # post route amended to allow for upvotes
-         -->
-         <%count = pluralize(post.votes.count, 'vote') %>
-        <td class='vote-count'  id="p<%=post.id%>"><%=count%></td>
-          <td><%=button_to 'vote', upvote_post_path(post), method: :post, :class=> 'vote-button', remote: true%></td>
-        <!-- end upvote -->
+        <!--11 July(ML): votes partial  -->
+        <%= render 'votes', post: post %>
+
 
         <td><%= link_to 'Show', post %></td>
 

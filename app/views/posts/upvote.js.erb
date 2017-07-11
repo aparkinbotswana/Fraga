@@ -6,5 +6,6 @@
 console.log(<%=@post.votes.count%>);
 //NEED POST ID
 console.log(<%=@post.id%>);
-$('#p<%=@post.id%>').html('<%=@post.votes.count%> votes');
+
+$('#p<%=@post.id%>').html('<%=@post.votes.count%>');
 // $('.vote-button').click(false)
