@@ -9,65 +9,64 @@
   </head>
 
   <!-- <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray"> -->
-    <style>
+  <style>
     body {
-      padding: 0px;
+      padding: 0;
       margin: 0 auto;
     }
 
-    </style>
-
-    <div id="mySidenav" class="sidenav">
-  <a href="#" id='navClose' class="closebtn" >&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
-
-<!-- Use any element to open the sidenav -->
-<span id='navOpen'>open</span>
+  </style>
 
 
-    <div class="ui centered grid ">
+  <!-- James: Sliding Nav Bar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="#" id='navClose' class="closebtn">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
 
-      <div class="four wide column">
+  <!-- James: Click button to open nav bar -->
+  <span id='navOpen'>open</span>
 
-        <div class="ui right aligned category search searchbar">
+  <div class="ui centered grid ">
+
+    <div class="four wide column">
+
+      <div class="ui right aligned category search searchbar">
         <div class="ui icon input">
-        <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
-        <i class="search icon"></i>
+          <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
+          <i class="search icon"></i>
         </div>
 
         <button id="searchbutton">Search</button>
-        <div id="results"> </div>
-        </div>
-
-
-
-
+        <div id="results"></div>
       </div>
 
-      <div class="twelve wide column main">
+    </div>
+
+    <div class="twelve wide column main">
 
       <h1><%= link_to "FRÅGA", posts_path() %></h1>
 
       <!-- <nav style="float:right"> -->
-        <% unless @current_user.present? %>
-        <%= link_to 'Login',  login_path, class: "ui button" %>  <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
-        <% else %>
-        Welcome, <%= @current_user.username %>
+      <% unless @current_user.present? %>
+      <%= link_to 'Login',  login_path, class: "ui button" %>
+      <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
+    <% else %>
+      Welcome,
+      <%= @current_user.username %>
 
-        <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
-        <% end %>
+      <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
+      <% end %>
       <!-- </nav> -->
 
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
+  </div>
 
-
-      <!-- <h1><%= link_to "FRÅGA", posts_path() %></h1>
+  <!-- <h1><%= link_to "FRÅGA", posts_path() %></h1>
 
         <nav style="float:right">
           <% unless @current_user.present? %>
@@ -89,6 +88,6 @@
 
       <%= yield %> -->
 
-  </body>
+</body>
 
 </html>

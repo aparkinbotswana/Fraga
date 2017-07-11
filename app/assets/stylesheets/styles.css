@@ -34,6 +34,7 @@
   top: 2000px;
 }
 
+/*James: CSS for sliding nav bar*/
 /* The side navigation menu */
 .sidenav {
     height: 100%; /* 100% Full-height */
@@ -77,3 +78,4 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+/*James: End CSS for sliding nav bar*/
