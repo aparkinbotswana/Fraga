@@ -44,7 +44,9 @@
      });
 
      $('.collapse-comments').click(function() {
+       $(this).parent().children('.in-content').toggle()
        $(this).closest('li').children('ul').toggle();
+       $(this).html($(this).text() == '[+]' ? '[-]' : '[+]');
       });
   });
 </script>

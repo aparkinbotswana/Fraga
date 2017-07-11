@@ -2,24 +2,26 @@
 <li style="margin: 2px 0 2px 0; border: 1px solid black">
   <%= form_for [comment, Comment.new] do |f| %>
 
-    <div class="comment" style="padding:4px 0px 0px 4px;">
+    <div class="comment" style="padding:4px 0px 4px 4px;">
 
       <div class="content">
-        <a class="collapse-comments">[-] </a><a class="author"></span><%= @user.find(comment.user_id).username %></a>
-        <div class="metadata">
-          <span><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
-        </div>
-        <div class="text">
-          <%= comment.content %>
-        </div>
-        <div class="text">
-          <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
-        </div>
-        <div class="actions">
-          <div class="actions">
-            <a class="reply">Reply</a>
+        <a class="collapse-comments">[-]</a><a class="author"></span> <%= @user.find(comment.user_id).username %></a>
+        <div class="in-content">
+          <div class="metadata">
+            <span><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
           </div>
-          <%= f.submit "Reply", :class => "comment-submit"  %>
+          <div class="text">
+            <%= comment.content %>
+          </div>
+          <div class="text">
+            <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
+          </div>
+          <div class="actions">
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+            <%= f.submit "Reply", :class => "comment-submit"  %>
+          </div>
         </div>
       </div>
     </div>
