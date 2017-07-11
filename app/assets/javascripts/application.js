@@ -22,8 +22,7 @@
 
 $( document ).ready(function() {
 
-
-
+// Julian - search results
 
   $('#searchbutton').click(function(){
 
@@ -31,8 +30,6 @@ $( document ).ready(function() {
 
     var queryinput = $('#queryinput').val();
     $('#queryinput').empty();
-
-
 
     $.ajax({
       url: "/posts/search",
@@ -96,8 +93,7 @@ $( document ).ready(function() {
     });
 
 
-
-  });
+  }); //search function close
 
   // Use event delegation
   $(document).on('click', '.questionlist', function(){
@@ -107,7 +103,7 @@ $( document ).ready(function() {
 
 
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
-      $("#navOpen").click(function(){
+    $("#navOpen").click(function(){
         $('#mySidenav').css('width', "250px");
       console.log('open, says me');
     })
@@ -115,9 +111,64 @@ $( document ).ready(function() {
 
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
-      $("#navClose").click(function(){
+    $("#navClose").click(function(){
         $('#mySidenav').css('width', "0");
       console.log('close, says me');
     })
 
+  // Michelle: Translate text
+
+var translateRequest = function(location, text, lang) {
+  // $('h2').html()
+
+  var baseURL = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
+
+
+
+  $.ajax ({
+    url:baseURL,
+    data: {
+    key:"API KEY - see slack",
+    text: text,
+    lang: lang
+    }
+  })
+  .done(function(res){
+    console.log(res);
+    var $div = $('<div>').html("Translation (" + lang + "): "+ res.text[0]);
+    $(location).append($div);
+// debugger;
+  })
+  .fail(function(xhr, status, err){
+    console.log(xhr, status, err);
+  })
+
+}
+
+$('#postLanguageButton').click(function(){
+  var languageRequest = $('#language').val();
+  console.log(languageRequest);
+  submitText(languageRequest)
+})
+
+$('#commentsLanguageButton').click(function(){
+  var languageRequest = $('#language').val();
+  console.log(languageRequest);
+  submitComments(languageRequest)
+})
+  var submitText = function(languageRequest){
+    var line = $('h2').html();
+    var location = 'h2';
+    var lang = languageRequest;
+    translateRequest(location, line,languageRequest)
+
+  }
+
+  var submitComments = function(languageRequest){
+    var line = $('.text').html();
+    var location = '.text';
+    var lang = languageRequest;
+    translateRequest(location, line,languageRequest)
+
+  }
 });
