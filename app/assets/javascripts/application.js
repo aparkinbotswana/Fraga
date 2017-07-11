@@ -125,7 +125,7 @@ var translateRequest = function(location, text, lang) {
   $.ajax ({
     url:baseURL,
     data: {
-    key:"check slack",
+    key:"trnsl.1.1.20170627T084739Z.06f8907ff46f3db4.8f9f551892cd96b80c1a8cfa39f71a4a26afc72c",
     text: text,
     lang: lang
     }
