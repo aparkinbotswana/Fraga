@@ -19,7 +19,6 @@
   </tbody>
 </table>
 
-
 <br><br><br>
 
 <h3 class="ui dividing header">Comments</h3>
@@ -30,7 +29,6 @@
     <%= f.text_area :content, placeholder: "Add a comment" %><br/>
     <%= f.hidden_field :user_id, :value => @current_user.id %>
     <%= f.submit "Add Comment" %>
-
   <% end %>
 
 <ul style="list-style-type: none;">
