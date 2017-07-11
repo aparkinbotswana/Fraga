@@ -6,8 +6,22 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
 
+# Michelle - for up/down votes
+  def check_score
+    score = @post.upvotes - @post.downvotes
+    # raise 'hell'
+    @post.update_attribute(:score, score)
+  end
 
+  def make_request
+    respond_to do |format|
+    #   # if the response format is html, redirect as usual
+      format.html { redirect_to root_path }
+    #   # if the response format is javascript, do something else...
+      format.js { }
+    end
 
+  end
   def index
     @posts = Post.all
    end
@@ -54,6 +68,7 @@ class PostsController < ApplicationController
     @post = Post.find params["id"]
     @comment = Comment.new
     @user = User.all
+    # raise 'hell'
   end
 
   def map
@@ -162,19 +177,28 @@ class PostsController < ApplicationController
     #By: Michelle
     #For upvoting
     def upvote
-      @post = Post.find(params[:id])
+      @post = Post.find_by(id: params[:id])
       # raise 'hell'
 
       # the following line to be uncommented when we go live to allow for 1 vote per user
       # Vote.find_or_create_by(post: @post, user: @current_user)
-      Vote.create(post: @post, user: @current_user)
-      respond_to do |format|
-        # if the response fomat is html, redirect as usual
-        format.html { redirect_to root_path }
-        # if the response format is javascript, do something else...
-        format.js { }
-      end
-      # redirect_to(posts_path)
+      # Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
+      Vote.create(upvote: 1, post: @post, user: @current_user)
+      check_score()
+      make_request()
+      # redirect_to posts_path
+    end
+
+    #11 July 2017
+      #By: Michelle
+      #For downvotes
+    def downvote
+      @post = Post.find_by(id: params[:id])
+      # Vote.find_or_create_by(downvote: 1, post: @post, user: @current_user)
+      Vote.create(downvote: 1, post: @post, user: @current_user)
+      check_score()
+      make_request()
+      # redirect_to posts_path
     end
 
   private

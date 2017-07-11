@@ -43,38 +43,42 @@ class Post < ApplicationRecord
   def self.location_search(query, user)
 
   # raise 'hell'
-  Post.near([user.latitude, user.longitude], 50, :units => :km)
+    Post.near([user.latitude, user.longitude], 50, :units => :km)
 
   end
 
   def self.text_search(query, user)
+    # old new code
+    # if query.present?
+    #     where("question @@ :q", q: query)
+    #   else
+    #     self.all
+    #   end
 
-  # old new code
-  # if query.present?
-  #     where("question @@ :q", q: query)
-  #   else
-  #     self.all
-  #   end
+    # location search .near
 
+    if query.present?
 
-  # location search .near
+      rank = <<-RANK
+      ts_rank(to_tsvector(question), plainto_tsquery(#{sanitize(query)}))
+      RANK
+      # raise 'hell'
 
-  if query.present?
-
-  rank = <<-RANK
-  ts_rank(to_tsvector(question), plainto_tsquery(#{sanitize(query)}))
-  RANK
-  # raise 'hell'
-
-  # Post.near([user.latitude, user.longitude], 50, :units => :km).where("question @@ :q", q: query).order("#{rank} desc")
-  Post.near([user.latitude, user.longitude], 8000000, order: 'distance').where("question @@ :q", q: query).order("#{rank} desc")
-  else
-  self.all
+      # Post.near([user.latitude, user.longitude], 50, :units => :km).where("question @@ :q", q: query).order("#{rank} desc")
+      Post.near([user.latitude, user.longitude], 8000000, order: 'distance').where("question @@ :q", q: query).order("#{rank} desc")
+    else
+      self.all
+    end
   end
 
+  # Michelle / 11 July
+  # for upvotes/downvotes
+  def upvotes
+    votes.sum(:upvote)
+  end
 
-
-
+  def downvotes
+    votes.sum(:downvote)
   end
 
 end
