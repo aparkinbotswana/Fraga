@@ -1,13 +1,13 @@
 
-<li>
+<li style="margin: 2px 0 2px 0; border: 1px solid black">
   <%= form_for [comment, Comment.new] do |f| %>
 
-    <div class="comment" style="border:1px solid black">
+    <div class="comment" style="padding:4px 0px 0px 4px;">
 
       <div class="content">
         <a class="author"><%= @user.find(comment.user_id).username %></a>
         <div class="metadata">
-          <span class="date"><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
+          <span><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
         </div>
         <div class="text">
           <%= comment.content %>
@@ -20,7 +20,6 @@
             <a class="reply">Reply</a>
           </div>
           <%= f.submit "Reply", :class => "comment-submit"  %>
-          <%= comment.id %>
         </div>
       </div>
     </div>
@@ -29,7 +28,7 @@
 
 
 
-<ul style="list-style-type: none;">
+<ul style="list-style-type: none; margin:2px">
 <%= render partial: 'comments/comment', collection: comment.comments %>
 </ul>
 

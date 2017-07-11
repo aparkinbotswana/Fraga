@@ -23,15 +23,15 @@
 
 <h3 class="ui dividing header">Comments</h3>
 
+<%= form_for [@post, Comment.new] do |f| %>
+  <%= f.text_area :content, placeholder: "Add a comment" %><br/>
+  <%= f.hidden_field :user_id, :value => @current_user.id %>
+  <%= f.submit "Add Comment" %>
+<% end %>
+
 <div id='commentViewport'>
 
-  <%= form_for [@post, Comment.new] do |f| %>
-    <%= f.text_area :content, placeholder: "Add a comment" %><br/>
-    <%= f.hidden_field :user_id, :value => @current_user.id %>
-    <%= f.submit "Add Comment" %>
-  <% end %>
-
-<ul style="list-style-type: none;">
+<ul style="list-style-type: none; padding: 0;">
   <%= render(partial: 'comments/comment', collection: @post.comments) %>
 </ul>
 
