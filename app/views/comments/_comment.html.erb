@@ -1,38 +1,27 @@
-  <script type="text/javascript">
-    $(document).ready(function() {
 
-     $('.c<%=comment.id%>').hide(); //Initially form wil be hidden.
-
-      $('.reply').click(function() {
-       $('.c<%=comment.id%>').show();//Form shows on button click
-       $('.reply').hide();
-
-       });
-    });
-  </script>
-
-<li>
+<li style="margin: 2px 0 2px 0; border: 1px solid black">
   <%= form_for [comment, Comment.new] do |f| %>
 
-    <div class="comment" style="border:1px solid black">
+    <div class="comment" style="padding:4px 0px 4px 4px;">
 
       <div class="content">
-        <a class="author"><%= @user.find(comment.user_id).username %></a>
-        <div class="metadata">
-          <span class="date"><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
-        </div>
-        <div class="text">
-          <%= comment.content %>
-        </div>
-        <div class="text">
-          <%= f.text_area :content, placeholder: "Add a Reply", :class => "c#{comment.id}" %>
-        </div>
-        <div class="actions">
-          <div class="actions">
-            <a class="reply">Reply</a>
+        <a class="collapse-comments">[-]</a><a class="author"></span> <%= @user.find(comment.user_id).username %></a>
+        <div class="in-content">
+          <div class="metadata">
+            <span><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
           </div>
-          <%= f.submit "Reply", :class => "c#{comment.id}"  %>
-          <%= comment.id %>
+          <div class="text">
+            <%= comment.content %>
+          </div>
+          <div class="text">
+            <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
+          </div>
+          <div class="actions">
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+            <%= f.submit "Reply", :class => "comment-submit"  %>
+          </div>
         </div>
       </div>
     </div>
@@ -41,7 +30,7 @@
 
 
 
-<ul style="list-style-type: none;">
+<ul style="list-style-type: none; margin:2px">
 <%= render partial: 'comments/comment', collection: comment.comments %>
 </ul>
 
