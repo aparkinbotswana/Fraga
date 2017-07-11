@@ -33,3 +33,13 @@
 <ul style="list-style-type: none;">
   <%= render(partial: 'comments/comment', collection: @post.comments) %>
 </ul>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $('.reply').click(function() {
+      $(this).closest('.content').find('.comment-submit').show();
+      $(this).hide();
+     });
+  });
+</script>

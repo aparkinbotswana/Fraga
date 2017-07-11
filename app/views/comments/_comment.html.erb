@@ -1,15 +1,3 @@
-  <script type="text/javascript">
-    $(document).ready(function() {
-
-     $('.c<%=comment.id%>').hide(); //Initially form wil be hidden.
-
-      $('.reply').click(function() {
-       $('.c<%=comment.id%>').show();//Form shows on button click
-       $('.reply').hide();
-
-       });
-    });
-  </script>
 
 <li>
   <%= form_for [comment, Comment.new] do |f| %>
@@ -25,13 +13,13 @@
           <%= comment.content %>
         </div>
         <div class="text">
-          <%= f.text_area :content, placeholder: "Add a Reply", :class => "c#{comment.id}" %>
+          <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
         </div>
         <div class="actions">
           <div class="actions">
             <a class="reply">Reply</a>
           </div>
-          <%= f.submit "Reply", :class => "c#{comment.id}"  %>
+          <%= f.submit "Reply", :class => "comment-submit"  %>
           <%= comment.id %>
         </div>
       </div>

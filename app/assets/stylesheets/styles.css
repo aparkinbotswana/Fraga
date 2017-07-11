@@ -1,3 +1,7 @@
+.comment-submit {
+  display: none;
+}
+
 .page-login {
   margin-top: 25px;
   text-align: center;
