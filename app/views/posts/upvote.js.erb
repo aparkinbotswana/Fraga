@@ -3,9 +3,10 @@
 // to handle upvote ajax request
 
 // className = '.vote-count-'+ <%@post.id%>
-console.log(<%=@post.votes.count%>);
+console.log(<%=@post.upvotes%>);
+<%raise 'hell'%>
 //NEED POST ID
-console.log(<%=@post.id%>);
+// console.log(<%=@post.upvotes%>);
 
-$('#p<%=@post.id%>').html('<%=@post.votes.count%>');
+$('#p<%=@post.id%>').html('<%=@post.upvotes%>');
 // $('.vote-button').click(false)

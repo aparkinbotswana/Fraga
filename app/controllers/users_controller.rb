@@ -67,6 +67,10 @@ end
     end
   end
 
+  # def upvote(post)
+  #   votes.create(upvote: 1, post: post)
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
