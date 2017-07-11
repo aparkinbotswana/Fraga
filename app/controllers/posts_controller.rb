@@ -54,10 +54,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @posts = Post.all
     @post = Post.find params["id"]
     @comment = Comment.new
     @user = User.all
     # raise 'hell'
+
   end
 
   def map

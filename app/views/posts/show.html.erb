@@ -2,7 +2,6 @@
 
   <h2><%= @post.question %></h2>
 
-  <div id="translate" class="col-md-6 col-md-offset-3">
   <select id="language">
     <option value="en-fr">English to French</option>
     <option value="fr-en">French to English</option>
@@ -46,6 +45,7 @@
   <%= f.hidden_field :user_id, :value => @current_user.id %>
   <%= f.submit "Add Comment" %>
 <% end %>
+<% end %>
 
 <div id='commentViewport'>
 
@@ -68,3 +68,5 @@
       });
   });
 </script>
+
+<% end %>

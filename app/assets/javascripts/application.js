@@ -119,16 +119,13 @@ $( document ).ready(function() {
   // Michelle: Translate text
 
 var translateRequest = function(location, text, lang) {
-  // $('h2').html()
 
   var baseURL = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
-
-
 
   $.ajax ({
     url:baseURL,
     data: {
-    key:"API KEY - see slack",
+    key:"check slack",
     text: text,
     lang: lang
     }
@@ -137,7 +134,7 @@ var translateRequest = function(location, text, lang) {
     console.log(res);
     var $div = $('<div>').html("Translation (" + lang + "): "+ res.text[0]);
     $(location).append($div);
-// debugger;
+    console.log($div);
   })
   .fail(function(xhr, status, err){
     console.log(xhr, status, err);
@@ -145,27 +142,30 @@ var translateRequest = function(location, text, lang) {
 
 }
 
-$('#postLanguageButton').click(function(){
-  var languageRequest = $('#language').val();
-  console.log(languageRequest);
-  submitText(languageRequest)
-})
+  $('#postLanguageButton').click(function(){
+    var languageRequest = $('#language').val();
+    console.log(languageRequest);
+    submitPost(languageRequest)
+  })
 
-$('#commentsLanguageButton').click(function(){
-  var languageRequest = $('#language').val();
-  console.log(languageRequest);
-  submitComments(languageRequest)
-})
-  var submitText = function(languageRequest){
+  var submitPost = function(languageRequest){
     var line = $('h2').html();
     var location = 'h2';
     var lang = languageRequest;
     translateRequest(location, line,languageRequest)
 
-  }
+  };
+
+  $('#commentsLanguageButton').click(function(){
+    var languageRequest = $('#language').val();
+    console.log(languageRequest);
+    submitComments(languageRequest)
+  });
 
   var submitComments = function(languageRequest){
     var line = $('.text').html();
+    // debugger;
+    console.log(line);
     var location = '.text';
     var lang = languageRequest;
     translateRequest(location, line,languageRequest)
