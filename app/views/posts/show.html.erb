@@ -1,21 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-  <h2><%= @post.question %></h2>
+<!-- Andy - Show question -->
+<h2><%= @post.question %></h2>
 
 <!--Michelle - translation options  -->
-  <select id="language">
-    <option value="en-fr">English to French</option>
-    <option value="fr-en">French to English</option>
-    <option value="en-el">English to Greek</option>
-    <option value="en-no">English to Norwegian</option>
-    <option value="en-ja">English to Japanese</option>
-    <option value="en-de">English to German</option>
-    <option value="en-sv">English to Swedish</option>
-    <option value="en-zh">English to Mandarin</option>
-  </select>
-  <!--button to trigger translation of post (see application.js file)  -->
-  <button id="postLanguageButton">translate</button>
+<select id="language">
+  <option value="en-fr">English to French</option>
+  <option value="fr-en">French to English</option>
+  <option value="en-el">English to Greek</option>
+  <option value="en-no">English to Norwegian</option>
+  <option value="en-ja">English to Japanese</option>
+  <option value="en-de">English to German</option>
+  <option value="en-sv">English to Swedish</option>
+  <option value="en-zh">English to Mandarin</option>
+</select>
 
+<!--Michelle - button to trigger translation of post (see application.js file)  -->
+<button id="postLanguageButton">translate</button>
+
+<!-- Andy - Show post details score and link to edit -->
 <table>
   <tbody>
     <tr>
@@ -23,48 +26,45 @@
         <strong>Posted by:</strong>
         <%= @user.find(@post.user_id).username %>
       </td>
-
         <%= render 'votes', post: @post %>
-
-    <td>
-    <%= link_to 'Edit', edit_post_path(@post) %>
-    </td>
+      <td>
+        <%= link_to 'Edit', edit_post_path(@post) %>
+      </td>
     </tr>
   </tbody>
 </table>
 
-<!--button to trigger translation of comments (see application.js file)  -->
-
+<!--Michelle - Button to trigger translation of comments (see application.js file)  -->
 <button id="commentsLanguageButton">translate</button>
 
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<br><br><br>
 
 <h3 class="ui dividing header">Comments</h3>
+
+<!-- Andy - Form to render first level comment on post -->
 
 <%= form_for [@post, Comment.new] do |f| %>
   <%= f.text_area :content, placeholder: "Add a comment" %><br/>
   <%= f.hidden_field :user_id, :value => @current_user.id %>
   <%= f.submit "Add Comment" %>
 <% end %>
-<% end %>
 
 <div id='commentViewport'>
+
+<!-- Andy - Display all comments for the current post -->
 
 <ul style="list-style-type: none; padding: 0;">
   <%= render(partial: 'comments/comment', collection: @post.comments) %>
 </ul>
 
+<!-- Andy - Click handlers to toggle reply box and collapse comments -->
+
 <script type="text/javascript">
   $(document).ready(function() {
-
     $('.reply').click(function() {
       $(this).closest('.content').find('.comment-submit').show();
       $(this).hide();
      });
-
      $('.collapse-comments').click(function() {
        $(this).parent().children('.in-content').toggle()
        $(this).closest('li').children('ul').toggle();
@@ -72,5 +72,3 @@
       });
   });
 </script>
-
-<% end %>
