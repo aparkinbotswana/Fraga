@@ -6,16 +6,10 @@
     <strong>Posted by:</strong>
     <%= @user.find(@post.user_id).username %>
   </p>
-  <!-- #9 July 2017
-  # By: Michelle
-  # post route amended to allow for upvotes
-   -->
-<p>
-  <%=button_to 'vote', upvote_post_path(@post), method: :post, :class=> 'vote-button', remote: true%>
-  <strong>Votes:</strong> <p class='vote-count' id="p<%=@post.id%>"><%=@post.votes.count%></p>
-  <!-- end upvote -->
-  <%#raise 'hell'%>
-</p>
+
+  <p>
+    <%= render 'votes', post: @post %>
+  </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %>
 
