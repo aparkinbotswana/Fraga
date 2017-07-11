@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_if_logged_in
   before_action :check_if_admin, only: [:index]
 
   def get_user
@@ -16,6 +16,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+
+    @posts = Post.where user_id: @current_user
+
   end
 
   # GET /users/new
