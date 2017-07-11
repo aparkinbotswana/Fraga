@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
   <h2><%= @post.question %></h2>
+<table>
 
-  <p>
-    <strong>Posted by:</strong>
-    <%= @user.find(@post.user_id).username %>
-  </p>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Posted by:</strong>
+        <%= @user.find(@post.user_id).username %>
+      </td>
 
-  <p>
-    <%= render 'votes', post: @post %>
-  </p>
+        <%= render 'votes', post: @post %>
 
-<%= link_to 'Edit', edit_post_path(@post) %>
-
-<br><br><br>
+    <td>
+    <%= link_to 'Edit', edit_post_path(@post) %>
+    </td>
+    </tr>
+  </tbody>
+</table>
 
 <%= form_for(@comment) do |f| %>
   <% if @comment.errors.any? %>
