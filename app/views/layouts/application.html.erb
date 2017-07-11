@@ -8,41 +8,112 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray">
-
-  <h1><%= link_to "FRÅGA", posts_path() %></h1>
-
-  <!-- search page -->
-
-  <%= form_tag posts_search_path, :method => 'post' do %>
-  <p>
-    <%= text_field_tag :query, params[:query] %>
-
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
+  <!-- <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray"> -->
+    <style>
+    body {
+      padding: 0px;
+      margin: 0 auto;
+    }
+    </style>
 
 
+    <div class="ui centered grid ">
 
-  <!-- Login menu - Andy -->
-  <!-- <% unless @current_user.present? %>
-      <%= link_to 'Login', login_path %> | <%= link_to 'Signup', new_user_path %>
-    <% else %>
-      <%= link_to @current_user.username, user_path(@current_user) %> |
-      <%= link_to 'Logout', login_path, method: :delete %>
-  <% end %> -->
+      <div class="four wide column">
 
-    <nav style="float:right">
-      <% unless @current_user.present? %>
-      <%= link_to 'Login',  login_path, class: "ui button" %>  <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
-      <% else %>
-      Welcome, <%= @current_user.username %>
+        <div class="ui right aligned category search searchbar">
+        <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
+        <i class="search icon"></i>
+        </div>
 
-      <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
-      <% end %>
-    </nav>
+        <button id="searchbutton">Search</button>
+        <div id="results"> </div>
+        </div>
 
-  <%= yield %>
+
+
+
+
+
+
+
+
+      </div>
+
+      <div class="twelve wide column main">
+
+      <h1><%= link_to "FRÅGA", posts_path() %></h1>
+
+      <!-- <nav style="float:right"> -->
+        <% unless @current_user.present? %>
+        <%= link_to 'Login',  login_path, class: "ui button" %>  <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
+        <% else %>
+        Welcome, <%= @current_user.username %>
+
+        <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
+        <% end %>
+      <!-- </nav> -->
+
+        <%= yield %>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+      <!-- <h1><%= link_to "FRÅGA", posts_path() %></h1>
+
+
+
+
+
+
+        <nav style="float:right">
+          <% unless @current_user.present? %>
+          <%= link_to 'Login',  login_path, class: "ui button" %>  <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
+          <% else %>
+          Welcome, <%= @current_user.username %>
+
+          <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
+          <% end %>
+        </nav>
+
+
+
+
+
+        <div style="float:left">
+
+        <input type="text" id="queryinput"></input>
+        <button id="searchbutton">Search</button>
+        <div id="results"> results </div>
+        </div>
+
+
+
+
+
+      <%= yield %> -->
+
+
 
   </body>
 

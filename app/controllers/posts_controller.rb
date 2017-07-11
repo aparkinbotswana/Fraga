@@ -13,9 +13,40 @@ class PostsController < ApplicationController
    end
 
    def do_search
+     @users = User.all
      @posts = Post.text_search(params[:query], @current_user)
+     response = { :users => @users, :posts => @posts }
+     respond_to do |format|
+       format.html { render :do_search }
+       format.json { render json: response }
 
+     end
    end
+
+
+   #
+  #  def do_search
+  #    @users = User.all
+  #    @posts = Post.text_search(params[:query], @current_user)
+  #    respond_to do |format|
+  #      format.html { render :do_search }
+  #      format.json { render json: @posts }
+   #
+   #
+  #
+  #    end
+  #  end
+
+
+
+
+
+
+
+
+
+
+
 
   # GET /posts/1
   # GET /posts/1.json
