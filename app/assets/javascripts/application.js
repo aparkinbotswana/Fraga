@@ -22,6 +22,9 @@
 
 $( document ).ready(function() {
 
+
+
+
   $('#searchbutton').click(function(){
 
     $('#results').empty();
@@ -41,24 +44,51 @@ $( document ).ready(function() {
     }).done(function(data){
       // debugger;
 
-      for (var i = 0; i < data.posts.length; i++) {
-        var question = $('<p>').text(data.posts[i].question);
-        var user = $('<p>').text(data.posts[i].username);
-        var location= $('<p>').text(data.posts[i].location);
-        var userid = data.posts[i].id;
-        var user = "mr question man ";
-        // var user = data.users[0].username;
-        // var user = jQuery.grep(data.user, function(obj){
-        //   return obj.id === userid });
+      // remove existing markers
+      markers.forEach(function(m){
+        m.setMap(null);
+      });
+      markers = [];
 
+      console.log('Search results:', data.length);
+      console.log('markers', markers);
+      for (var i = 0; i < data.length; i++) {
 
-        $('#results').append(user + "asks:");
-        $('#results').append(question);
-        $('#results').append(location);
+        var post = data[i];
 
+        var user = $('<p>').text(post.username);
+        var location= $('<p>').text(post.location);
+        var userid = post.user_id;
+        var user = post.user.username;
+        var emoji = post.emjoi;
+        var $question = $('<p>').text(post.question)
+                                .addClass("questionlist")
+                                .attr('post-id', post.id);
 
-      };
+        $('#results').append('<img>').attr("src", "/assets/images/mapicons/happy.png");
 
+        $('#results').append(user,":").append($question);
+        // $('#results').append(question);
+
+        // $('#results').append("Location:", location);
+
+        var m = handler.addMarker({
+          id: post.id,
+          infowindow: '<p><strong><u><a href="/posts/' + post.id + '">What is the meaning of life?</a></u></strong></p><p></p><p></p>',
+          lat: post.latitude,
+          lng: post.longitude,
+          picture: {
+            height: 60,
+            width: 60,
+            url: '/assets/mapicons/' + emoji + '.png'
+          }
+        });
+        markers.push( m );
+
+      } // for data.posts
+
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
 
     })
     .fail(function(xhr, err, status) {
@@ -69,10 +99,11 @@ $( document ).ready(function() {
 
   });
 
-  //   $("#mySidenav").click(function(){
-  //     this.toggle();
-  //   console.log('close, says me');
-  // })
+  // Use event delegation
+  $(document).on('click', '.questionlist', function(){
+    var url = '/posts/' + $(this).attr('post-id');
+    document.location.href = url;
+  });
 
 
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
@@ -80,6 +111,8 @@ $( document ).ready(function() {
         $('#mySidenav').css('width', "250px");
       console.log('open, says me');
     })
+
+
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
       $("#navClose").click(function(){

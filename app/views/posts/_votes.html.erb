@@ -5,11 +5,11 @@
   <td><%=button_to 'vote', upvote_post_path(post), method: :post, :class=> 'vote-button', remote: true%></td> -->
 <!-- end upvote -->
 
-<td><%="#{post.upvotes - post.downvotes}"%></td>
+<td id="p<%=post.id%>"><%="#{post.score}"%></td>
 <span class="upvote-post">
-  <td><%= link_to "upvote (#{post.upvotes})", upvote_post_path(post), method: :post %></td>
+  <td><%= link_to " upvote ", upvote_post_path(post), method: :post, remote: true %></td>
 </span>
 
 <span class="downvote-post">
-  <td><%= link_to "downvote (#{post.downvotes})", downvote_post_path(post), method: :post %></td>
+  <td><%= link_to " downvote ", downvote_post_path(post), method: :post, remote: true %></td>
 </span>

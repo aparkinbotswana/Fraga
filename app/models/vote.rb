@@ -14,7 +14,6 @@ class Vote < ApplicationRecord
   #To add relationship between vote and post
   belongs_to :post
   belongs_to :user
-  # validates :user_id, uniqueness: { scope: :post_id }
 
 
 end

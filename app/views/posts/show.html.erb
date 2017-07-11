@@ -1,25 +1,23 @@
 <p id="notice"><%= notice %></p>
 
   <h2><%= @post.question %></h2>
+<table>
 
-  <p>
-    <strong>Posted by:</strong>
-    <%= @user.find(@post.user_id).username %>
-  </p>
-  <!-- #9 July 2017
-  # By: Michelle
-  # post route amended to allow for upvotes
-   -->
-<p>
-  <%=button_to 'vote', upvote_post_path(@post), method: :post, :class=> 'vote-button', remote: true%>
-  <strong>Votes:</strong> <p class='vote-count' id="p<%=@post.id%>"><%=@post.votes.count%></p>
-  <!-- end upvote -->
-  <%#raise 'hell'%>
-</p>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Posted by:</strong>
+        <%= @user.find(@post.user_id).username %>
+      </td>
 
-<%= link_to 'Edit', edit_post_path(@post) %>
+        <%= render 'votes', post: @post %>
 
-<br><br><br>
+    <td>
+    <%= link_to 'Edit', edit_post_path(@post) %>
+    </td>
+    </tr>
+  </tbody>
+</table>
 
 <%= form_for(@comment) do |f| %>
   <% if @comment.errors.any? %>

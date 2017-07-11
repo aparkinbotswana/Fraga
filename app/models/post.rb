@@ -72,6 +72,7 @@ class Post < ApplicationRecord
   end
 
   # Michelle / 11 July
+  # for upvotes/downvotes
   def upvotes
     votes.sum(:upvote)
   end
