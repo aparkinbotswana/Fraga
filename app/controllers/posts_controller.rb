@@ -6,12 +6,22 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
 
+# Michelle - for up/down votes
   def check_score
     score = @post.upvotes - @post.downvotes
     # raise 'hell'
     @post.update_attribute(:score, score)
   end
 
+  def make_request
+    respond_to do |format|
+    #   # if the response format is html, redirect as usual
+      format.html { redirect_to root_path }
+    #   # if the response format is javascript, do something else...
+      format.js { }
+    end
+
+  end
   def index
     @posts = Post.all
    end
@@ -175,15 +185,8 @@ class PostsController < ApplicationController
       # Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
       Vote.create(upvote: 1, post: @post, user: @current_user)
       check_score()
-
-      # respond_to do |format|
-      # #   # if the response format is html, redirect as usual
-      #   format.html { redirect_to root_path }
-      # #   # if the response format is javascript, do something else...
-      #   format.js { }
-      # end
-
-      redirect_to posts_path
+      make_request()
+      # redirect_to posts_path
     end
 
     #11 July 2017
@@ -194,8 +197,8 @@ class PostsController < ApplicationController
       # Vote.find_or_create_by(downvote: 1, post: @post, user: @current_user)
       Vote.create(downvote: 1, post: @post, user: @current_user)
       check_score()
-
-      redirect_to posts_path
+      make_request()
+      # redirect_to posts_path
     end
 
   private
