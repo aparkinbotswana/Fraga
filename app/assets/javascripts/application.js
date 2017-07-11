@@ -22,8 +22,6 @@
 
 $( document ).ready(function() {
 
-
-
   $('#searchbutton').click(function(){
 
     $('#results').empty();
@@ -54,21 +52,12 @@ $( document ).ready(function() {
         //   return obj.id === userid });
 
 
-
         $('#results').append(user + "asks:");
         $('#results').append(question);
         $('#results').append(location);
 
 
-
-
       };
-
-
-
-
-
-
 
 
     })
@@ -80,17 +69,24 @@ $( document ).ready(function() {
 
   });
 
+  //   $("#mySidenav").click(function(){
+  //     this.toggle();
+  //   console.log('close, says me');
+  // })
 
 
+  /* Set the width of the side navigation to 250px */
 
+      $("#navOpen").click(function(){
+        $('#mySidenav').css('width', "250px");
+      console.log('open, says me');
+    })
 
+  /* Set the width of the side navigation to 0 */
 
-
-
-
-
-
-
-
+      $("#navClose").click(function(){
+        $('#mySidenav').css('width', "0");
+      console.log('close, says me');
+    })
 
 });

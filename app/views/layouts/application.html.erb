@@ -14,7 +14,19 @@
       padding: 0px;
       margin: 0 auto;
     }
+
     </style>
+
+    <div id="mySidenav" class="sidenav">
+  <a href="#" id='navClose' class="closebtn" >&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- Use any element to open the sidenav -->
+<span id='navOpen'>open</span>
 
 
     <div class="ui centered grid ">
@@ -30,11 +42,6 @@
         <button id="searchbutton">Search</button>
         <div id="results"> </div>
         </div>
-
-
-
-
-
 
 
 
@@ -56,35 +63,11 @@
       <!-- </nav> -->
 
         <%= yield %>
-
-
       </div>
-
-
-
-
-
-
-
-
-
     </div>
 
 
-
-
-
-
-
-
-
-
       <!-- <h1><%= link_to "FRÅGA", posts_path() %></h1>
-
-
-
-
-
 
         <nav style="float:right">
           <% unless @current_user.present? %>
@@ -96,10 +79,6 @@
           <% end %>
         </nav>
 
-
-
-
-
         <div style="float:left">
 
         <input type="text" id="queryinput"></input>
@@ -108,12 +87,7 @@
         </div>
 
 
-
-
-
       <%= yield %> -->
-
-
 
   </body>
 
