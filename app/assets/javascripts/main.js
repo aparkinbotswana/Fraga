@@ -25,16 +25,19 @@ function initMap() {
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
+//
+// var questionz = [
+//   ['Bondi Beach', -33.890542, 151.274856, 4],
+//   ['Coogee Beach', -33.923036, 151.259052, 5],
+//   ['Cronulla Beach', -34.028249, 151.157507, 3],
+//   ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+//   ['Maroubra Beach', -33.950198, 151.259302, 1]
+// ];
+//
+//
+var questionz = [];
 
-var questionz = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -34.028249, 151.157507, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
-];
-
-
+var markers = [];
 
 function setMarkers(map) {
   // Adds markers to the map.
@@ -63,23 +66,69 @@ function setMarkers(map) {
     type: 'poly'
   };
 
+  var bounds = new google.maps.LatLngBounds();
+
   for (var i = 0; i < questionz.length; i++) {
     var question = questionz[i];
     var marker = new google.maps.Marker({
       position: {lat: question[1], lng: question[2]},
       map: map,
       icon: '/assets/mapicons/' + question[4] + '.png',
-      shape: shape,
+      // shape: shape,
       title: question[0],
       zIndex: question[3]
     });
 
-    google.maps.event.addListener(marker, 'click', function() {
-        console.log('test');
+    // console.log(marker);
+    google.maps.event.addListener(marker, 'click', function () {
+      console.log(this);
+      window.location.href = '/posts/' + question[3];
     });
 
 
+    var infowindow = new google.maps.InfoWindow({
+       content: question[0]
+     });
 
+     google.maps.event.addListener(marker, 'mouseover', function() {
+       infowindow.open(map, marker)
+     });
+
+     google.maps.event.addListener(marker, 'mouseout', function() {
+       infowindow.close(map, marker)
+     });
+
+
+
+
+    markers.push( marker );
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+    zoomChangeBoundsListener =
+        google.maps.event.addListener(map, 'bounds_changed', function(event) {
+            if (this.getZoom() > 15 && this.initialZoom == true) {
+                // Change max/min zoom here
+                this.setZoom(15);
+                this.initialZoom = false;
+            }
+        google.maps.event.removeListener(zoomChangeBoundsListener);
+      });
+    });
+    map.initialZoom = true;
+
+
+
+
+
+
+
+
+
+
+    bounds.extend( marker.getPosition() );
+
+    //
+    //
     // marker.addListener('click', function() {
     // alert('clicked');
     // // map.setZoom(8);
@@ -89,7 +138,10 @@ function setMarkers(map) {
 
 
 
-  }
+  } // for
+
+  map.fitBounds(bounds);
+
 };
 
 
@@ -110,6 +162,33 @@ function setMarkers(map) {
 
 
 $( document ).ready(function() {
+
+
+  //
+  $('.questionlist').hover(
+     // mouse in
+     function () {
+       // first we need to know which <div class="marker"></div> we hovered
+       var index = $(this).index();
+       markers[index].setIcon({
+          url:"/assets/mapicons/happy.png"
+
+       });
+     },
+     // mouse out
+     function () {
+       // first we need to know which <div class="marker"></div> we hovered
+        var index = $(this).index();
+       markers[index].setIcon({
+          url: "/assets/mapicons/sad.png"
+       });
+     }
+
+   );
+
+
+
+
 
   // debugger;
 
