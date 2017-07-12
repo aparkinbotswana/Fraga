@@ -38,21 +38,7 @@ class PostsController < ApplicationController
    end
 
 
-   #
-  #  def do_search
-  #    @users = User.all
-  #    @posts = Post.text_search(params[:query], @current_user)
-  #    respond_to do |format|
-  #      format.html { render :do_search }
-  #      format.json { render json: @posts }
-   #
-   #
-  #
-  #    end
-  #  end
 
-  # GET /posts/1
-  # GET /posts/1.json
   def show
     @posts = Post.all
     @post = Post.find params["id"]
@@ -64,34 +50,11 @@ class PostsController < ApplicationController
 
   def map
     @posts = Post.all
-    @hash = Gmaps4rails.build_markers(@posts) do |post, marker|
-    location_link = view_context.link_to post.question, post_path(post.id)
-    marker.lat post.latitude
-    marker.lng post.longitude
-    marker.picture({
-      :url => ActionController::Base.helpers.asset_path("assets/mapicons/#{post.emjoi}.png"),
-      width: 60,
-      height: 60,
-      })
 
-      # :url => ActionController::Base.helpers.asset_path("repository_icon_for_map.png"),
-
-
-    # marker.picture({
-    #         #  "picture" => view_context.image_path('assets/happy.png'),
-    #          "picture" => "assets/alien.png",
-    #         #  "picture" => "/images/#{happy}.png",
-    #          "width" => 32,
-    #          "height" => 37
-    #      })
-    marker.json({:id => post.id })
-    marker.infowindow "<p><strong><u>#{location_link}</u></strong></p><p></p><p>#{post.location}</p>"
-    end
   end
 
   # GET /posts/new
   def new
-
 
     @post = Post.new
 
@@ -99,13 +62,6 @@ class PostsController < ApplicationController
     ip = request.remote_ip;
     loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
     # loc = Geocoder.search(ip)
-
-    @hash = Gmaps4rails.build_markers(@post) do |post, marker|
-    marker.lat loc[0].data['latitude']
-    marker.lng loc[0].data['longitude']
-    marker.json({:id => post.id })
-    end
-
   end
 
   # GET /posts/1/edit

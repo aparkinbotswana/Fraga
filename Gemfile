@@ -50,7 +50,7 @@ gem 'bcrypt'
 gem 'rails_12factor'
 
 gem 'geocoder'
-gem 'gmaps4rails'
+
 
 gem 'leaflet-rails'
 
