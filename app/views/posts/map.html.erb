@@ -13,8 +13,8 @@
   console.log(<%=raw @hash.to_json %>);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
-  handler.getMap().setZoom(1);
-  handler.map.centerOn({ lat: 0, lng: 0 });
+  handler.getMap().setZoom(13);
+  handler.map.centerOn({ lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %> });
   });
 
 </script>
