@@ -16,7 +16,6 @@
 //= require underscore
 //= require leaflet
 //= require rails_emoji_picker
-//= require gmaps/google
 //= require_tree .
 
 
@@ -161,4 +160,28 @@ var translateRequest = function(location, text, lang) {
     }
 
   }
+
+
+// new gmaps stuff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
