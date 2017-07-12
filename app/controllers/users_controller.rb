@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_if_logged_in
+  before_action :check_if_logged_in, except: [:show]
   before_action :check_if_admin, only: [:index]
 
   def get_user

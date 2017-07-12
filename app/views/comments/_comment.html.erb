@@ -15,15 +15,22 @@
           <div class="text translateComment t<%=comment.id%>">
             <%= comment.content %>
           </div>
+          <% if @current_user %>
+
           <div class="text">
             <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
           </div>
+          <% end %>
+          <% if @current_user %>
+
           <div class="actions">
             <div class="actions">
               <a class="reply">Reply</a>
             </div>
             <%= f.submit "Reply", :class => "comment-submit"  %>
           </div>
+          <% end %>
+
         </div>
       </div>
     </div>
