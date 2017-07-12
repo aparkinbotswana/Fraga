@@ -41,6 +41,11 @@ class PostsController < ApplicationController
   def map
     @location = Post.all
 
+    # Detect IP and obtain location information through Geocoder
+    ip = request.remote_ip;
+    loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
+    # loc = Geocoder.search(ip)
+
 
 
 

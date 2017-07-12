@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <div id="map">map div </div>
+<style>
 
-    <style>
+  #map {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 
-      #map {
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-      }
+</style>
 
     </style>
 
@@ -28,6 +20,7 @@
       // to the base of the flagpole.
 
       function initMap() {
+
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 10,
           center: {lat: -33.9, lng: 151.2}
@@ -89,3 +82,4 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap">
     </script>
+<div id="map"></div>
