@@ -50,7 +50,11 @@ class PostsController < ApplicationController
   end
 
   def map
-    @posts = Post.all
+    @location = Post.all
+
+
+
+
 
     @questions = []
 

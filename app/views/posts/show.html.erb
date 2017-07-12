@@ -1,24 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 <!-- Andy - Show question -->
-<h2><%= @post.question %></h2>
+<h2 class="translateComment"><%= @post.question %></h2>
 
-<!--Michelle - translation options  -->
+<div>
+<!--Michelle - translation options (user's language to chosen lanugage)  -->
 <select id="language">
-  <option value="en-fr">English to French</option>
-  <option value="en-de">English to German</option>
-  <option value="en-el">English to Greek</option>
-  <option value="en-ja">English to Japanese</option>
-  <option value="en-no">English to Norwegian</option>
-  <option value="en-zh">English to Mandarin</option>
-  <option value="en-sv">English to Swedish</option>
-  <option value="fr-en">French to English</option>
+  <option value="fr">Translate from French</option>
+  <option value="de">Translate from German</option>
+  <option value="el">Translate from Greek</option>
+  <option value="ja">Translate from Japanese</option>
+  <option value="no">Translate from Norwegian</option>
+  <option value="zh">Translate from Mandarin</option>
+  <option value="sv">Translate from Swedish</option>
+  <option value="en">Translate from English</option>
 
 </select>
 
 <!--Michelle - button to trigger translation of post (see application.js file)  -->
-<button id="postLanguageButton">translate</button>
+<button id="languageButton">translate text to your default language</button>
+<!-- <button id="detect">detect local language</button> -->
+</div>
+<div>
+<!--Michelle - translation options (translate to user language) -->
+<select id="languageTo">
+  <option value="-fr">Translate to French</option>
+  <option value="-de">Translate to German</option>
+  <option value="-el">Translate to Greek</option>
+  <option value="-ja">Translate to Japanese</option>
+  <option value="-no">Translate to Norwegian</option>
+  <option value="-zh">Translate to Mandarin</option>
+  <option value="-sv">Translate to Swedish</option>
+  <option value="-en">Translate to English</option>
 
+</select>
+
+<!--Michelle - button to trigger translation of post (see application.js file)  -->
+<button id="toLanguageButton">translate current page to selected language</button>
+</div>
 <!-- Andy - Show post details score and link to edit -->
 <table>
   <tbody>
@@ -40,7 +59,8 @@
 <h3 class="ui dividing header">Comments</h3>
 
 <!--Michelle - button to trigger translation of post (see application.js file)  -->
-<button id="commentsLanguageButton">translate</button>
+<!-- <button id="commentsLanguageButton">translate comments</button> -->
+
 <!-- Andy - Form to render first level comment on post -->
 <% if @current_user %>
   <ul style="list-style-type: none; padding: 0;">
