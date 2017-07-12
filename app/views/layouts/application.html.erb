@@ -3,26 +3,21 @@
   <head>
     <title>Fraga</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <!-- <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray"> -->
+ <!-- <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray"> -->
   <style>
     body {
       padding: 0;
       margin: 0 auto;
     }
-
   </style>
-
 
   <!-- James: Sliding Nav Bar -->
   <div id="mySidenav" class="sidenav">
     <a href="#" id='navClose' class="closebtn">&times;</a>
-
-
 
     <!-- julian search bar -->
     <div class="ui right aligned category search searchbar">
@@ -30,72 +25,49 @@
         <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
         <i class="search icon"></i>
       </div>
-
       <button id="searchbutton">Search</button>
       <div id="results"></div>
     </div>
-
-
   </div>
 
-  <!-- James: Click button to open nav bar -->
+ <!-- James: Click button to open nav bar -->
 
-<<<<<<< HEAD
-  <!-- julian copying james slide bar -->
 
-  <div id="rightmySidenav" class="rightsidenav">
+ <!-- julian copying james slide bar -->
+
+ <div id="rightmySidenav" class="rightsidenav">
     <a href="#" id='rightnavClose' class="rightclosebtn">&times;</a>
   </div>
-=======
->>>>>>> a8dd9bb5d41d11ca768fd0e2a2af821d78f912dd
 
-  <div class="page">
+ <div class="page">
   <div class="page-header">
 
-    <div class="headercolumns">
+   <div class="headercolumns">
     <div class="col1"><h1 class="fraga"><%= link_to "FRÅGA", posts_path() %></h1></div>
 
-    <div class="col2"><h4 id='navOpen' class="fraga">MENU</h4></div>
+   <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
 
-    <div class="col3">
+   <div class="col3">
+    <h4 id='rightnavOpen' class="fraga">ASK</h4>
 
-    <% unless @current_user.present? %>
+   <% unless @current_user.present? %>
     <%= link_to 'Login',  login_path, class: "ui button" %>
     <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
   <% else %>
     Welcome,
     <%= @current_user.username %>
 
-    <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
+   <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
     <% end %>
 
-    </div>
+   </div>
 
-  </div>
+ </div>
 
-<<<<<<< HEAD
-  </div>
-
+ </div>
     <%= yield %>
 
 
-
-=======
-  <!-- <button id='navOpen' class="menu" >start</button> -->
-
-  </div>
-
-
-  <div class="page-content">
-
-    <%= yield %>
-
-  </div>
-
-
-</div>
-
->>>>>>> a8dd9bb5d41d11ca768fd0e2a2af821d78f912dd
-  </body>
+ </body>
 
 </html>
