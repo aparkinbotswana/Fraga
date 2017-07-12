@@ -325,15 +325,15 @@ count = 0
 var askFunction = function () {
   count
   if (count === 1) {
-    $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle')
+    $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeToggle(8000)
     count = 0
 
   } else {
     var title = ask[ _.random(ask.length)].toUpperCase()
-    $('#fragaAnimation').html(title).appendTo('#fragaTitle')
+    $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeToggle(8000)
     count = 1
 
   }
 }
 
-setInterval(askFunction, 6000);
+setInterval(askFunction, 8000);
