@@ -244,26 +244,21 @@ $('#searchbutton').click(function(){
 
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
       $("#navOpen").click(function(){
+        if ($('#mySidenav').css('width', '0')) {
         $('#mySidenav').css('width', "550px");
       console.log('open, says me');
-    })
+      }
+      else if ($('#mySidenav').css('width', '550px')) {
+        $('#mySidenav').css('width', "0");
+        console.log('close, says me');
+    }
+  })
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
     $("#navClose").click(function(){
         $('#mySidenav').css('width', "0");
       console.log('close, says me');
     })
-
-    $("#searchOption").click(function(){
-        $('#mySidenav').css('width', "0");
-      console.log('close, says me');
-    })
-
-    $("#commentOption").click(function(){
-        $('#mySidenav').css('width', "0");
-      console.log('close, says me');
-    })
-
 
   // Michelle: Translate text
 
