@@ -18,19 +18,126 @@
   </style>
 
 
-  <div class="ui centered grid ">
+  <!-- James: Sliding Nav Bar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="#" id='navClose' class="closebtn">&times;</a>
+
+
+
+    <!-- julian search bar -->
+    <div class="ui right aligned category search searchbar">
+      <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
+        <i class="search icon"></i>
+      </div>
+
+      <button id="searchbutton">Search</button>
+      <div id="results"></div>
+    </div>
+
+
+  </div>
+
+  <!-- James: Click button to open nav bar -->
+
+
+  <!-- julian copying james slide bar -->
+
+  <div id="rightmySidenav" class="rightsidenav">
+    <a href="#" id='rightnavClose' class="rightclosebtn">&times;</a>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="page">
+  <div class="page-header">
+
+    <div class="headercolumns">
+    <div class="col1"><h1 class="fraga"><%= link_to "FRÅGA", posts_path() %></h1></div>
+
+    <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
+
+    <div class="col3">
+    <h4 id='rightnavOpen' class="fraga">ASK</h4>
+
+    <% unless @current_user.present? %>
+    <%= link_to 'Login',  login_path, class: "ui button" %>
+    <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
+  <% else %>
+    Welcome,
+    <%= @current_user.username %>
+
+    <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
+    <% end %>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <!-- <button id='navOpen' class="menu" >start</button> -->
+
+  </div>
+
+
+
+
+  <div class="page-content">
+
+    <%= yield %>
+
+
+
+  </div>
+
+  <div class="page-footer"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="ui centered grid ">
 
     <div class="four wide column">
 
-      <div class="ui right aligned category search searchbar">
-        <div class="ui icon input">
-          <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
-          <i class="search icon"></i>
-        </div>
 
-        <button id="searchbutton">Search</button>
-        <div id="results"></div>
-      </div>
 
     </div>
 
@@ -39,7 +146,7 @@
       <h1><%= link_to "FRÅGA", posts_path() %></h1>
 
       <!-- <nav style="float:right"> -->
-      <% unless @current_user.present? %>
+      <!-- <% unless @current_user.present? %>
       <%= link_to 'Login',  login_path, class: "ui button" %>
       <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
     <% else %>
@@ -50,9 +157,15 @@
       <% end %>
       <!-- </nav> -->
 
-      <%= yield %>
-    </div>
-  </div>
+      <!-- <%= yield %> -->
+    <!-- </div>
+  </div> -->
+
+
+
+
+
+
 
   <!-- <script>
     setInterval(function(){
