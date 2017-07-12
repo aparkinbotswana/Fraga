@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   # post '/posts/search' => 'posts#do_search'
 
   resources :comments do
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
     resources :comments
   end
   resources :users

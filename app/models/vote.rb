@@ -13,8 +13,9 @@ class Vote < ApplicationRecord
   #9 July 2017
   #By: Michsmelle
   #To add relationship between vote and post
-  belongs_to :post
+  belongs_to :post, optional: true
   belongs_to :user
+  belongs_to :comment, optional: true
 
 
 end
