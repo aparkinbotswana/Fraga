@@ -125,7 +125,7 @@ var translateRequest = function(location, text, lang) {
   $.ajax ({
     url:baseURL,
     data: {
-    key:"check slack",
+    key:"trnsl.1.1.20170711T112614Z.9c1df31075cbcee8.ec6091afcb695ca7edb3e449bb2b38e0d268fc58",
     text: text,
     lang: lang
     }
@@ -162,13 +162,15 @@ var translateRequest = function(location, text, lang) {
     submitComments(languageRequest)
   });
 
+// Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
-    var line = $('.text').html();
-    // debugger;
-    console.log(line);
-    var location = '.text';
-    var lang = languageRequest;
-    translateRequest(location, line,languageRequest)
+    var locationToTranslate = $(".translateComment");
+    for (var i = 0; i < locationToTranslate.length; i++) {
+      console.log(locationToTranslate[i]);
+      var line = locationToTranslate[i].innerText;
+      translateRequest(locationToTranslate[i], line, languageRequest)
+
+    }
 
   }
 });

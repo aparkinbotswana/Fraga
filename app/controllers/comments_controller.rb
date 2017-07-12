@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :find_commentable
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :check_if_logged_in
+  before_action :check_if_logged_in, except: [:new]
 
 
   # GET /comments
