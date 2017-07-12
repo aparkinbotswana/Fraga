@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.4'
 # Use postgresql as the database for Active Record
@@ -21,15 +20,9 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-
-
 # this is a gem for searching through databases - added by julian
 # gem 'pg_search'
-
 # gem 'texticle', require: 'texticle/rails'
-
-
-
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -42,7 +35,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'cloudinary'
@@ -51,13 +43,10 @@ gem 'rails_12factor'
 
 gem 'geocoder'
 gem 'gmaps4rails'
-
 gem 'leaflet-rails'
 
 # julian added this crap
 gem 'rails_emoji_picker'
-
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,7 +60,6 @@ group :development do
   gem 'annotate'
   gem 'pry-rails'
   gem 'pry-nav'
-
 
 end
 
