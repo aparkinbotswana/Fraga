@@ -1,3 +1,7 @@
+
+
+var changemap = "map";
+
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -11,13 +15,14 @@ function initMap() {
   //   center: myLatlng
   // });
 
-  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  var map = new google.maps.Map(document.getElementById(changemap), mapOptions);
 
   setMarkers(map);
 }
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
+
 //
 // var questionz = [
 //   ['Bondi Beach', -33.890542, 151.274856, 4],
@@ -312,5 +317,17 @@ var translateRequest = function(location, text, lang) {
       translateRequest(locationToTranslate[i], line, languageRequest)
     }
   };
+
+
+
+  $('.questionlist').click(function() {
+ initMap();
+});
+
+
+
+
+
+
 
 });
