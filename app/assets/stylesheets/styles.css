@@ -117,6 +117,13 @@ p {
   top: 2000px;
 }
 
+table{
+  margin: auto;
+}
+
+
+
+
 /*James: CSS for sliding nav bar*/
 /* The side navigation menu */
 .sidenav {
