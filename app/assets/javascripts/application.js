@@ -124,9 +124,16 @@ var translateRequest = function(location, text, lang) {
   })
   .done(function(res){
     console.log(res);
-    var $div = $('<div>').html("Translation (" + lang + "): "+ res.text[0]);
-    $(location).append($div);
-    console.log($div);
+    // debugger;
+
+    if (_.isEqual(res.text[0], text) === false){
+      var $div = $('<div class="translated">').html("Translation (" + lang + "): "+ res.text[0]);
+      $(location).append($div);
+      console.log($div);
+      }
+
+
+
   })
   .fail(function(xhr, status, err){
     console.log(xhr, status, err);
@@ -134,21 +141,30 @@ var translateRequest = function(location, text, lang) {
 
 }
 
-  $('#postLanguageButton').click(function(){
-    var languageRequest = $('#language').val();
+  $('#toLanguageButton').click(function(){
+    $('.translated').empty();
+
+    var languageRequest = $('#languageTo').val();
+    // debugger;
     console.log(languageRequest);
     submitPost(languageRequest)
   })
 
   var submitPost = function(languageRequest){
-    var line = $('h2').html();
-    var location = 'h2';
-    var lang = languageRequest;
-    translateRequest(location, line,languageRequest)
+    var locationToTranslate = $(".translateComment");
+    var lang = navigator.language;
+    var browserLanguageConv = ("en"+languageRequest)
 
+    for (var i = 0; i < locationToTranslate.length; i++) {
+      console.log(locationToTranslate[i]);
+      var line = locationToTranslate[i].innerText;
+      translateRequest(locationToTranslate[i], line, browserLanguageConv)
+    }
   };
 
-  $('#commentsLanguageButton').click(function(){
+  $('#languageButton').click(function(){
+    $('.translated').empty();
+
     var languageRequest = $('#language').val();
     console.log(languageRequest);
     submitComments(languageRequest)
@@ -157,10 +173,19 @@ var translateRequest = function(location, text, lang) {
 // Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
     var locationToTranslate = $(".translateComment");
+    var lang = navigator.language;
+    var browserLanguageConv = (languageRequest+ "-" + lang.split("-")[0])
+
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, languageRequest)
+      translateRequest(locationToTranslate[i], line, browserLanguageConv)
     }
-  }
+  };
+
+  $('#detect').click(function(){
+    var lang = navigator.language
+    console.log(lang.split("-")[0]+'-fr')
+  });
+
 });
