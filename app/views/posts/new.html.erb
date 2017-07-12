@@ -9,7 +9,8 @@
         function initMap() {
           map = new google.maps.Map(document.getElementById('userMap'), {
             center: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>},
-            zoom: 15
+            zoom: 15,
+            styles: myStyle
           });
           marker = new google.maps.Marker({
               map:map,
