@@ -43,21 +43,7 @@ $( document ).ready(function() {
       // remove existing markers
 
 
-      console.log('AJAX DONE()');
 
-      console.log('markers', markers);
-
-      markers.forEach(function(m){
-        handler.clusterer.removeMarker( m );
-        m.setMap(null);
-        // m = serviceObject.icon.url = "";
-        console.log('%cdeleting!', 'font-size: 16pt');
-      });
-
-      markers = [];
-
-      console.log('Search results:', data.length);
-      console.log('markers[0]', markers[0]);
       for (var i = 0; i < data.length; i++) {
         console.log('added one');
 
@@ -81,27 +67,12 @@ $( document ).ready(function() {
 
 
 
-        // $('#results').append(question);
 
-        // $('#results').append("Location:", location);
 
-        var m = handler.addMarker({
-          id: post.id,
-          infowindow: '<p><strong><u><a href="/posts/' + post.id + '"> ' + post.question + '</a></u></strong></p><p></p><p></p>',
-          lat: post.latitude,
-          lng: post.longitude,
-          picture: {
-            height: 60,
-            width: 60,
-            url: '/assets/mapicons/' + emoji + '.png'
-          }
-        });
-        markers.push( m );
 
       } // for data.posts
 
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
+
 
     })
     .fail(function(xhr, err, status) {
