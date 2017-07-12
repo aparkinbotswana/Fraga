@@ -24,7 +24,6 @@ $( document ).ready(function() {
 
 // Julian - search results
 
-  $('#searchbutton').click(function(){
 
     $('#results').empty();
 
@@ -110,7 +109,6 @@ $( document ).ready(function() {
     });
 
 
-  }); //search function close
 
   // Use event delegation
   $(document).on('click', '.questionlist', function(){

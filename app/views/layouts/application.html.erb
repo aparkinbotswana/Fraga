@@ -63,7 +63,6 @@
     <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
 
     <div class="col3">
-    <h4 id='rightnavOpen' class="fraga">ASK</h4>
 
     <% unless @current_user.present? %>
     <%= link_to 'Login',  login_path, class: "ui button" %>
@@ -79,105 +78,19 @@
 
   </div>
 
-
-
-
-
-
   <!-- <button id='navOpen' class="menu" >start</button> -->
 
   </div>
-
-
 
 
   <div class="page-content">
 
     <%= yield %>
 
-
-
   </div>
 
-  <div class="page-footer"></div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- <div class="ui centered grid ">
-
-    <div class="four wide column">
-
-
-
-    </div>
-
-    <div class="twelve wide column main">
-
-      <h1><%= link_to "FRÅGA", posts_path() %></h1>
-
-      <!-- <nav style="float:right"> -->
-      <!-- <% unless @current_user.present? %>
-      <%= link_to 'Login',  login_path, class: "ui button" %>
-      <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
-    <% else %>
-      Welcome,
-      <%= @current_user.username %>
-
-      <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
-      <% end %>
-      <!-- </nav> -->
-
-      <!-- <%= yield %> -->
-    <!-- </div>
-  </div> -->
-
-
-
-
-
-
-
-  <!-- <script>
-    setInterval(function(){
-      $("#dynamicMessage").html('here is your message');
-    }, 3000);
-  </script> -->
-
-
-
-
-
-
 
   </body>
 
