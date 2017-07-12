@@ -16,6 +16,7 @@
 //= require underscore
 //= require leaflet
 //= require rails_emoji_picker
+//= require gmaps/google
 //= require_tree .
 
 
@@ -23,6 +24,7 @@ $( document ).ready(function() {
 
 // Julian - search results
 
+  $('#searchbutton').click(function(){
 
     $('#results').empty();
 
@@ -64,11 +66,6 @@ $( document ).ready(function() {
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
 
-
-
-
-
-
       } // for data.posts
 
 
@@ -79,6 +76,7 @@ $( document ).ready(function() {
     });
 
 
+  }); //search function close
 
   // Use event delegation
   $(document).on('click', '.questionlist', function(){
@@ -153,11 +151,7 @@ var translateRequest = function(location, text, lang) {
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, languageRequest)
-
+      translateRequest(locationToTranslate[i], line, languageRequest) 
     }
-
   }
-
-
 });
