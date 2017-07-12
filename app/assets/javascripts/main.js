@@ -320,12 +320,20 @@ var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জ�
 "Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
 "hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
 
+count = 0
 
 var askFunction = function () {
-  var num = _.random(ask.length)
-  var title = ask[num].toUpperCase()
-  $('#fragaAnimation').html(title).appendTo('#fragaTitle')
-  // $('#fragaAnimation').html("fråga").appendTo('#fragaTitle')
+  count
+  if (count === 1) {
+    $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle')
+    count = 0
+
+  } else {
+    var title = ask[ _.random(ask.length)].toUpperCase()
+    $('#fragaAnimation').html(title).appendTo('#fragaTitle')
+    count = 1
+
+  }
 }
 
 setInterval(askFunction, 6000);
