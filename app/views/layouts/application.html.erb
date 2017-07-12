@@ -45,9 +45,6 @@
 
   <!-- julian copying james slide bar -->
 
-  <div id="rightmySidenav" class="rightsidenav">
-    <a href="#" id='rightnavClose' class="rightclosebtn">&times;</a>
-  </div>
 
 
 
@@ -65,7 +62,6 @@
     <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
 
     <div class="col3">
-    <h4 id='rightnavOpen' class="fraga">ASK</h4>
 
     <% unless @current_user.present? %>
     <%= link_to 'Login',  login_path, class: "ui button" %>
