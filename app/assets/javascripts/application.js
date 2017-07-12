@@ -20,9 +20,9 @@
 //= require_tree .
 
 
+var markers = [];
+
 $( document ).ready(function() {
-
-
 
 
   $('#searchbutton').click(function(){
@@ -45,39 +45,53 @@ $( document ).ready(function() {
       // debugger;
 
       // remove existing markers
-      markers.forEach(function(m){
-        m.setMap(null);
-        
 
+
+      console.log('AJAX DONE()');
+
+      console.log('markers', markers);
+
+      markers.forEach(function(m){
+        handler.clusterer.removeMarker( m );
+        m.setMap(null);
+        // m = serviceObject.icon.url = "";
+        console.log('%cdeleting!', 'font-size: 16pt');
       });
+
       markers = [];
 
       console.log('Search results:', data.length);
-      console.log('markers', markers);
+      console.log('markers[0]', markers[0]);
       for (var i = 0; i < data.length; i++) {
+        console.log('added one');
 
         var post = data[i];
 
         var user = $('<p>').text(post.username);
-        var location= $('<p>').text(post.location);
+        var location= post.location;
         var userid = post.user_id;
         var user = post.user.username;
         var emoji = post.emjoi;
-        var $question = $('<p>').text(post.question)
+        var $question = $('<h2>').text(post.question)
                                 .addClass("questionlist")
                                 .attr('post-id', post.id);
 
-        // $('#results').append('<img>').attr("src", "/assets/images/mapicons/happy.png");
-        $('#results').html('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+        // julian // append emoji image works but commented out...
 
-        $('#results').append(user,":").append($question);
+        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+
+        var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
+        $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
+
+
+
         // $('#results').append(question);
 
         // $('#results').append("Location:", location);
 
         var m = handler.addMarker({
           id: post.id,
-          infowindow: '<p><strong><u><a href="/posts/' + post.id + '">What is the meaning of life?</a></u></strong></p><p></p><p></p>',
+          infowindow: '<p><strong><u><a href="/posts/' + post.id + '"> ' + post.question + '</a></u></strong></p><p></p><p></p>',
           lat: post.latitude,
           lng: post.longitude,
           picture: {
@@ -111,7 +125,7 @@ $( document ).ready(function() {
 
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
       $("#navOpen").click(function(){
-        $('#mySidenav').css('width', "250px");
+        $('#mySidenav').css('width', "550px");
       console.log('open, says me');
     })
 
@@ -122,5 +136,32 @@ $( document ).ready(function() {
         $('#mySidenav').css('width', "0");
       console.log('close, says me');
     })
+
+
+
+    /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
+        $("#rightnavOpen").click(function(){
+
+          $('#rightmySidenav').css('width', "550px");
+        console.log('open, says me');
+      })
+
+
+    /* James: Set the width of the side navigation to 0 for sliding nav bar*/
+        $("#rightnavClose").click(function(){
+          $('#myrightSidenav').css('width', "0");
+        console.log('close, says me');
+      })
+
+
+
+
+
+
+
+
+
+
+
 
 });
