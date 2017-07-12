@@ -12,7 +12,7 @@
       <div class="content">
         <a class="collapse-comments">[-]</a><a></span> <%= @user.find(comment.user_id).username %></a><span><small>  <%= time_ago_in_words(comment.created_at) %> ago</small></span>
         <div class="in-content">
-          <div class="text t<%=comment.id%>">
+          <div class="text translateComment t<%=comment.id%>">
             <%= comment.content %>
           </div>
           <div class="text">

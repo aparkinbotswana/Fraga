@@ -6,13 +6,14 @@
 <!--Michelle - translation options  -->
 <select id="language">
   <option value="en-fr">English to French</option>
-  <option value="fr-en">French to English</option>
-  <option value="en-el">English to Greek</option>
-  <option value="en-no">English to Norwegian</option>
-  <option value="en-ja">English to Japanese</option>
   <option value="en-de">English to German</option>
-  <option value="en-sv">English to Swedish</option>
+  <option value="en-el">English to Greek</option>
+  <option value="en-ja">English to Japanese</option>
+  <option value="en-no">English to Norwegian</option>
   <option value="en-zh">English to Mandarin</option>
+  <option value="en-sv">English to Swedish</option>
+  <option value="fr-en">French to English</option>
+
 </select>
 
 <!--Michelle - button to trigger translation of post (see application.js file)  -->
@@ -39,6 +40,9 @@
 <h3 class="ui dividing header">Comments</h3>
 
 <!-- Andy - Form to render first level comment on post -->
+
+<!--Michelle - button to trigger translation of post (see application.js file)  -->
+<button id="commentsLanguageButton">translate</button>
 
 <ul style="list-style-type: none; padding: 0;">
   <%= form_for [@post, Comment.new] do |f| %>
