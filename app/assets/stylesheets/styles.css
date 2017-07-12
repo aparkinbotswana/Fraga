@@ -18,6 +18,13 @@
     width: 25%;
     /*background: peachpuff;*/
   }
+  .col4 {
+    width: 80%;
+  }
+
+  .col5 {
+    overflow: hidden;
+  }
 
 .fraga {
   text-align: center;
