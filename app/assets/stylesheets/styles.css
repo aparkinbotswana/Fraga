@@ -103,7 +103,9 @@ p {
   color:#006af1;
 }
 
-
+.comment-submit {
+  display: none;
+}
 .page-login {
   margin-top: 25px;
   text-align: center;
@@ -193,7 +195,7 @@ p {
 
 /*James: CSS to allow scroll within comments section*/
 #commentViewport{
-  overflow-y: auto;
+  overflow: auto;
   height: 500px;
 }
 

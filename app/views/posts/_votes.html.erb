@@ -7,9 +7,9 @@
 
 <td id="p<%=post.id%>"><%="#{post.score}"%></td>
 <span class="upvote-post">
-  <td><%= link_to " upvote ", upvote_post_path(post), method: :post, remote: true %></td>
+  <td><%= link_to "👍🏼", upvote_post_path(post), method: :post, remote: true %></td>
 </span>
 
 <span class="downvote-post">
-  <td><%= link_to " downvote ", downvote_post_path(post), method: :post, remote: true %></td>
+  <td><%= link_to "👎🏼", downvote_post_path(post), method: :post, remote: true %></td>
 </span>

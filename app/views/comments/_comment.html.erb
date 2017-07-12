@@ -1,48 +1,45 @@
-  <script type="text/javascript">
-    $(document).ready(function() {
+<% if comment.commentable_type == "Post"%>
+  <li style="margin: 8px 0 5px 0; border: 1px solid gray;">
+<% elsif %>
+  <li style="margin: 5px 0 5px 0; border-left: 1px dotted gray;">
+<% end %>
 
-     $('.c<%=comment.id%>').hide(); //Initially form wil be hidden.
-
-      $('.reply').click(function() {
-       $('.c<%=comment.id%>').show();//Form shows on button click
-       $('.reply').hide();
-
-       });
-    });
-  </script>
-
-<li>
+<!-- Andy - Render new comment form and loop through comments for post -->
   <%= form_for [comment, Comment.new] do |f| %>
 
-    <div class="comment" style="border:1px solid black">
+    <div class="comment" style="padding:4px 0px 4px 4px;">
 
       <div class="content">
-        <a class="author"><%= @user.find(comment.user_id).username %></a>
-        <div class="metadata">
-          <span class="date"><small> <%= time_ago_in_words(comment.created_at) %> ago</small></span>
-        </div>
-        <div class="text">
-          <%= comment.content %>
-        </div>
-        <div class="text">
-          <%= f.text_area :content, placeholder: "Add a Reply", :class => "c#{comment.id}" %>
-        </div>
-        <div class="actions">
-          <div class="actions">
-            <a class="reply">Reply</a>
+        <a class="collapse-comments">[-]</a><a></span> <%= @user.find(comment.user_id).username %></a><span><small>  <%= time_ago_in_words(comment.created_at) %> ago</small></span>
+        <div class="in-content">
+          <div class="text translateComment t<%=comment.id%>">
+            <%= comment.content %>
           </div>
-          <%= f.submit "Reply", :class => "c#{comment.id}"  %>
-          <%= comment.id %>
+          <% if @current_user %>
+
+          <div class="text">
+            <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
+          </div>
+          <% end %>
+          <% if @current_user %>
+
+          <div class="actions">
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+            <%= f.submit "Reply", :class => "comment-submit"  %>
+          </div>
+          <% end %>
+
         </div>
       </div>
     </div>
 
   <% end %>
 
-
-
-<ul style="list-style-type: none;">
-<%= render partial: 'comments/comment', collection: comment.comments %>
-</ul>
+  <!-- Andy - Render nested comment form and display nested comments -->
+  <ul style="list-style-type: none; margin:2px">
+    <%= render partial: 'comments/comment', collection: comment.comments %>
+  </ul>
 
 </li>
