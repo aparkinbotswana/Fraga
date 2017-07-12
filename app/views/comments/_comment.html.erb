@@ -15,8 +15,23 @@
           <div class="text translateComment t<%=comment.id%>">
             <%= comment.content %>
           </div>
-          <% if @current_user %>
+          <table>
+            <tbody>
+              <tr>
+                <td class="c<%=comment.id%>"><%="#{comment.score}"%></td>
+                <span class="upvote-comment">
+                  <td><%= link_to "👍🏼 #{comment.votes.where("upvote=1").count}", upvote_comment_path(comment), method: :post, remote: true %></td>
+                </span>
 
+
+                <span class="downvote-comment">
+                  <td><%= link_to "👎🏼#{comment.votes.where("downvote=1").count}", downvote_comment_path(comment), method: :post, remote: true%></td>
+                </span>
+              </tr>
+            </tbody>
+            </table>
+
+          <% if @current_user %>
           <div class="text">
             <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
           </div>

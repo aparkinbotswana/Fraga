@@ -1,8 +1,8 @@
+/*Julian - Application.html.erb file layout*/
 .headercolumns {
   display: flex;
-  height: 100%;
+  height: 15%;
   flex-grow: 1;
-
 }
 
   .col1 {
@@ -11,12 +11,17 @@
   }
   .col2 {
     width: 25%;
-    /*background: honeydew;*/
     order: -1;
   }
   .col3 {
     width: 25%;
-    /*background: peachpuff;*/
+  }
+  .col4 {
+    width: 80%;
+  }
+
+  .col5 {
+    overflow: hidden;
   }
 
 .fraga {
@@ -111,6 +116,13 @@ p {
   position: relative;
   top: 2000px;
 }
+
+table{
+  margin: auto;
+}
+
+
+
 
 /*James: CSS for sliding nav bar*/
 /* The side navigation menu */

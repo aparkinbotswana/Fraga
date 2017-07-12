@@ -1,4 +1,3 @@
-
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -7,18 +6,12 @@ function initMap() {
   center: myLatlng
   };
 
-
   // var map = new google.maps.Map(document.getElementById('map'), {
   //   zoom: 10,
   //   center: myLatlng
   // });
 
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-
-
-
-
 
   setMarkers(map);
 }
@@ -48,8 +41,6 @@ function setMarkers(map) {
   // Origins, anchor positions and coordinates of the marker increase in the X
   // direction to the right and in the Y direction down.
   // var image = {
-
-
   //   url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
   //   // This marker is 20 pixels wide by 32 pixels high.
   //   size: new google.maps.Size(20, 32),
@@ -144,22 +135,7 @@ function setMarkers(map) {
 
 };
 
-
 // icon: '/assets/mapicons/' + image + '.png',
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 $( document ).ready(function() {
 
@@ -192,81 +168,9 @@ $( document ).ready(function() {
 
   // debugger;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $('#searchbutton').click(function(){
   mapload();
-
 });
-
-
-
-
-
-
 
 // Julian - search results
 
@@ -286,13 +190,9 @@ $('#searchbutton').click(function(){
       }
     }).done(function(data){
 
-
       // remove existing markers
 
       questionz = [];
-
-
-
 
       for (var i = 0; i < data.length; i++) {
         console.log('added one');
@@ -315,40 +215,20 @@ $('#searchbutton').click(function(){
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
 
-
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
 
         initMap();
 
-
-
-
-
       } // for data.posts
-
-
-
-
-
-
 
     })
     .fail(function(xhr, err, status) {
       console.log(xhr, err, status);
     });
 
-
   }; //search function close
 
-
   mapload();
-
-
-
-
-
-
-
 
   // Use event delegation
   $(document).on('click', '.questionlist', function(){
@@ -356,14 +236,11 @@ $('#searchbutton').click(function(){
     document.location.href = url;
   });
 
-
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
       $("#navOpen").click(function(){
         $('#mySidenav').css('width', "550px");
       console.log('open, says me');
     })
-
-
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
     $("#navClose").click(function(){
@@ -405,7 +282,6 @@ var translateRequest = function(location, text, lang) {
   .fail(function(xhr, status, err){
     console.log(xhr, status, err);
   })
-
 }
 
   $('#postLanguageButton').click(function(){
@@ -419,7 +295,6 @@ var translateRequest = function(location, text, lang) {
     var location = 'h2';
     var lang = languageRequest;
     translateRequest(location, line,languageRequest)
-
   };
 
   $('#commentsLanguageButton').click(function(){
@@ -437,29 +312,5 @@ var translateRequest = function(location, text, lang) {
       translateRequest(locationToTranslate[i], line, languageRequest)
     }
   };
-
-
-
-
-
-
-
-// maps stuff
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });

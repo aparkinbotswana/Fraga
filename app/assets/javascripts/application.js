@@ -18,9 +18,3 @@
 //= require rails_emoji_picker
 //= require main
 //= require_tree .
-
-
-
-// $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap', function() {
-//   //script is loaded and executed put your dependent JS here
-// });

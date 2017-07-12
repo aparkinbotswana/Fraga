@@ -1,0 +1,9 @@
+// Date: 12 July
+// By: Michelle
+// to handle upvote ajax request
+
+console.log("TOTAL IS ", <%=@comment.score%>);
+console.log("ID ", <%=@comment.id%>);
+
+$('.c<%=@comment.id%>').html('<%=@comment.score%>');
+// $('.vote-button').click(false)
