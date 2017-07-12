@@ -9,11 +9,9 @@
 
 </style>
 
-    </style>
-
     <div id="map"></div>
 
-    <script>
+   <script>
 
       // The following example creates complex markers to indicate beaches near
       // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
@@ -21,9 +19,11 @@
 
       function initMap() {
 
+
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 10,
-          center: {lat: -33.9, lng: 151.2}
+          center: {lat: -33.9, lng: 151.2},
+          styles: myStyle
         });
 
         setMarkers(map);
@@ -82,4 +82,3 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap">
     </script>
-<div id="map"></div>
