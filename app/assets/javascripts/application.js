@@ -151,9 +151,7 @@ var translateRequest = function(location, text, lang) {
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, languageRequest)
-
+      translateRequest(locationToTranslate[i], line, languageRequest) 
     }
-
   }
 });

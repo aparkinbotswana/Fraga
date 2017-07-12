@@ -40,11 +40,14 @@
 
   <!-- James: Click button to open nav bar -->
 
+<<<<<<< HEAD
   <!-- julian copying james slide bar -->
 
   <div id="rightmySidenav" class="rightsidenav">
     <a href="#" id='rightnavClose' class="rightclosebtn">&times;</a>
   </div>
+=======
+>>>>>>> a8dd9bb5d41d11ca768fd0e2a2af821d78f912dd
 
   <div class="page">
   <div class="page-header">
@@ -52,10 +55,9 @@
     <div class="headercolumns">
     <div class="col1"><h1 class="fraga"><%= link_to "FRÅGA", posts_path() %></h1></div>
 
-    <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
+    <div class="col2"><h4 id='navOpen' class="fraga">MENU</h4></div>
 
     <div class="col3">
-    <h4 id='rightnavOpen' class="fraga">ASK</h4>
 
     <% unless @current_user.present? %>
     <%= link_to 'Login',  login_path, class: "ui button" %>
@@ -71,12 +73,29 @@
 
   </div>
 
+<<<<<<< HEAD
   </div>
 
     <%= yield %>
 
 
 
+=======
+  <!-- <button id='navOpen' class="menu" >start</button> -->
+
+  </div>
+
+
+  <div class="page-content">
+
+    <%= yield %>
+
+  </div>
+
+
+</div>
+
+>>>>>>> a8dd9bb5d41d11ca768fd0e2a2af821d78f912dd
   </body>
 
 </html>
