@@ -99,6 +99,17 @@ $( document ).ready(function() {
       console.log('close, says me');
     })
 
+    $("#searchOption").click(function(){
+        $('#mySidenav').css('width', "0");
+      console.log('close, says me');
+    })
+
+    $("#commentOption").click(function(){
+        $('#mySidenav').css('width', "0");
+      console.log('close, says me');
+    })
+
+
   // Michelle: Translate text
 
 var translateRequest = function(location, text, lang) {
