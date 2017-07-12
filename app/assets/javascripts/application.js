@@ -66,11 +66,6 @@ $( document ).ready(function() {
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
 
-
-
-
-
-
       } // for data.posts
 
 
