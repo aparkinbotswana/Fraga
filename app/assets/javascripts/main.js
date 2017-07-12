@@ -258,7 +258,6 @@ $('#searchbutton').click(function(){
       console.log('close, says me');
     })
 
-
   // Michelle: Translate text
 
 var translateRequest = function(location, text, lang) {

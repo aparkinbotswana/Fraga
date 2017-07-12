@@ -45,7 +45,7 @@
     <div class="headercolumns">
     <div class="col1"><h1 class="fraga"><%= link_to "FRÅGA", posts_path() %></h1></div>
 
-    <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
+    <div class="col2"><h4 class="fraga"><i class="search icon" id='navOpen'></i><%= link_to '🙋🏻', new_post_path%></h4></div>
 
     <div class="col3">
       <% unless @current_user.present? %>
