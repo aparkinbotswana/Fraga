@@ -16,7 +16,6 @@
 //= require underscore
 //= require leaflet
 //= require rails_emoji_picker
-//= require gmaps/google
 //= require_tree .
 
 
