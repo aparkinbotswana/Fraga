@@ -16,5 +16,16 @@ class ApplicationController < ActionController::Base
   def check_if_admin
     redirect_to root_path unless @current_user.present? && @current_user.is_admin
   end
+  # Michelle - for up/down votes
+
+  def make_request
+    respond_to do |format|
+    #   # if the response format is html, redirect as usual
+      format.html { redirect_to root_path }
+    #   # if the response format is javascript, do something else...
+      format.js { }
+    end
+
+  end
 
 end

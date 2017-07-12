@@ -6,6 +6,13 @@ class CommentsController < ApplicationController
 
   # GET /comments
   # GET /comments.json
+
+  def check_score
+    score = @comment.upvotes - @comment.downvotes
+    # raise 'hell'
+    @comment.update_attribute(:score, score)
+  end
+
   def index
     @comments = Comment.all
   end
@@ -61,6 +68,35 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  #12 July 2017
+    #By: Michelle
+    #For upvoting
+    def upvote
+      @comment = Comment.find_by(id: params[:id])
+      # raise 'hell'
+
+      # the following line to be uncommented when we go live to allow for 1 vote per user
+      # Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
+      Vote.create(upvote: 1, comment: @comment, user: @current_user)
+      check_score()
+      respond_to do |format|
+      #   # if the response format is html, redirect as usual
+        format.html { redirect_to root_path }
+      #   # if the response format is javascript, do something else...
+        format.js { }
+      end
+    end
+
+    #11 July 2017
+      #By: Michelle
+      #For downvotes
+    def downvote
+      @comment = Comment.find_by(id: params[:id])
+      # Vote.find_or_create_by(downvote: 1, post: @post, user: @current_user)
+      Vote.create(downvote: 1, comment: @comment, user: @current_user)
+      check_score()
+      make_request()
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
