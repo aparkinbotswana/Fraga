@@ -46,10 +46,6 @@ class PostsController < ApplicationController
     loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
     # loc = Geocoder.search(ip)
 
-
-
-
-
     @questions = []
 
     # @posts.each_with_index {|array.question, index| puts "#{array.question} => #{index}" }
@@ -59,10 +55,6 @@ class PostsController < ApplicationController
       # question << post.longitude
       # question << post.id
       # @questions << question
-
-
-
-
   end
 
   # GET /posts/new

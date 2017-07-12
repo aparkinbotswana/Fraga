@@ -65,7 +65,6 @@ p {
 }
 
 .page-content {
-
   flex: 1 1 auto;
   position: relative;/* need this to position inner content */
   overflow-y: auto;
@@ -91,20 +90,17 @@ p {
 }
 
 .main {
-
   padding: 10px;
   max-width: 800px;
   height: auto;
   margin: 0 auto;
   border: 1px solid gray
-
 }
 
 .searchbar {
   top: -20px;
   text-align: center;
   padding:10px;
-
 }
 
 #searchbutton {
@@ -121,8 +117,27 @@ table{
   margin: auto;
 }
 
+.newPost{
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  width: 75%
 
+}
+#userMap {
+  height: 800px;
+  width: 100%;
 
+}
+.userPickMap{
+  height: 800px;
+  width: 800px;
+  border: 1px
+  solid black;
+  display: inline;
+  float:right;
+  margin-right: 10px;
+}
 
 /*James: CSS for sliding nav bar*/
 /* The side navigation menu */
