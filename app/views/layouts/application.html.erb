@@ -7,8 +7,42 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <!-- Julian - Header with logins -->
-  <div class="headercolumns">
+  <!-- <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray"> -->
+
+
+  <!-- James: Sliding Nav Bar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="#" id='navClose' class="closebtn">&times;</a>
+
+    <!-- <div id='op'>
+      <div class='options'>
+        <span id='searchOption' class='searchPosts'>Search</span>
+      </div>
+      <div class='options'>
+        <span id='postOption' class='searchPosts'>Posts</span>
+      </div>
+    </div> -->
+
+
+
+    <!-- julian search bar -->
+    <div>
+      <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
+        <i class="search icon"></i>
+      </div>
+
+      <button id="searchbutton">Search</button>
+      <div id="results"></div>
+    </div>
+
+
+  </div>
+
+  <!-- James: Click button to open nav bar -->
+
+
+    <div class="headercolumns">
     <div class="col1"><h1 class="fraga"><%= link_to "FRÅGA", posts_path() %></h1></div>
 
     <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
@@ -39,9 +73,8 @@
 
   <%= yield %>
 
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap">
-  </script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
 
   </body>
 </html>

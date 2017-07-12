@@ -16,6 +16,13 @@
   .col3 {
     width: 25%;
   }
+  .col4 {
+    width: 80%;
+  }
+
+  .col5 {
+    overflow: hidden;
+  }
 
 .fraga {
   text-align: center;
@@ -109,6 +116,13 @@ p {
   position: relative;
   top: 2000px;
 }
+
+table{
+  margin: auto;
+}
+
+
+
 
 /*James: CSS for sliding nav bar*/
 /* The side navigation menu */
