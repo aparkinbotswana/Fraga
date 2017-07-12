@@ -14,7 +14,7 @@
 <div class="ui form">
   <div class="field emoji-picker-container">
     <%= f.label :question %>
-    <%= f.text_area :question, class: 'form-control', data: { emojiable: true } %>
+    <%= f.text_area :question, placeholder: "Ask a question", class: 'form-control', data: { emojiable: true } %>
   </div>
 </div>
 
@@ -24,14 +24,36 @@
   <div class="ui form">
     <div class="field">
       <%= f.label :location %>
-      <%= f.text_field :location %>
+      <%= f.text_field :location, placeholder: "Where are you?", class: 'form-control'  %>
     </div>
   </div>
 
-    <input type="radio" name="userLoc" value="userIPInput"> Default (based on your IP address)<br><br>
+    <!-- <input type="radio" name="userLoc" value="userIPInput"> Default (based on your IP address)<br><br>
     <input type="radio" name="userLoc" value="userAddressInput"> <input type="text" placeholder="Address" name="Address"><br><br>
     <input type="radio" name="userLoc" value="userMapSelectInput"><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit"> -->
+
+
+    <%= radio_button_tag(:location, "userIPInput") %> <%= label_tag(:post_location_input, "Default (based on your IP address)") %>
+    <%= radio_button_tag(:location, "userAddressInput") %> <%= label_tag(:post_location_input, "Input taken from marker (right)") %>
+
+<hr>
+    EXAMPLE
+    <%= radio_button_tag(:age, "child") %>
+    <%= label_tag(:age_child, "I am younger than 21") %>
+    <%= radio_button_tag(:age, "adult") %>
+    <%= label_tag(:age_adult, "I'm over 21") %>
+    Output:
+
+    <input id="age_child" name="age" type="radio" value="child" />
+    <label for="age_child">I am younger than 21</label>
+    <input id="age_adult" name="age" type="radio" value="adult" />
+    <label for="age_adult">I'm over 21</label>
+    <hr>
+
+
+
+
   <div class="ui form">
     <div class="field">
       <%= f.select :emjoi, options_for_select([["How ya feel??", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>

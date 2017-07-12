@@ -223,7 +223,7 @@ $('#searchbutton').click(function(){
 
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
 
-        initMap();
+        // initMap();
 
       } // for data.posts
 
@@ -321,7 +321,7 @@ var translateRequest = function(location, text, lang) {
 
 
   $('.questionlist').click(function() {
- initMap();
+ // initMap();
 });
 
 

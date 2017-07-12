@@ -27,15 +27,12 @@ class PostsController < ApplicationController
      end
    end
 
-
-
   def show
     @posts = Post.all
     @post = Post.find params["id"]
     @comment = Comment.new
     @user = User.all
     # raise 'hell'
-
   end
 
   def map
@@ -45,6 +42,7 @@ class PostsController < ApplicationController
     ip = request.remote_ip;
     loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
     # loc = Geocoder.search(ip)
+    # raise 'hell'
 
     @questions = []
 
@@ -85,6 +83,7 @@ class PostsController < ApplicationController
 
     if @post.location == ""
        @post.latitude = loc[0].data['latitude']
+       raise 'hell'
        @post.longitude = loc[0].data['longitude']
     end
 
@@ -96,6 +95,7 @@ class PostsController < ApplicationController
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+      raise 'hell'
     end
 
   end
