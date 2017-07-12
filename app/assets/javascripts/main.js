@@ -323,9 +323,9 @@ var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জ�
 
 var askFunction = function () {
   var num = _.random(ask.length)
-  var title = ask[num]
+  var title = ask[num].toUpperCase()
   $('#fragaAnimation').html(title).appendTo('#fragaTitle')
   // $('#fragaAnimation').html("fråga").appendTo('#fragaTitle')
 }
 
-setInterval(askFunction, 8000);
+setInterval(askFunction, 6000);
