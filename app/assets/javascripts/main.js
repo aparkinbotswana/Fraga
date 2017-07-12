@@ -7,7 +7,8 @@ function initMap() {
   var myLatlng = {lat: -33.9, lng: 151.2};
   var mapOptions = {
   zoom: 12,
-  center: myLatlng
+  center: myLatlng,
+  styles: myStyle
   };
 
   // var map = new google.maps.Map(document.getElementById('map'), {
@@ -262,7 +263,6 @@ $('#searchbutton').click(function(){
         $('#mySidenav').css('width', "0");
       console.log('close, says me');
     })
-
 
   // Michelle: Translate text
 

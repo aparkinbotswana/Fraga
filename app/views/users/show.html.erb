@@ -1,14 +1,10 @@
-
 <!-- Andy- Google maps marker -->
-
-
 <style>
   #userMap {
     height: 300px;
     width: 100%;
   }
 </style>
-
 <script>
   var map;
   function initMap() {
@@ -16,19 +12,16 @@
       center: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>},
       zoom: 15
     });
-
     marker = new google.maps.Marker({
         map:map,
         draggable:true,
         animation: google.maps.Animation.DROP,
         position: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>}
     });
-
   google.maps.event.addListener(marker, 'dragend', function()
   {
       geocodePosition(marker.getPosition());
   });
-
   function geocodePosition(pos)
   {
      geocoder = new google.maps.Geocoder();
@@ -52,26 +45,20 @@
   }
 };
 </script>
-
 <div style="height: 500px; width: 400px; border: 1px solid black; display: inline; float:right; margin-right: 100px">
   <h2>My Location</h2>
   <form action="/action_page.php" style="left:0">
     <input type="radio" name="userLoc" value="male"> Default (based on your IP address)<br><br>
     <input type="radio" name="userLoc" value="female"> <input type="text" placeholder="Address" name="Address"><br><br>
     <input type="radio" name="userLoc" value="other">Map: <div id="userMap"></div><br>
-
     <input type="submit" value="Submit">
   </form>
 </div>
-
 <p id="notice"><%= notice %></p>
-
 <h1>Posts</h1>
-
 <% @posts.each do |r| %>
   <%= link_to r.question, post_path(r) %>
   <br><hr>
 <% end %>
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
