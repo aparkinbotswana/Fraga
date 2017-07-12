@@ -30,6 +30,7 @@ class PostsController < ApplicationController
     #  @users = User.all
      @posts = Post.text_search(params[:query], @current_user)
     #  response = { :users => @users, :posts => @posts }
+    # If empty use the IP as default
      respond_to do |format|
        format.html { render :do_search }
        format.json { render json: @posts, include: [:user] }
@@ -49,7 +50,24 @@ class PostsController < ApplicationController
   end
 
   def map
-    @posts = Post.all
+    @location = Post.all
+
+
+
+
+
+    @questions = []
+
+    # @posts.each_with_index {|array.question, index| puts "#{array.question} => #{index}" }
+      # question = []
+      # question << post.question
+      # question << post.latitude
+      # question << post.longitude
+      # question << post.id
+      # @questions << question
+
+
+
 
   end
 

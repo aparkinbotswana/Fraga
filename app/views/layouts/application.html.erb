@@ -9,23 +9,25 @@
   </head>
 
   <!-- <body style="padding: 10px; max-width: 800px; height: auto; margin: 0 auto; border: 1px solid gray"> -->
-  <style>
-    body {
-      padding: 0;
-      margin: 0 auto;
-    }
-
-  </style>
 
 
   <!-- James: Sliding Nav Bar -->
   <div id="mySidenav" class="sidenav">
     <a href="#" id='navClose' class="closebtn">&times;</a>
 
+    <!-- <div id='op'>
+      <div class='options'>
+        <span id='searchOption' class='searchPosts'>Search</span>
+      </div>
+      <div class='options'>
+        <span id='postOption' class='searchPosts'>Posts</span>
+      </div>
+    </div> -->
+
 
 
     <!-- julian search bar -->
-    <div class="ui right aligned category search searchbar">
+    <div>
       <div class="ui icon input">
         <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
         <i class="search icon"></i>
@@ -63,6 +65,7 @@
     <div class="col2"><h4 id='navOpen' class="fraga">SEARCH</h4></div>
 
     <div class="col3">
+    <h4 id='rightnavOpen' class="fraga">ASK</h4>
 
     <% unless @current_user.present? %>
     <%= link_to 'Login',  login_path, class: "ui button" %>
@@ -78,19 +81,33 @@
 
   </div>
 
-  <!-- <button id='navOpen' class="menu" >start</button> -->
-
   </div>
+    <%= yield %>
+
 
 
   <div class="page-content">
 
-    <%= yield %>
+
+
+
+
+
+
+
+
+
+
+
 
   </div>
 
+  <div class="page-footer"></div>
 
 </div>
+
+
+
 
   </body>
 

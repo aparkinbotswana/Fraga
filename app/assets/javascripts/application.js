@@ -16,6 +16,7 @@
 //= require underscore
 //= require leaflet
 //= require rails_emoji_picker
+
 //= require_tree .
 
 
@@ -23,6 +24,7 @@ $( document ).ready(function() {
 
 // Julian - search results
 
+  $('#searchbutton').click(function(){
 
     $('#results').empty();
 
@@ -64,11 +66,6 @@ $( document ).ready(function() {
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
 
-
-
-
-
-
       } // for data.posts
 
 
@@ -79,6 +76,7 @@ $( document ).ready(function() {
     });
 
 
+  }); //search function close
 
   // Use event delegation
   $(document).on('click', '.questionlist', function(){
@@ -100,6 +98,17 @@ $( document ).ready(function() {
         $('#mySidenav').css('width', "0");
       console.log('close, says me');
     })
+
+    $("#searchOption").click(function(){
+        $('#mySidenav').css('width', "0");
+      console.log('close, says me');
+    })
+
+    $("#commentOption").click(function(){
+        $('#mySidenav').css('width', "0");
+      console.log('close, says me');
+    })
+
 
   // Michelle: Translate text
 

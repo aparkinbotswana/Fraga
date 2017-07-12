@@ -19,23 +19,6 @@
     /*background: peachpuff;*/
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .fraga {
   text-align: center;
   padding-top: 40px;
@@ -53,12 +36,12 @@ body,
   height: 100%; /* needed for proper layout */
   justify-content: center;
   text-align: center;
-
-
 }
 
 body {
   overflow: hidden;
+  padding: 0;
+  margin: 0 auto;
 }
 
 p {
@@ -82,15 +65,6 @@ p {
   position: relative;/* need this to position inner content */
   overflow-y: auto;
 }
-
-/*.page-footer {
-
-}
-*/
-
-
-
-
 
 .questionlist {
   font-size: 25px;
@@ -133,11 +107,6 @@ p {
   transition: 0.5s all ease-in-out;
 }
 
-/*#searchbutton:hover {
-  transform: scale(0.5);
-
-}*/
-
 #map {
   position: relative;
   top: 2000px;
@@ -158,8 +127,6 @@ p {
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
-
-
 
 /* The navigation menu links */
 .sidenav a {
@@ -199,70 +166,22 @@ p {
   height: 500px;
 }
 
-
-
-
-
-
-/*Julian trying to copy james but from the right side*/
-/* The side navigation menu */
-.rightsidenav {
-    opacity: 0.9;
-    height: 85%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 15%;
-    right: 0;
-    background-color: #f0f0f0; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+/*#searchOption{
 }
 
+#postOption{
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* The navigation menu links */
-.rightsidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #fbfbfb;
-    display: block;
-    transition: 0.3s
+.searchPosts{
 
 }
 
-/* When you mouse over the navigation links, change their color */
-.rightsidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+.options {
+  display: inline;
+  text-align: left;
+
 }
 
-/* Position and style the close button (top right corner) */
-.rightsidenav .rightclosebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
+#op{
 
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .rightsidenav {padding-top: 15px;}
-    .rightsidenav a {font-size: 18px;}
-}
-/*James: End CSS for sliding nav bar*/
-
-/*James: CSS to allow scroll within comments section*/
+}*/
