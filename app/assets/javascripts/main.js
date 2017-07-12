@@ -1,5 +1,4 @@
 
-
 var changemap = "map";
 
 function initMap() {
@@ -254,16 +253,6 @@ $('#searchbutton').click(function(){
       console.log('close, says me');
     })
 
-    $("#searchOption").click(function(){
-        $('#mySidenav').css('width', "0");
-      console.log('close, says me');
-    })
-
-    $("#commentOption").click(function(){
-        $('#mySidenav').css('width', "0");
-      console.log('close, says me');
-    })
-
   // Michelle: Translate text
 
 var translateRequest = function(location, text, lang) {
@@ -323,11 +312,28 @@ var translateRequest = function(location, text, lang) {
   $('.questionlist').click(function() {
  // initMap();
 });
-
-
-
-
-
-
-
 });
+
+var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
+"پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
+"សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",
+"Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
+"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
+
+count = 0
+
+var askFunction = function () {
+  count
+  if (count === 1) {
+    $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle')
+    count = 0
+
+  } else {
+    var title = ask[ _.random(ask.length)].toUpperCase()
+    $('#fragaAnimation').html(title).appendTo('#fragaTitle')
+    count = 1
+
+  }
+}
+
+setInterval(askFunction, 6000);
