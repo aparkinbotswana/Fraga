@@ -6,6 +6,8 @@
 
       <script>
         var map;
+        var savedLat;
+        var savedLng;
         function initMap() {
           map = new google.maps.Map(document.getElementById('userMap'), {
             center: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>},
@@ -21,8 +23,10 @@
           google.maps.event.addListener(marker, 'dragend', function(){
             geocodePosition(marker.getPosition());
             var savedInfo = (marker.getPosition());
-            var savedLat = savedInfo.lat()
-            console.log(savedLat);
+             savedLat = savedInfo.lat();
+             savedLng = savedInfo.lng();
+
+            // console.log(savedLat);
           // debugger;
           });
 

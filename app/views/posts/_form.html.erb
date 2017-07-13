@@ -1,3 +1,4 @@
+<div class="emoji-picker-container">
 <%= form_for(post) do |f| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
@@ -14,7 +15,7 @@
 <div class="ui form">
   <div class="field emoji-picker-container">
     <%= f.label :question %>
-    <%= f.text_area :question, placeholder: "Ask a question", class: 'form-control', data: { emojiable: true } %>
+    <%= f.text_area :question, placeholder: "Ask a question", class: 'form-control locationContent', data: { emojiable: true }, :maxlength=>"254" %>
   </div>
 </div>
 
@@ -22,9 +23,27 @@
 
 
   <div class="ui form">
+    <div class="field emoji-picker-container">
+      <%= f.label :latitude %>
+      <%= f.text_area :latitude, placeholder: "move the marker on the map and click 'Set location below'", class: 'form-control long', :disabled => true %>
+      <!-- <%= button_to "get location", class: 'locationButton' %> -->
+    </div>
+  </div>
+
+  <div class="ui form">
+    <div class="field">
+      <%= f.label :longitude %>
+      <%= f.text_area :longitude, placeholder: "move the marker on the map and click 'Set location below'", class: 'form-control lat', :disabled => true %>
+      <!-- <%= button_to "get location", class: 'locationButton' %> -->
+    </div>
+  </div>
+  <a class='locationButton' href="#">Set Location</a>
+
+  <div class="ui form">
     <div class="field">
       <%= f.label :location %>
-      <%= f.text_field :location, placeholder: "Where are you?", class: 'form-control'  %>
+      <%= f.text_area :location, placeholder: "Where are you?", class: 'form-control'  %>
+      <!-- <%= button_to "get location", class: 'locationButton' %> -->
     </div>
   </div>
 
@@ -34,9 +53,9 @@
     <input type="submit" value="Submit"> -->
 
 
-    <%= radio_button_tag(:location, "userIPInput") %> <%= label_tag(:location, "Default (based on your IP address)") %>
-    <%= radio_button_tag(:location, "userAddressInput") %> <%= label_tag(:location, "Input taken from marker (right)") %>
-
+    <!-- <%= radio_button_tag(:location, "userIPInput") %> <%= label_tag(:location, "Default (based on your IP address)") %>
+    <%= radio_button_tag(:location, "userAddressInput") %> <%= label_tag(:location, "Input taken from marker (right)") %> -->
+<!--
 <hr>
     EXAMPLE
     <%= radio_button_tag(:age, "child") %>
@@ -51,7 +70,7 @@
     <label for="age_adult">I'm over 21</label>
     <hr>
 
-
+ -->
 
 
   <div class="ui form">
@@ -64,3 +83,5 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+</div>

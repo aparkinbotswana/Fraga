@@ -80,12 +80,11 @@ class PostsController < ApplicationController
 
     ip = request.remote_ip;
     loc = Geocoder.search(ip)
-
-    if @post.location == ""
-       @post.latitude = loc[0].data['latitude']
-       raise 'hell'
-       @post.longitude = loc[0].data['longitude']
-    end
+    #
+    # if @post.location == ""
+    #    @post.latitude = @post.latitude
+    #    @post.longitude = @post.longitude
+    # end
 
     respond_to do |format|
       if @post.save
@@ -95,8 +94,12 @@ class PostsController < ApplicationController
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
-      raise 'hell'
+      # raise 'hell'
     end
+
+    # @post.save
+    # raise 'hell'
+    # redirect_to @post
 
   end
 
