@@ -7,7 +7,7 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <!-- James: Click button to open nav bar -->
+  <!-- Julian - Header with links and logins-->
     <div class="headercolumns">
     <div class="col1"><h1 class="fraga"><%= link_to "FRÅGA", posts_path() %></h1></div>
 
@@ -26,12 +26,13 @@
 
   <!-- James - Sliding Nav Bar -->
   <div id="mySidenav" class="sidenav">
-    <div id="hedNav" style="border:1px solid black; width: 100%; z-index:10; height:50px">
-      <a href="#" id='navClose' class="closebtn">&times;</a>
+    <div id="hedNav" style="border:1px solid black; width: 100%; z-index:10; height:70px;">
+      <div style="border:1px solid black; width: 50%; z-index:10; height:70px; float: left; display:inline">Question</div>
+      <div style="border:1px solid black; width: 50%; z-index:10; height:70px; float:right; display:inline">Location</div>
     </div>
     <!-- Julian - Search bar -->
     <div class="ui icon input">
-      <input class="prompt" type="text" placeholder="Ask a question..." id="queryinput">
+      <input class="prompt" type="text" placeholder="Search questions..." id="queryinput">
       <i class="search icon"></i>
     </div>
       <button id="searchbutton">Search</button>

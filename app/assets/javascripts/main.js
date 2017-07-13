@@ -244,7 +244,7 @@ $('#searchbutton').click(function(){
 
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
       $("#navOpen").click(function(){
-        $('#mySidenav').css('width', "550px");
+        $('#mySidenav').css('width', "550px").toggle();
       console.log('open, says me');
     })
 
