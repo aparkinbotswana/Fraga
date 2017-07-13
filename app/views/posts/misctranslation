@@ -1,0 +1,26 @@
+
+      <!-- <div> -->
+      <!--Michelle - translation options (user's language to chosen lanugage)  -->
+
+  <!-- keep this - michelles detect default language  -->
+
+      <!-- <select id="language" class="ui search dropdown">
+        <i class="world icon"></i>
+        <span class="text">Translane From:</span>
+        <div class="menu">
+        <option value="fr">Translate from French</option>
+        <option value="de">Translate from German</option>
+        <option value="el">Translate from Greek</option>
+        <option value="ja">Translate from Japanese</option>
+        <option value="no">Translate from Norwegian</option>
+        <option value="zh">Translate from Mandarin</option>
+        <option value="sv">Translate from Swedish</option>
+        <option value="en">Translate from English</option>
+        </div>
+      </select> -->
+
+
+      <!--Michelle - button to trigger translation of post (see application.js file)  -->
+      <!-- <button id="languageButton">translate text to your default language</button> -->
+
+      <!-- </div> -->
