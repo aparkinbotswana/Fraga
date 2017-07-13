@@ -56,9 +56,12 @@
 </div>
 <p id="notice"><%= notice %></p>
 <h1>Posts</h1>
-<% @posts.each do |r| %>
-  <%= link_to r.question, post_path(r) %>
-  <br><hr>
-<% end %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<div class='userPostList'>
+  <% @posts.each do |r| %>
+    <%= link_to r.question, post_path(r) %>
+    <br>
+  <% end %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+</div>

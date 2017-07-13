@@ -167,10 +167,18 @@ table{
 .userPickMap{
   height: 500px;
   width: 800px;
-  border: 1px
-  solid black;
+  border: 1px;
   display: inline;
   float:right;
+  margin-right: 10px;
+}
+
+.userPostList{
+  height: 500px;
+  width: 800px;
+  border: 1px black;
+  display: inline;
+  float:left;
   margin-right: 10px;
 }
 

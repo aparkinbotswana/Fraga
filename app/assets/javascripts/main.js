@@ -1,22 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -172,6 +154,14 @@ $( document ).ready(function() {
         $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
       }
       count = 1 - count;
+    });
+  };
+
+setInterval(fader(), 6000);
+
+$('#fragaAnimation').click(function(){
+  window.location = '/';
+})
 
 $('#searchbutton').click(function(){
   mapload();
@@ -392,24 +382,26 @@ var translateRequest = function(location, text, lang) {
     }
   };
 
+//
+// $( "marker" ).on( "dragstop", function( ) {console.log('works');
+// console.log('lat:', savedLat);
+// console.log('long:', savedLng);
+// $('.long').val(savedLng)
+// $('.lat').val(savedLat)} );
 // Michelle - get location for new post
-$('.locationButton').click(function(){
-  console.log('works');
-  console.log('lat:', savedLat);
-  console.log('long:', savedLng);
-  $('.long').text(savedLng)
-  $('.lat').text(savedLat)
+// $('.locationButton').click(function(){
+
   // debugger;
 
 
 
-})
+});
 
 
   $('.questionlist').click(function() {
  // initMap();
 });
-});
+
 
 
 
@@ -417,4 +409,4 @@ var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জ�
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
 "សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",
 "Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
-"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
+"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"];

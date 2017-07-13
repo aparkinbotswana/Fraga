@@ -1,13 +1,11 @@
 
-
-      <h2>New Post</h2>
-
       <!-- Andy- Google maps marker -->
 
       <script>
         var map;
         var savedLat;
         var savedLng;
+        var marker;
         function initMap() {
           map = new google.maps.Map(document.getElementById('userMap'), {
             center: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>},
@@ -23,8 +21,12 @@
           google.maps.event.addListener(marker, 'dragend', function(){
             geocodePosition(marker.getPosition());
             var savedInfo = (marker.getPosition());
-             savedLat = savedInfo.lat();
-             savedLng = savedInfo.lng();
+            savedLat = savedInfo.lat();
+            savedLng = savedInfo.lng();
+            console.log(savedLng + savedLat);
+            $('#post_longitude').val(savedLng);
+            $('#post_latitude').val(savedLat);
+            $('.location-box').text("Obtained from marker").prop("disabled", true);
 
             // console.log(savedLat);
           // debugger;
@@ -50,7 +52,10 @@
       </script>
 
       <div class="userPickMap">
-        <h2>My Location</h2>
+        <div>
+        </div>
+
+
 <div id="userMap"></div>
       </div>
       <div class="page">

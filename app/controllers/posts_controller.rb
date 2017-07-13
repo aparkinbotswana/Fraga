@@ -81,10 +81,12 @@ class PostsController < ApplicationController
     ip = request.remote_ip;
     loc = Geocoder.search(ip)
     #
-    # if @post.location == ""
-    #    @post.latitude = @post.latitude
-    #    @post.longitude = @post.longitude
-    # end
+    if @post.latitude || @post.longitude == ""
+      @post.location
+    elsif @post.location == ""
+      @post.latitude = loc[0].data['latitude']
+      @post.longitude = loc[0].data['longitude']
+    end
 
     respond_to do |format|
       if @post.save
@@ -161,6 +163,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:question, :location, :user_id, :active, :emjoi)
+      params.require(:post).permit(:question, :location, :user_id, :active, :emjoi, :latitude, :longitude)
     end
 end
