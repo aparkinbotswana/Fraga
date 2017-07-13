@@ -11,11 +11,11 @@
       </ul>
     </div>
   <% end %>
-
+<br><br>
 <div class="ui form">
   <div class="field emoji-picker-container">
-    <%= f.label :question %>
-    <%= f.text_area :question, placeholder: "Ask a question", class: 'form-control locationContent', data: { emojiable: true }, :maxlength=>"254" %>
+    <h2 style="text-align: left"><%= f.label :question %></h2>
+    <%= f.text_area :question, class: 'form-control locationContent', data: { emojiable: true }, :maxlength=>"254" %>
   </div>
 </div>
 
@@ -33,22 +33,22 @@
       <%= f.hidden_field :longitude%>
     </div>
   </div>
-
+  <br><br>
   <div class="ui form">
     <div class="field">
-      <%= f.label :location %>
+      <h2 style="text-align: left"><%= f.label :location %></h2>
       <%= f.text_area :location, placeholder: "Drag the marker on the map, or type here", class: 'form-control location-box', rows: 1 %>
     </div>
   </div>
-
+  <br><br>
   <div class="ui form">
     <div class="field">
-      <%= f.label "Pick an emoji"%>
-      <%= f.select :emjoi, options_for_select([["How ya feel??", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>
+      <h2 style="text-align: left"><%= f.label "Mood"%></h2>
+      <%= f.select :emjoi, options_for_select([["", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>
     </div>
   </div>
-
-  <div class="actions">
+<br><br><br>
+  <div class="actions" style="text-align: left">
     <%= f.submit %>
   </div>
 <% end %>

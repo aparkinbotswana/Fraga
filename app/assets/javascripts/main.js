@@ -1,39 +1,23 @@
 
 function initMap() {
-
   var myLatlng = {lat: -33.9, lng: 151.2};
   var mapOptions = {
   zoom: 12,
   center: myLatlng,
   styles: myStyle
   };
-
-
-
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
   // var map2 = new google.maps.Map(document.getElementById("mapshow"), mapOptions);
-
   setMarkers(map);
   // setMarkers(map2);
 }
-
-
-
-
 var questionz = [];
-
 var markers = [];
-
 var marker;
 var question;
 // var infowindow;
-
 function setMarkers(map) {
-
-
-
   var bounds = new google.maps.LatLngBounds();
-
   for (var i = 0; i < questionz.length; i++) {
       question = questionz[i];
       marker = new google.maps.Marker({
@@ -43,33 +27,20 @@ function setMarkers(map) {
       // title: question[0],
       zIndex: question[3],
       // hello:
-
       // This ID is used to contruct the correct show page URL in the click event
       fragaID: question[3],
-
       // This property defines an InfoWindow which the hover event uses
       fragaInfo: new google.maps.InfoWindow({
         content: question[0]
       })
-
     });
-
-
-
     // console.log(marker);
-
-
 // ----------------------------------------------------------------------------
     // Julian --- add series of event listener to created marker
     // closure problem
-
-
       google.maps.event.addListener(marker, 'click', function () {
         window.location.href = '/posts/' + this.fragaID;
       });
-
-
-
        google.maps.event.addListener(marker, 'mouseover', function() {
          if(this.timerID){
            clearTimeout(this.timerID);
@@ -78,7 +49,6 @@ function setMarkers(map) {
          this.setAnimation(google.maps.Animation.BOUNCE);
          this.fragaInfo.open(map, this);
        });
-
        google.maps.event.addListener(marker, 'mouseout', function() {
          var m = this;
          this.timerID = setTimeout(function () {
@@ -86,24 +56,9 @@ function setMarkers(map) {
            m.setAnimation(null);
          }, 500);
        });
-
-
-
-
-
-
-
-
-
-
-
-
     // Julian push created marker to markers array
     markers.push( marker );
-
-
     // Julian change zoom of map to a minimum zoom
-
     google.maps.event.addListener(map, 'zoom_changed', function() {
     zoomChangeBoundsListener =
         google.maps.event.addListener(map, 'bounds_changed', function(event) {
@@ -116,49 +71,37 @@ function setMarkers(map) {
       });
     });
     map.initialZoom = true;
-
-
-
     // Julian set bounds position of marker
-
     bounds.extend( marker.getPosition() );
-
-
-
-
   } // for
-
   // Julian make zoom of map fit over all markers
-
   map.fitBounds(bounds);
-
 };
-
-
-
 $( document ).ready(function() {
-
   // James: title fade in and fade out
   var count = 0;
 
+  var count = 0;
 
- // var fader = function () {
- //    $(‘#fragaAnimation’).fadeOut(3000, function () {
- //      // after fade out:
- //      if (count === 0) {
- //        // random language
- //        var title = _.sample(ask).toUpperCase();
- //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
- //      } else {
- //        // FRAGA
- //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
- //      }
- //      count = 1 - count;
- //
- //   })
- //  };
- //
- // setInterval(fader, 6000);
+
+ var fader = function () {
+   $('#fragaAnimation').fadeOut(3000, function () {
+     // after fade out:
+     if (count === 0) {
+       // random language
+       var title = _.sample(ask).toUpperCase();
+       $('#fragaAnimation').html(title).fadeIn(3000);
+     } else {
+       // FRAGA
+       $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
+     }
+     count = 1 - count;
+
+   });
+ };
+
+ setInterval(fader, 6000);
+
  $('#fragaAnimation').click(function(){
    window.location = '/';
  });
@@ -167,7 +110,6 @@ $( document ).ready(function() {
  if(e.keyCode==13){
    $('#querySearchbutton').trigger('click');}
  });
-
 
 
  $('#querySearchbutton').click(function(){
@@ -205,22 +147,19 @@ $( document ).ready(function() {
        $('#queryinput').empty();
        // $('#locqueryinput').empty();
 
+       console.log('do ajax');
        $.ajax({
          url: "/posts/search",
          dataType: "json",
          method: "POST",
-         data
-    }).done(function(data){
+         data: data
+       }).done(function(data){
 
       // remove existing markers
-
       questionz = [];
-
       for (var i = 0; i < data.length; i++) {
         console.log('added one');
-
         var post = data[i];
-
         var user = $('<p>').text(post.username);
         var location= post.location;
         var userid = post.user_id;
@@ -229,83 +168,66 @@ $( document ).ready(function() {
         var $question = $('<h2>').text(post.question)
                                 .addClass("questionlist")
                                 .attr('post-id', post.id);
-
-
-
-
+        // julian // append emoji image works but commented out...
+        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
-
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
-
-
-
-
-
       } // for data.posts
-
       initMap();
-
-
-
-
 //------------------------------------------------------------------------------
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
 
-$( "h2" ).hover(
+
+$( "h2.questionlist" ).hover(
   function() {
-    var index = $( "h2" ).index( this );
-    markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
+    var index = $( "h2.questionlist" ).index( this );
+    markers[index].setAnimation(google.maps.Animation.BOUNCE);
     // map.panTo(markers[index].getPosition());
 
 
   }, function() {
-    var index = $( "h2" ).index( this );
-    markers[index - 1 ].setAnimation(null);
+    var index = $( "h2.questionlist" ).index( this );
+    markers[index].setAnimation(null);
   }
 );
-
 //------------------------------------------------------------------------------
-
-
-
     })
     .fail(function(xhr, err, status) {
       console.log(xhr, err, status);
     });
-
   }; //search function close
-
   // call the rendering map function
   mapload();
-
-
   // Julian on click a item in the question list... go to its matching post
   $(document).on('click', '.questionlist', function(){
     var url = '/posts/' + $(this).attr('post-id');
     document.location.href = url;
   });
-
-
-
-
-
-
-
-
-
-/* -------------------------------------------------------------------------------
       /* James: sliding side bar */
-
       // Julian on search click open search slide
 
     $("#navOpen").click(function(){
-      $('#mySidenav').css('width', "544px").toggle;
-      // $('#mySidenav').css('width', "32wh");
-      // $('#map').css('display', "absolute");
-      // $('#map').css('width', "68wh");
-      // $('#map').css('left', "34%");
+      // $('#mySidenav').css('width', "544px")
+      $('#mySidenav').css('width', "34%");
+
+      $('#map').css('display', "absolute");
+      $('#map').css('width', "68wh");
+      $('#map').css('left', "34%");
     })
+
+    $("#navClose").click(function(){
+      // $('#mySidenav').css('width', "544px")
+      $('#mySidenav').css('width', "0%");
+
+      // $('#map').css('display', "absolute");
+      $('#map').css('width', "100wh");
+      $('#map').css('left', "0%");
+    })
+
+
+
+
 
     $("#questButt").click(function(){
       $('#locNav').css('display', "none")
@@ -316,15 +238,9 @@ $( "h2" ).hover(
       $('#locNav').css('display', "block")
       $('#searchNav').css('display', "none")
     })
-
-
-// -------------------------------------------------------------------------------
   // Michelle: Translate text
-
 var translateRequest = function(location, text, lang) {
-
   var baseURL = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
-
   $.ajax ({
     url:baseURL,
     data: {
@@ -343,14 +259,12 @@ var translateRequest = function(location, text, lang) {
     console.log(xhr, status, err);
   })
 }
-
   $('#toLanguageButton').click(function(){
     $('.translated').empty();
     var languageRequest = $('#languageTo').val();
     console.log(languageRequest);
     submitPost(languageRequest)
   })
-
   var submitPost = function(languageRequest){
     var locationToTranslate = $(".translateComment");
      var lang = navigator.language;
@@ -361,15 +275,12 @@ var translateRequest = function(location, text, lang) {
        translateRequest(locationToTranslate[i], line, browserLanguageConv)
      }
   };
-
   $('#languageButton').click(function(){
     $('.translated').empty();
-
     var languageRequest = $('#language').val();
     console.log(languageRequest);
     submitComments(languageRequest)
   });
-
 // Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
     var locationToTranslate = $(".translateComment");
@@ -382,29 +293,10 @@ var translateRequest = function(location, text, lang) {
     }
   };
 
-//
-// $( "marker" ).on( "dragstop", function( ) {console.log('works');
-// console.log('lat:', savedLat);
-// console.log('long:', savedLng);
-// $('.long').val(savedLng)
-// $('.lat').val(savedLat)} );
-// Michelle - get location for new post
-// $('.locationButton').click(function(){
-
-  // debugger;
-
-
-
 });
-
-
   $('.questionlist').click(function() {
  // initMap();
 });
-
-
-
-
 
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
