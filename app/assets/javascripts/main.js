@@ -147,12 +147,14 @@ $( document ).ready(function() {
        $('#queryinput').empty();
        // $('#locqueryinput').empty();
 
+       console.log('do ajax');
        $.ajax({
          url: "/posts/search",
          dataType: "json",
          method: "POST",
-         data
-    }).done(function(data){
+         data: data
+       }).done(function(data){
+
       // remove existing markers
       questionz = [];
       for (var i = 0; i < data.length; i++) {
@@ -175,16 +177,18 @@ $( document ).ready(function() {
       initMap();
 //------------------------------------------------------------------------------
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
-$( "h2" ).hover(
+
+
+$( "h2.questionlist" ).hover(
   function() {
-    var index = $( "h2" ).index( this );
-    markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
+    var index = $( "h2.questionlist" ).index( this );
+    markers[index].setAnimation(google.maps.Animation.BOUNCE);
     // map.panTo(markers[index].getPosition());
 
 
   }, function() {
-    var index = $( "h2" ).index( this );
-    markers[index - 1 ].setAnimation(null);
+    var index = $( "h2.questionlist" ).index( this );
+    markers[index].setAnimation(null);
   }
 );
 //------------------------------------------------------------------------------
@@ -204,11 +208,11 @@ $( "h2" ).hover(
       // Julian on search click open search slide
 
     $("#navOpen").click(function(){
-      $('#mySidenav').css('width', "544px").toggle;
-      // $('#mySidenav').css('width', "32wh");
-      // $('#map').css('display', "absolute");
-      // $('#map').css('width', "68wh");
-      // $('#map').css('left', "34%");
+      // $('#mySidenav').css('width', "544px").toggle;
+      $('#mySidenav').css('width', "32wh");
+      $('#map').css('display', "absolute");
+      $('#map').css('width', "68wh");
+      $('#map').css('left', "34%");
     })
 
     $("#questButt").click(function(){
