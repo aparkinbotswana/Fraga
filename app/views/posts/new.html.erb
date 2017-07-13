@@ -1,6 +1,62 @@
 
-<h1>New Post</h1>
 
-<%= render 'form', post: @post %>
+      <h2>New Post</h2>
 
-<%= link_to 'Back', posts_path %>
+      <!-- Andy- Google maps marker -->
+
+      <script>
+        var map;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('userMap'), {
+            center: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>},
+            zoom: 15,
+            styles: myStyle
+          });
+          marker = new google.maps.Marker({
+              map:map,
+              draggable:true,
+              animation: google.maps.Animation.DROP,
+              position: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>}
+          });
+        google.maps.event.addListener(marker, 'dragend', function()
+        {
+            geocodePosition(marker.getPosition());
+        });
+        function geocodePosition(pos)
+        {
+           geocoder = new google.maps.Geocoder();
+           geocoder.geocode
+            ({
+                latLng: pos
+            },
+                function(results, status)
+                {
+                    if (status == google.maps.GeocoderStatus.OK)
+                    {
+                        $("#mapSearchInput").val(results[0].formatted_address);
+                        $("#mapErrorMsg").hide(100);
+                    }
+                    else
+                    {
+                        $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+                    }
+                }
+            );
+        }
+      };
+      </script>
+
+      <div class="userPickMap">
+        <h2>My Location</h2>
+<div id="userMap"></div>
+      </div>
+      <div class="page">
+        <div class="headercolumns">
+          <div class="col1">
+            <div class="newPost">
+              <%= render 'form', post: @post %>
+            </div>
+            <%= link_to 'Back', posts_path %>
+          </div>
+        </div>
+      </div>

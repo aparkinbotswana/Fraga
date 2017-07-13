@@ -18,27 +18,25 @@
   </div>
 </div>
 
-  <p>Pinpoint where you want to ask your question, or leave it blank and we will use your location based on your IP</p>
-
-
-
-
-<div class="ui form">
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
-</div>
+  <!-- <p>Pinpoint where you want to ask your question, or leave it blank and we will use your location based on your IP</p> -->
 
 
   <div class="ui form">
-  <div class="field">
-  <%= f.select :emjoi, options_for_select([["How ya feel??", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>
+    <div class="field">
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+    </div>
   </div>
+
+    <input type="radio" name="userLoc" value="userIPInput"> Default (based on your IP address)<br><br>
+    <input type="radio" name="userLoc" value="userAddressInput"> <input type="text" placeholder="Address" name="Address"><br><br>
+    <input type="radio" name="userLoc" value="userMapSelectInput"><br>
+    <input type="submit" value="Submit">
+  <div class="ui form">
+    <div class="field">
+      <%= f.select :emjoi, options_for_select([["How ya feel??", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>
+    </div>
   </div>
-
-
-
 
   <div class="actions">
     <%= f.submit %>
