@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 0a99d5e6a4a2d5c44c951eb1707277669249f686
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -401,19 +398,9 @@ var translateRequest = function(location, text, lang) {
 });
 
 
-<<<<<<< HEAD
   $('.questionlist').click(function() {
  // initMap();
 });
-
-=======
-
-
-
-
-
-});
->>>>>>> 0a99d5e6a4a2d5c44c951eb1707277669249f686
 
 
 

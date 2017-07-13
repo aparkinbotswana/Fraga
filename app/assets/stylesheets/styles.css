@@ -177,8 +177,6 @@ table{
 
 
 
-
-
 .userPickMap{
   height: 500px;
   width: 800px;
@@ -193,8 +191,9 @@ table{
   width: 800px;
   border: 1px black;
   display: inline;
-  float:left;
-  margin-right: 10px;
+  float: center;
+  margin: auto;
+
 }
 
 /*James: CSS for sliding nav bar*/
