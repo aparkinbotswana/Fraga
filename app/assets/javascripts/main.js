@@ -159,19 +159,25 @@ $( document ).ready(function() {
   // James: title fade in and fade out
   var count = 0;
 
+ // var fader = function () {
+ //    $(‘#fragaAnimation’).fadeOut(3000, function () {
+ //      // after fade out:
+ //      if (count === 0) {
+ //        // random language
+ //        var title = _.sample(ask).toUpperCase();
+ //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
+ //      } else {
+ //        // FRAGA
+ //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
+ //      }
+ //      count = 1 - count;
+ //
+ //   })
+ //  };
+ //
+ // setInterval(fader, 6000);
 
-  var fader = function () {
-    $('#fragaAnimation').fadeOut(3000, function () {
-      // after fade out:
-      if (count === 0) {
-        // random language
-        var title = _.sample(ask).toUpperCase();
-        $('#fragaAnimation').html(title).fadeIn(3000);
-      } else {
-        // FRAGA
-        $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
-      }
-      count = 1 - count;
+
 
 $('#searchbutton').click(function(){
   mapload();
@@ -409,7 +415,10 @@ $('.locationButton').click(function(){
   $('.questionlist').click(function() {
  // initMap();
 });
+
 });
+
+
 
 
 
@@ -417,4 +426,4 @@ var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জ�
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
 "សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",
 "Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
-"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
+"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"];
