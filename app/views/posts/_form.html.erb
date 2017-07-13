@@ -44,7 +44,9 @@
   <div class="ui form">
     <div class="field">
       <h2 style="text-align: left"><%= f.label "Mood"%></h2>
-      <%= f.select :emjoi, options_for_select([["", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>
+      <!-- test form... if HAPPY works, can input emojis -->
+      <%= f.select :emjoi, options_for_select([["", ""], ["😀", "happy"], ["😢", "sad"], ["😡","angry"], ["😴", "bored"], ["😋", "cheeky"], ["😐", "confused"], ["😎","cool"], ["😭", "devo"],["😊", "joy"], ["😍","love"], ["😓", "sad"], ["🤕","sick"], ["😜","silly"], ["😶","thinking"], ["🙁","unhappy"], ["😝","veryhappy"], ["😵","wasted"]])%>
+    </div>
     </div>
   </div>
 <br><br><br>
