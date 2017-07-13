@@ -15,6 +15,7 @@
   <div class="col2"><h2 class="fraga">
 
   <% if @current_user.present? %>
+
     <% if controller_name == 'posts' && action_name == 'map' %>
       <i class="search icon" style="color: #2C3E50" id='navOpen'></i>
     <% else %>
@@ -22,10 +23,11 @@
         <i class="search icon"></i>
       <% end %>
     <% end %>
+
     <%= link_to new_post_path do %>
       <i class="comment icon" style="background-color: none; color: #2C3E50; margin-left:30px"></i>
     <% end %>
-    <% end %>
+  <% end %><%# if @current_user %>
     </h2>
   </div>
 
