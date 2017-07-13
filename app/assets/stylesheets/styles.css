@@ -1,3 +1,14 @@
+
+/*google maps */
+
+
+
+
+
+
+
+
+
 /*Julian - Application.html.erb file layout*/
 .headercolumns {
   display: flex;
@@ -7,7 +18,7 @@
 
   .col1 {
     flex-grow: 1;
-    background: rgb(244, 244, 244)
+    background: white;
   }
   .col2 {
     width: 25%;
@@ -28,6 +39,16 @@
   text-align: center;
   padding-top: 40px;
   cursor: pointer;
+}
+
+.loginright {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.pointer {
+  cursor: pointer;
+
 }
 
 .searchmenu {
@@ -115,6 +136,7 @@ p {
 #map {
   position: relative;
   top: 2000px;
+  transition: 0.5s;
 }
 
 table{
