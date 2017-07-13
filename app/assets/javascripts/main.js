@@ -174,18 +174,37 @@ function setMarkers(map) {
 
 $( document ).ready(function() {
 
-  var count = 1
+  // James: title fade in and fade out
+  var count = 0;
+
+
+  var fader = function () {
+    $('#fragaAnimation').fadeOut(3000, function () {
+      // after fade out:
+      if (count === 0) {
+        // random language
+        var title = _.sample(ask).toUpperCase();
+        $('#fragaAnimation').html(title).fadeIn(3000);
+      } else {
+        // FRAGA
+        $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
+      }
+      count = 1 - count;
+
+    });
+  };
 
   var askFunction = function () {
     if (count === 1) {
+      console.log('set FRAGA');
       $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeIn(3000,function () {
       $(this).fadeOut(3000);
     });
       count = 0
     } else {
+      $(this).fadeOut(3000);
       var title = ask[ _.random(ask.length)].toUpperCase()
       $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeIn(3000, function () {
-      $(this).fadeOut(3000);
     });
       count = 1
       console.log('animationelse');
@@ -193,21 +212,7 @@ $( document ).ready(function() {
     }
 
   }
-  // askFunction()
-  setInterval(askFunction, 6000);
-
-
-
-
-
-
-  //
-
-
-
-
-
-  // debugger;
+  setInterval(fader, 6000);
 
 $('#searchbutton').click(function(){
   mapload();
