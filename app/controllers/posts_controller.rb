@@ -16,14 +16,17 @@ class PostsController < ApplicationController
    end
 
    def do_search
-    #  @users = User.all
-     @posts = Post.text_search(params[:query], @current_user)
-    #  response = { :users => @users, :posts => @posts }
-    # If empty use the IP as default
+
+      # if (  )
+        @posts = Post.text_search(params[:query], @current_user)
+      # else
+        # loc = Geocoder.search(params[:locquery])
+        # @posts = Post.location_search(loc)
+      # end
+
      respond_to do |format|
        format.html { render :do_search }
        format.json { render json: @posts, include: [:user] }
-
      end
    end
 
@@ -66,6 +69,7 @@ class PostsController < ApplicationController
     ip = request.remote_ip;
     loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
     # loc = Geocoder.search(ip)
+
   end
 
   # GET /posts/1/edit

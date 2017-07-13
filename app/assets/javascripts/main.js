@@ -1,22 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -119,20 +101,9 @@ function setMarkers(map) {
         this.setAnimation(null);
     });
 
-    google.maps.event.addListener(marker, 'mouseover', function() {
-    map.panTo(this.getPosition());
-    });
-
-
-
-
-
-
-
-
-
-
-
+    // google.maps.event.addListener(marker, 'mouseover', function() {
+    // map.panTo(this.getPosition());
+    // });
 
     // Julian push created marker to markers array
     markers.push( marker );
@@ -175,93 +146,117 @@ function setMarkers(map) {
 $( document ).ready(function() {
 
   // James: title fade in and fade out
-  var count = 0;
+  // var count = 0;
+  //
+  //
+  // var fader = function () {
+  //   $('#fragaAnimation').fadeOut(3000, function () {
+  //     // after fade out:
+  //     if (count === 0) {
+  //       // random language
+  //       var title = _.sample(ask).toUpperCase();
+  //       $('#fragaAnimation').html(title).fadeIn(3000);
+  //     } else {
+  //       // FRAGA
+  //       $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
+  //     }
+  //     count = 1 - count;
+  //
+  //   });
+  // };
 
+  // var askFunction = function () {
+  //   if (count === 1) {
+  //     console.log('set FRAGA');
+  //     $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeIn(3000,function () {
+  //     $(this).fadeOut(3000);
+  //   });
+  //     count = 0
+  //   } else {
+  //     $(this).fadeOut(3000);
+  //     var title = ask[ _.random(ask.length)].toUpperCase()
+  //     $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeIn(3000, function () {
+  //   });
+  //     count = 1
+  //     console.log('animationelse');
+  //
+  //   }
+  //
+  // }
+  // setInterval(fader, 6000);
 
-  var fader = function () {
-    $('#fragaAnimation').fadeOut(3000, function () {
-      // after fade out:
-      if (count === 0) {
-        // random language
-        var title = _.sample(ask).toUpperCase();
-        $('#fragaAnimation').html(title).fadeIn(3000);
-      } else {
-        // FRAGA
-        $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
-      }
-      count = 1 - count;
+$('#querySearchbutton').click(function(){
+  $('#results').empty();
 
-    });
+  var queryinput = $('#queryinput').val();
+  // var locqueryinput = $('#locqueryinput').val();
+  var data = {
+    query: queryinput
   };
+  mapload(data);
+});
 
-  var askFunction = function () {
-    if (count === 1) {
-      console.log('set FRAGA');
-      $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeIn(3000,function () {
-      $(this).fadeOut(3000);
-    });
-      count = 0
-    } else {
-      $(this).fadeOut(3000);
-      var title = ask[ _.random(ask.length)].toUpperCase()
-      $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeIn(3000, function () {
-    });
-      count = 1
-      console.log('animationelse');
+$('#locationSearchbutton').click(function(){
+  $('#results').empty();
 
-    }
-
-  }
-  setInterval(fader, 6000);
-
-$('#searchbutton').click(function(){
-  mapload();
+  var locqueryinput = $('#locqueryinput').val();
+  // var locqueryinput = $('#locqueryinput').val();
+  var data = {
+    locquery: locqueryinput
+  };
+  mapload(data);
 });
 
 // Julian - search results
 
-  var mapload = function(){
+  var mapload = function(data){
 
-    $('#results').empty();
+      $('#results').empty();
 
-    var queryinput = $('#queryinput').val();
-    $('#queryinput').empty();
+      var queryinput = $('#queryinput').val();
+      var queryinput = $('#queryinput').is(':visible')
+      // var locqueryinput = $('#locqueryinput').val();
 
-    $.ajax({
-      url: "/posts/search",
-      dataType: "json",
-      method: "POST",
-      data: {
-        query: queryinput
-      }
-    }).done(function(data){
+      $('#queryinput').empty();
+      // $('#locqueryinput').empty();
 
-      // remove existing markers
+      $.ajax({
+        url: "/posts/search",
+        dataType: "json",
+        method: "POST",
+        data
+          // else
+          // locquery: queryinput
 
-      questionz = [];
+      }).done(function(data){
 
-      for (var i = 0; i < data.length; i++) {
-        console.log('added one');
+        // remove existing markers
 
-        var post = data[i];
+        questionz = [];
 
-        var user = $('<p>').text(post.username);
-        var location= post.location;
-        var userid = post.user_id;
-        var user = post.user.username;
-        var emoji = post.emjoi;
-        var $question = $('<h2>').text(post.question)
-                                .addClass("questionlist")
-                                .attr('post-id', post.id);
+        for (var i = 0; i < data.length; i++) {
+          console.log('added one');
 
-        // julian // append emoji image works but commented out...
+          var post = data[i];
 
-        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+          var user = $('<p>').text(post.username);
+          var location= post.location;
+          var userid = post.user_id;
+          var user = post.user.username;
+          var emoji = post.emjoi;
+          var $question = $('<h2>').text(post.question)
+                                  .addClass("questionlist")
+                                  .attr('post-id', post.id);
 
-        var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
-        $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
+          // julian // append emoji image works but commented out...
 
-        questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
+          // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+
+          var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
+          $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
+
+          questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
+
 
 
 
@@ -277,18 +272,18 @@ $('#searchbutton').click(function(){
 //------------------------------------------------------------------------------
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
 
-$( "h2" ).hover(
-  function() {
-    var index = $( "h2" ).index( this );
-    markers[index].setAnimation(google.maps.Animation.BOUNCE);
-    map.panTo(markers[index].getPosition());
+    $( "h2" ).hover(
+      function() {
+        var index = $( "h2" ).index( this );
+        markers[index].setAnimation(google.maps.Animation.BOUNCE);
+        // map.panTo(markers[index].getPosition());
 
 
-  }, function() {
-    var index = $( "h2" ).index( this );
-    markers[index].setAnimation(null);
-  }
-);
+      }, function() {
+        var index = $( "h2" ).index( this );
+        markers[index].setAnimation(null);
+      }
+    );
 
 //------------------------------------------------------------------------------
 
@@ -321,11 +316,19 @@ $( "h2" ).hover(
 
 
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
-      $("#navOpen").click(function(){
-        $('#mySidenav').css('width', "550px").toggle();
-      console.log('open, says me');
+  $("#navOpen").click(function(){
+    $('#mySidenav').css('width', "550px").toggle();
+  })
 
-    })
+  $("#questButt").click(function(){
+    $('#locNav').css('display', "none")
+    $('#searchNav').css('display', "block")
+  })
+
+  $("#locButt").click(function(){
+    $('#locNav').css('display', "block")
+    $('#searchNav').css('display', "none")
+  })
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
     $("#navClose").click(function(){

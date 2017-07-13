@@ -36,17 +36,30 @@
 
   <!-- James - Sliding Nav Bar -->
   <div id="mySidenav" class="sidenav">
-    <div id="hedNav" style="border:1px solid black; width: 100%; z-index:10; height:70px;">
-      <div style="border:1px solid black; width: 50%; z-index:10; height:70px; float: left; display:inline">Question</div>
-      <div style="border:1px solid black; width: 50%; z-index:10; height:70px; float:right; display:inline">Location</div>
+
+    <div id="hedNav">
+      <div id="questButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float: left; display:inline">Question</div>
+      <div id="locButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float:right; display:inline">Location</div>
     </div>
+
     <!-- Julian - Search bar -->
-    <div class="ui icon input">
-      <input class="prompt" type="text" placeholder="Search questions..." id="queryinput">
-      <i class="search icon"></i>
+    <div id="searchNav">
+      <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="Search Questions..." id="queryinput">
+        <i class="search icon"></i>
+      </div>
+        <button id="querySearchbutton">Search</button>
+      <div id="results"></div>
     </div>
-      <button id="searchbutton">Search</button>
-    <div id="results"></div>
+
+    <!-- Julian - Search bar -->
+    <div id="locNav">
+      <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="Search By Location..." id="locqueryinput">
+      </div>
+        <button id="locationSearchbutton">Search</button>
+        <div id="results"></div>
+    </div>
   </div>
 
   <%= yield %>
