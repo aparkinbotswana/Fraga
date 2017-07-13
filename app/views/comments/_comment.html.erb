@@ -1,4 +1,4 @@
-<% if comment.commentable_type == "Post"%>
+  <% if comment.commentable_type == "Post"%>
   <li style="margin: 8px 0 5px 0; border: 1px solid gray;">
 <% elsif %>
   <li style="margin: 5px 0 5px 0; border-left: 1px dotted gray;">
@@ -12,32 +12,36 @@
       <div class="content">
         <a class="collapse-comments">[-]</a><a></span> <%= @user.find(comment.user_id).username %></a><span><small>  <%= time_ago_in_words(comment.created_at) %> ago</small></span>
         <div class="in-content">
-          <div class="text translateComment t<%=comment.id%>">
-            <%= comment.content %>
-          </div>
-          <table>
+
+          <table style="display:inline">
             <tbody>
-              <tr>
-                <td class="c<%=comment.id%>"><%="#{comment.score}"%></td>
+              <tr style="text-align: center; margin: 0 auto">
                 <span class="upvote-comment">
-                  <td><%= link_to "👍🏼 #{comment.votes.where("upvote=1").count}", upvote_comment_path(comment), method: :post, remote: true %></td>
+                  <td><%= link_to '<i class="angle up icon" style="text-align: center; margin: 0 auto"></i>'.html_safe, upvote_comment_path(comment), method: :post, remote: true %></td>
                 </span>
-
-
+              </tr>
+              <tr style="text-align: center; margin: 0 auto">
+                <td class="c<%=comment.id%>"><%="#{comment.score}"%></td>
+              </tr>
+              <tr style="text-align: center; margin: 0 auto">
                 <span class="downvote-comment">
-                  <td><%= link_to "👎🏼#{comment.votes.where("downvote=1").count}", downvote_comment_path(comment), method: :post, remote: true%></td>
+                  <td><%= link_to  '<i class="angle down icon" style="text-align: center; margin: 0 auto"></i>'.html_safe, downvote_comment_path(comment), method: :post, remote: true%></td>
                 </span>
               </tr>
             </tbody>
             </table>
+
+            <div class="text translateComment t<%=comment.id%>" style="display:inline">
+              <%= comment.content %>
+            </div>
 
           <% if @current_user %>
           <div class="text">
             <%= f.text_area :content, placeholder: "Add a Reply", :class => "comment-submit" %>
           </div>
           <% end %>
-          <% if @current_user %>
 
+          <% if @current_user %>
           <div class="actions">
             <div class="actions">
               <a class="reply">Reply</a>

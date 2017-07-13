@@ -9,21 +9,22 @@
   <!-- Julian - Header with links and logins-->
     <div class="headercolumns">
     <div id='fragaTitle' class="col1">
-      <h1 id='fragaAnimation' class="fraga">FRÅGA</h1>
+      <h1 id='fragaAnimation' style="color: #2C3E50" class="fraga">FRÅGA</h1>
 </div>
 
   <div class="col2"><h2 class="fraga">
 
-  <% if @current_user %>
+  <% if @current_user.present? %>
     <% if controller_name == 'posts' && action_name == 'map' %>
-      <i class="search icon" id='navOpen'></i>
+      <i class="search icon" style="color: #2C3E50" id='navOpen'></i>
     <% else %>
       <%= link_to main_map_path do %>
         <i class="search icon"></i>
       <% end %>
     <% end %>
     <%= link_to new_post_path do %>
-      <i class="comment icon" style="margin-left:30px"></i>
+      <i class="comment icon" style="background-color: none; color: #2C3E50; margin-left:30px"></i>
+    <% end %>
     <% end %>
     </h2>
   </div>
@@ -73,4 +74,3 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
   </body>
 </html>
-<% end %>
