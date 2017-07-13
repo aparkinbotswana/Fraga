@@ -22,14 +22,16 @@
         <i class="search icon"></i>
       <% end %>
     <% end %>
-    <%= link_to '🙋🏻', new_post_path%></h2>
-  <% end %>
+    <%= link_to new_post_path do %>
+      <i class="comment icon" style="margin-left:30px"></i>
+    <% end %>
+    </h2>
   </div>
 
     <div class="col3">
         <div class="loginright">
         <% unless @current_user.present? %>
-          <%= link_to 'Login',  login_path, class: "ui button" %>
+          <%= link_to 'Login',  login_path, class: "signUpButton" %>
           <%= link_to 'Signup', new_user_path, class: "signUpButton" %>
         <% else %>
           Welcome, <%= link_to @current_user.username, user_path(@current_user.id)
@@ -64,8 +66,11 @@
         <button id="locationSearchbutton">Search</button>
         <div id="results"></div>
     </div>
+
   </div>
+
   <%= yield %>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
   </body>
 </html>
+<% end %>
