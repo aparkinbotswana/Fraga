@@ -1,5 +1,21 @@
 
-var changemap = "map";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function initMap() {
 
@@ -10,94 +26,119 @@ function initMap() {
   styles: myStyle
   };
 
-  // var map = new google.maps.Map(document.getElementById('map'), {
-  //   zoom: 10,
-  //   center: myLatlng
-  // });
 
-  var map = new google.maps.Map(document.getElementById(changemap), mapOptions);
+
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  // var map2 = new google.maps.Map(document.getElementById("mapshow"), mapOptions);
 
   setMarkers(map);
+  // setMarkers(map2);
 }
 
-// Data for the markers consisting of a name, a LatLng and a zIndex for the
-// order in which these markers should display on top of each other.
 
-//
-// var questionz = [
-//   ['Bondi Beach', -33.890542, 151.274856, 4],
-//   ['Coogee Beach', -33.923036, 151.259052, 5],
-//   ['Cronulla Beach', -34.028249, 151.157507, 3],
-//   ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-//   ['Maroubra Beach', -33.950198, 151.259302, 1]
-// ];
-//
-//
+
+
 var questionz = [];
 
 var markers = [];
 
+var marker;
+var question;
+var infowindow;
+
 function setMarkers(map) {
-  // Adds markers to the map.
 
-  // Marker sizes are expressed as a Size of X,Y where the origin of the image
-  // (0,0) is located in the top left of the image.
 
-  // Origins, anchor positions and coordinates of the marker increase in the X
-  // direction to the right and in the Y direction down.
-  // var image = {
-  //   url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-  //   // This marker is 20 pixels wide by 32 pixels high.
-  //   size: new google.maps.Size(20, 32),
-  //   // The origin for this image is (0, 0).
-  //   origin: new google.maps.Point(0, 0),
-  //   // The anchor for this image is the base of the flagpole at (0, 32).
-  //   anchor: new google.maps.Point(0, 32)
-  // };
-  // Shapes define the clickable region of the icon. The type defines an HTML
-  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-  // The final coordinate closes the poly by connecting to the first coordinate.
-  var shape = {
-    coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    type: 'poly'
-  };
 
   var bounds = new google.maps.LatLngBounds();
 
   for (var i = 0; i < questionz.length; i++) {
-    var question = questionz[i];
-    var marker = new google.maps.Marker({
+      question = questionz[i];
+      marker = new google.maps.Marker({
       position: {lat: question[1], lng: question[2]},
       map: map,
       icon: '/assets/mapicons/' + question[4] + '.png',
-      // shape: shape,
       title: question[0],
       zIndex: question[3]
     });
 
+
+
     // console.log(marker);
-    google.maps.event.addListener(marker, 'click', function () {
-      console.log(this);
-      window.location.href = '/posts/' + question[3];
+
+
+
+    // Julian --- add series of event listener to created marker
+
+
+    (function () {
+
+      google.maps.event.addListener(marker, 'click', function () {
+        window.location.href = '/posts/' + question[3];
+        });
+
+         infowindow = new google.maps.InfoWindow({
+         content: question[0]
+       });
+
+       google.maps.event.addListener(marker, 'mouseover', function() {
+         infowindow.open(map, this)
+       });
+
+       google.maps.event.addListener(marker, 'mouseout', function() {
+         infowindow.close(map, this)
+       });
+
+    })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      google.maps.event.addListener(marker, 'mouseover', function () {
+        this.setAnimation(google.maps.Animation.BOUNCE);
     });
 
 
-    var infowindow = new google.maps.InfoWindow({
-       content: question[0]
-     });
+      google.maps.event.addListener(marker, 'mouseout', function () {
+        this.setAnimation(null);
+    });
 
-     google.maps.event.addListener(marker, 'mouseover', function() {
-       infowindow.open(map, marker)
-     });
-
-     google.maps.event.addListener(marker, 'mouseout', function() {
-       infowindow.close(map, marker)
-     });
+    google.maps.event.addListener(marker, 'mouseover', function() {
+    map.panTo(this.getPosition());
+    });
 
 
 
 
+
+
+
+
+
+
+
+
+    // Julian push created marker to markers array
     markers.push( marker );
+
+
+    // Julian change zoom of map to a minimum zoom
 
     google.maps.event.addListener(map, 'zoom_changed', function() {
     zoomChangeBoundsListener =
@@ -114,58 +155,31 @@ function setMarkers(map) {
 
 
 
-
-
-
-
-
-
+    // Julian set bounds position of marker
 
     bounds.extend( marker.getPosition() );
-
-    //
-    //
-    // marker.addListener('click', function() {
-    // alert('clicked');
-    // // map.setZoom(8);
-    // // map.setCenter(marker.getPosition());
-    // });
 
 
 
 
   } // for
 
+  // Julian make zoom of map fit over all markers
+
   map.fitBounds(bounds);
 
 };
 
-// icon: '/assets/mapicons/' + image + '.png',
+
 
 $( document ).ready(function() {
 
 
+
+
+
+
   //
-  $('.questionlist').hover(
-     // mouse in
-     function () {
-       // first we need to know which <div class="marker"></div> we hovered
-       var index = $(this).index();
-       markers[index].setIcon({
-          url:"/assets/mapicons/happy.png"
-
-       });
-     },
-     // mouse out
-     function () {
-       // first we need to know which <div class="marker"></div> we hovered
-        var index = $(this).index();
-       markers[index].setIcon({
-          url: "/assets/mapicons/sad.png"
-       });
-     }
-
-   );
 
 
 
@@ -222,9 +236,36 @@ $('#searchbutton').click(function(){
 
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
 
-        // initMap();
+
+
+
 
       } // for data.posts
+
+      initMap();
+
+
+
+
+//------------------------------------------------------------------------------
+// Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
+
+$( "h2" ).hover(
+  function() {
+    var index = $( "h2" ).index( this );
+    markers[index].setAnimation(google.maps.Animation.BOUNCE);
+    map.panTo(markers[index].getPosition());
+
+
+  }, function() {
+    var index = $( "h2" ).index( this );
+    markers[index].setAnimation(null);
+  }
+);
+
+//------------------------------------------------------------------------------
+
+
 
     })
     .fail(function(xhr, err, status) {
@@ -233,23 +274,46 @@ $('#searchbutton').click(function(){
 
   }; //search function close
 
+  // call the rendering map function
   mapload();
 
-  // Use event delegation
+
+  // Julian on click a item in the question list... go to its matching post
   $(document).on('click', '.questionlist', function(){
     var url = '/posts/' + $(this).attr('post-id');
     document.location.href = url;
   });
 
+
+
+
+
+
+
+
+
+
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
       $("#navOpen").click(function(){
-        $('#mySidenav').css('width', "550px");
+        $('#mySidenav').css('width', "544px");
+        // $('#mySidenav').css('width', "32wh");
+        $('#map').css('display', "absolute");
+        $('#map').css('width', "68wh");
+        $('#map').css('left', "34%");
+
+
       console.log('open, says me');
+
     })
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
     $("#navClose").click(function(){
         $('#mySidenav').css('width', "0");
+        $('#map').css('display', "relative");
+        $('#map').css('width', "100wh");
+        $('#map').css('left', "0%");
+
+
       console.log('close, says me');
     })
 
