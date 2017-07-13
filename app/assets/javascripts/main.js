@@ -1,22 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -160,59 +141,71 @@ $( document ).ready(function() {
   var count = 0;
 
 
-   var fader = function () {
-     $('#fragaAnimation').fadeOut(3000, function () {
-       // after fade out:
-       if (count === 0) {
-         // random language
-         var title = _.sample(ask).toUpperCase();
-         $('#fragaAnimation').html(title).fadeIn(3000);
-       } else {
-         // FRAGA
-         $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
-       }
-       count = 1 - count;
-     });
-   }
+ // var fader = function () {
+ //    $(‘#fragaAnimation’).fadeOut(3000, function () {
+ //      // after fade out:
+ //      if (count === 0) {
+ //        // random language
+ //        var title = _.sample(ask).toUpperCase();
+ //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
+ //      } else {
+ //        // FRAGA
+ //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
+ //      }
+ //      count = 1 - count;
+ //
+ //   })
+ //  };
+ //
+ // setInterval(fader, 6000);
 
-
-// Julian - on searchbutton click render the map again with mapload function
-  $('#searchbutton').click(function(){
-    mapload();
-  });
-
-// make enter button submit search button
-
-  $(document).bind('keypress', function(e) {
-  if(e.keyCode==13){
-    $('#searchbutton').trigger('click');}
-  });
+ $(document).bind('keypress', function(e) {
+ if(e.keyCode==13){
+   $('#querySearchbutton').trigger('click');}
+ });
 
 
 
+ $('#querySearchbutton').click(function(){
+   $('#results').empty();
 
+   var queryinput = $('#queryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     query: queryinput
+   };
+   mapload(data);
+ });
 
+ $('#locationSearchbutton').click(function(){
+   $('#results').empty();
 
+   var locqueryinput = $('#locqueryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     locquery: locqueryinput
+   };
+   mapload(data);
+ });
 
+ // Julian - search results
 
+   var mapload = function(data){
 
+       $('#results').empty();
 
-// Julian - search results
+       var queryinput = $('#queryinput').val();
+       var queryinput = $('#queryinput').is(':visible')
+       // var locqueryinput = $('#locqueryinput').val();
 
-  var mapload = function(){
+       $('#queryinput').empty();
+       // $('#locqueryinput').empty();
 
-    $('#results').empty();
-
-    var queryinput = $('#queryinput').val();
-    $('#queryinput').empty();
-
-    $.ajax({
-      url: "/posts/search",
-      dataType: "json",
-      method: "POST",
-      data: {
-        query: queryinput
-      }
+       $.ajax({
+         url: "/posts/search",
+         dataType: "json",
+         method: "POST",
+         data
     }).done(function(data){
 
       // remove existing markers
@@ -298,37 +291,27 @@ $( "h2" ).hover(
 
 
 /* -------------------------------------------------------------------------------
-
       /* James: sliding side bar */
 
       // Julian on search click open search slide
 
-      $("#navOpen").click(function(){
-
-        $('#mySidenav').css('width', "544px");
-        // $('#mySidenav').css('width', "32wh");
-        $('#map').css('display', "absolute");
-        $('#map').css('width', "68wh");
-        $('#map').css('left', "34%");
-        console.log('open, says me');
+    $("#navOpen").click(function(){
+      $('#mySidenav').css('width', "544px").toggle;
+      // $('#mySidenav').css('width', "32wh");
+      // $('#map').css('display', "absolute");
+      // $('#map').css('width', "68wh");
+      // $('#map').css('left', "34%");
     })
 
-
-
-
-
-
-  /* James: Set the width of the side navigation to 0 for sliding nav bar*/
-    $("#navClose").click(function(){
-        $('#mySidenav').css('width', "0");
-        $('#map').css('display', "relative");
-        $('#map').css('width', "100wh");
-        $('#map').css('left', "0%");
-
-
-      console.log('close, says me');
+    $("#questButt").click(function(){
+      $('#locNav').css('display', "none")
+      $('#searchNav').css('display', "block")
     })
 
+    $("#locButt").click(function(){
+      $('#locNav').css('display', "block")
+      $('#searchNav').css('display', "none")
+    })
 
 
 // -------------------------------------------------------------------------------
