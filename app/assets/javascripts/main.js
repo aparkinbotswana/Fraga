@@ -80,23 +80,26 @@ $( document ).ready(function() {
   // James: title fade in and fade out
   var count = 0;
 
- // var fader = function () {
- //    $(‘#fragaAnimation’).fadeOut(3000, function () {
- //      // after fade out:
- //      if (count === 0) {
- //        // random language
- //        var title = _.sample(ask).toUpperCase();
- //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
- //      } else {
- //        // FRAGA
- //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
- //      }
- //      count = 1 - count;
- //
- //   })
- //  };
- //
- // setInterval(fader, 6000);
+  var count = 0;
+
+
+ var fader = function () {
+   $('#fragaAnimation').fadeOut(3000, function () {
+     // after fade out:
+     if (count === 0) {
+       // random language
+       var title = _.sample(ask).toUpperCase();
+       $('#fragaAnimation').html(title).fadeIn(3000);
+     } else {
+       // FRAGA
+       $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
+     }
+     count = 1 - count;
+
+   });
+ };
+
+ setInterval(fader, 6000);
 
 
  $('#querySearchbutton').click(function(){
