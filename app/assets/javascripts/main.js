@@ -1,3 +1,4 @@
+
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -140,6 +141,7 @@ $( document ).ready(function() {
   // James: title fade in and fade out
   var count = 0;
 
+
  // var fader = function () {
  //    $(‘#fragaAnimation’).fadeOut(3000, function () {
  //      // after fade out:
@@ -157,6 +159,15 @@ $( document ).ready(function() {
  //  };
  //
  // setInterval(fader, 6000);
+ $('#fragaAnimation').click(function(){
+   window.location = '/';
+ });
+
+ $(document).bind('keypress', function(e) {
+ if(e.keyCode==13){
+   $('#querySearchbutton').trigger('click');}
+ });
+
 
 
  $('#querySearchbutton').click(function(){
@@ -219,9 +230,8 @@ $( document ).ready(function() {
                                 .addClass("questionlist")
                                 .attr('post-id', post.id);
 
-        // julian // append emoji image works but commented out...
 
-        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+
 
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
@@ -245,13 +255,13 @@ $( document ).ready(function() {
 $( "h2" ).hover(
   function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(google.maps.Animation.BOUNCE);
-
+    markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
+    // map.panTo(markers[index].getPosition());
 
 
   }, function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(null);
+    markers[index - 1 ].setAnimation(null);
   }
 );
 
@@ -325,7 +335,7 @@ var translateRequest = function(location, text, lang) {
   })
   .done(function(res){
     console.log(res);
-    var $div = $('<div>').html("Translation (" + lang + "): "+ res.text[0]);
+    var $div = $('<div class="translated">').html("Translation (" + lang + "): "+ res.text[0]);
     $(location).append($div);
     console.log($div);
   })
@@ -372,24 +382,24 @@ var translateRequest = function(location, text, lang) {
     }
   };
 
+//
+// $( "marker" ).on( "dragstop", function( ) {console.log('works');
+// console.log('lat:', savedLat);
+// console.log('long:', savedLng);
+// $('.long').val(savedLng)
+// $('.lat').val(savedLat)} );
 // Michelle - get location for new post
-$('.locationButton').click(function(){
-  console.log('works');
-  console.log('lat:', savedLat);
-  console.log('long:', savedLng);
-  $('.long').text(savedLng)
-  $('.lat').text(savedLat)
+// $('.locationButton').click(function(){
+
   // debugger;
 
 
 
-})
+});
 
 
   $('.questionlist').click(function() {
  // initMap();
-});
-
 });
 
 
