@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :check_if_admin, only: [:edit, :destroy]
-  before_action :check_if_logged_in, except: [:map, :do_search, :show]
+  before_action :check_if_logged_in, except: [:map, :do_search, :show, :location_search, :text_search]
 
   # GET /posts
   # GET /posts.json
@@ -46,10 +46,6 @@ class PostsController < ApplicationController
     loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
     # loc = Geocoder.search(ip)
 
-
-
-
-
     @questions = []
 
     # @posts.each_with_index {|array.question, index| puts "#{array.question} => #{index}" }
@@ -59,10 +55,6 @@ class PostsController < ApplicationController
       # question << post.longitude
       # question << post.id
       # @questions << question
-
-
-
-
   end
 
   # GET /posts/new
