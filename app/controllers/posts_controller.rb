@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :check_if_admin, only: [:edit, :destroy]
-  before_action :check_if_logged_in, except: [:map, :do_search, :show]
+  before_action :check_if_logged_in, except: [:map, :do_search, :show, :location_search, :text_search]
 
   # GET /posts
   # GET /posts.json
@@ -27,15 +27,12 @@ class PostsController < ApplicationController
      end
    end
 
-
-
   def show
     @posts = Post.all
     @post = Post.find params["id"]
     @comment = Comment.new
     @user = User.all
     # raise 'hell'
-
   end
 
   def map
@@ -45,6 +42,7 @@ class PostsController < ApplicationController
     ip = request.remote_ip;
     loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
     # loc = Geocoder.search(ip)
+    # raise 'hell'
 
     @questions = []
 
@@ -82,11 +80,11 @@ class PostsController < ApplicationController
 
     ip = request.remote_ip;
     loc = Geocoder.search(ip)
-
-    if @post.location == ""
-       @post.latitude = loc[0].data['latitude']
-       @post.longitude = loc[0].data['longitude']
-    end
+    #
+    # if @post.location == ""
+    #    @post.latitude = @post.latitude
+    #    @post.longitude = @post.longitude
+    # end
 
     respond_to do |format|
       if @post.save
@@ -96,7 +94,12 @@ class PostsController < ApplicationController
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+      # raise 'hell'
     end
+
+    # @post.save
+    # raise 'hell'
+    # redirect_to @post
 
   end
 

@@ -10,7 +10,7 @@
   <!-- James: Click button to open nav bar -->
     <div class="headercolumns">
     <div id='fragaTitle' class="col1">
-      <h1 id='fragaAnimation' class="fraga">FRÅGA</h1></div>
+      <h1 id='fragaAnimation' class="fraga">FRÅGA</h1>
 
     <div class="col2"><h2 class="fraga">
       <% if controller_name == 'posts' && action_name == 'map' %>
@@ -27,10 +27,10 @@
         <div class="loginright">
         <% unless @current_user.present? %>
           <%= link_to 'Login',  login_path, class: "ui button" %>
-          <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
+          <%= link_to 'Signup', new_user_path, class: "signUpButton"%>
         <% else %>
           Welcome,<%= @current_user.username %>
-          <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
+          <%= link_to 'Logout', login_path, class: "signUpButton",  method: :delete %>
         <% end %>
       </div>
     </div>
@@ -51,8 +51,6 @@
   </div>
 
   <%= yield %>
-
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
 
   </body>
 </html>

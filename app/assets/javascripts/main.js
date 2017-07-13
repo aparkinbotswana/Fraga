@@ -156,6 +156,22 @@ function setMarkers(map) {
 
 $( document ).ready(function() {
 
+  // James: title fade in and fade out
+  var count = 0;
+
+
+  var fader = function () {
+    $('#fragaAnimation').fadeOut(3000, function () {
+      // after fade out:
+      if (count === 0) {
+        // random language
+        var title = _.sample(ask).toUpperCase();
+        $('#fragaAnimation').html(title).fadeIn(3000);
+      } else {
+        // FRAGA
+        $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
+      }
+      count = 1 - count;
 
 $('#searchbutton').click(function(){
   mapload();
@@ -338,20 +354,27 @@ var translateRequest = function(location, text, lang) {
   })
 }
 
-  $('#postLanguageButton').click(function(){
-    var languageRequest = $('#language').val();
+  $('#toLanguageButton').click(function(){
+    $('.translated').empty();
+    var languageRequest = $('#languageTo').val();
     console.log(languageRequest);
     submitPost(languageRequest)
   })
 
   var submitPost = function(languageRequest){
-    var line = $('h2').html();
-    var location = 'h2';
-    var lang = languageRequest;
-    translateRequest(location, line,languageRequest)
+    var locationToTranslate = $(".translateComment");
+     var lang = navigator.language;
+     var browserLanguageConv = ("en"+languageRequest);
+     for (var i = 0; i < locationToTranslate.length; i++) {
+    console.log(locationToTranslate[i]);
+       var line = locationToTranslate[i].innerText;
+       translateRequest(locationToTranslate[i], line, browserLanguageConv)
+     }
   };
 
-  $('#commentsLanguageButton').click(function(){
+  $('#languageButton').click(function(){
+    $('.translated').empty();
+
     var languageRequest = $('#language').val();
     console.log(languageRequest);
     submitComments(languageRequest)
@@ -360,13 +383,27 @@ var translateRequest = function(location, text, lang) {
 // Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
     var locationToTranslate = $(".translateComment");
+    var lang = navigator.language;
+ var browserLanguageConv = (languageRequest+ "-" + lang.split("-")[0])
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, languageRequest)
+      translateRequest(locationToTranslate[i], line, browserLanguageConv)
     }
   };
 
+// Michelle - get location for new post
+$('.locationButton').click(function(){
+  console.log('works');
+  console.log('lat:', savedLat);
+  console.log('long:', savedLng);
+  $('.long').text(savedLng)
+  $('.lat').text(savedLat)
+  // debugger;
+
+
+
+})
 
 
   $('.questionlist').click(function() {
@@ -374,26 +411,10 @@ var translateRequest = function(location, text, lang) {
 });
 });
 
+
+
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
 "សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",
 "Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
 "hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
-
-count = 0
-
-var askFunction = function () {
-  count
-  if (count === 1) {
-    $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeToggle(8000)
-    count = 0
-
-  } else {
-    var title = ask[ _.random(ask.length)].toUpperCase()
-    $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeToggle(8000)
-    count = 1
-
-  }
-}
-
-setInterval(askFunction, 8000);
