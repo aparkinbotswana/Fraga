@@ -302,12 +302,26 @@ $( "h2.questionlist" ).hover(
       // Julian on search click open search slide
 
     $("#navOpen").click(function(){
-      // $('#mySidenav').css('width', "544px").toggle;
-      $('#mySidenav').css('width', "32wh");
+      // $('#mySidenav').css('width', "544px")
+      $('#mySidenav').css('width', "34%");
+
       $('#map').css('display', "absolute");
       $('#map').css('width', "68wh");
       $('#map').css('left', "34%");
     })
+
+    $("#navClose").click(function(){
+      // $('#mySidenav').css('width', "544px")
+      $('#mySidenav').css('width', "0%");
+
+      // $('#map').css('display', "absolute");
+      $('#map').css('width', "100wh");
+      $('#map').css('left', "0%");
+    })
+
+
+
+
 
     $("#questButt").click(function(){
       $('#locNav').css('display', "none")
