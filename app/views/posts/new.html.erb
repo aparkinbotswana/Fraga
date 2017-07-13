@@ -51,20 +51,12 @@
         };
       </script>
 
-      <div class="userPickMap">
-        <div>
-        </div>
+<div class="userPickMap">
+  <div id="userMap"></div>
+</div>
 
-
-<div id="userMap"></div>
-      </div>
-      <div class="page">
-        <div class="headercolumns">
-          <div class="col1">
-            <div class="newPost">
-              <%= render 'form', post: @post %>
-            </div>
-            <%= link_to 'Back', posts_path %>
-          </div>
-        </div>
-      </div>
+<div class="page">
+  <div class="headercolumns" style="margin: 0 auto; padding-top: 50px;">
+        <%= render 'form', post: @post %>
+    </div>
+</div>

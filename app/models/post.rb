@@ -45,7 +45,7 @@ class Post < ApplicationRecord
   def self.location_search(loc)
     # puts loc
     # binding.pry
-    Post.near([loc[0].data["geometry"]["location"]["lat"], loc[0].data["geometry"]["location"]["lng"]], 50, :units => :km)
+    Post.near([loc[0].data["geometry"]["location"]["lat"], loc[0].data["geometry"]["location"]["lng"]], 3, :units => :km)
 
   end
 

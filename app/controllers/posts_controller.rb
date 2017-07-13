@@ -21,7 +21,7 @@ class PostsController < ApplicationController
         @posts = Post.text_search(params[:query], @current_user)
       elsif params[:locquery].present?
         loc = Geocoder.search(params[:locquery])
-        @posts = Post.location_search(loc).order(:created_at).reverse_order.limit(3)
+        @posts = Post.location_search(loc)
       else
         @posts = Post.all.order(:created_at).reverse_order.limit(5)
       end

@@ -20,7 +20,10 @@
         <i class="search icon"></i>
       <% end %>
     <% end %>
-    <%= link_to '🙋🏻', new_post_path%></h2>
+    <%= link_to new_post_path do %>
+      <i class="comment icon" style="margin-left:30px"></i>
+    <% end %>
+    </h2>
   </div>
 
     <div class="col3">

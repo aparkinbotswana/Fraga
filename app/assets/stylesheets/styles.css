@@ -33,6 +33,7 @@
   display: flex;
   height: 15%;
   flex-grow: 1;
+  border-bottom: 1px solid rgb(186, 186, 186);
 }
 
   .col1 {
@@ -158,15 +159,9 @@ table{
   margin: auto;
 }
 
-.newPost{
-  justify-content: center;
-  text-align: center;
-  margin: auto;
-  width: 75%
 
-}
 #userMap {
-  height: 450px;
+  height: 100%;
   width: 100%;
 }
 
@@ -175,15 +170,27 @@ table{
   width: 100%;
 }
 
+.postContainer {
+  height: 85%;
+  width: 35%;
+  margin: 0 auto;
+  left: 0;
+}
 
+.newPost{
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  width: 75%
+  left: 0;
+}
 
 .userPickMap{
-  height: 500px;
-  width: 800px;
+  height: 85%;
+  width: 65%;
   border: 1px;
   display: inline;
   float:right;
-  margin-right: 10px;
 }
 
 .userPostList{
