@@ -205,12 +205,13 @@ $( document ).ready(function() {
        $('#queryinput').empty();
        // $('#locqueryinput').empty();
 
+       console.log('do ajax');
        $.ajax({
          url: "/posts/search",
          dataType: "json",
          method: "POST",
-         data
-    }).done(function(data){
+         data: data
+       }).done(function(data){
 
       // remove existing markers
 
@@ -252,18 +253,19 @@ $( document ).ready(function() {
 //------------------------------------------------------------------------------
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
 
-// $( "h2" ).hover(
-//   function() {
-//     var index = $( "h2" ).index( this );
-//     markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
-//     // map.panTo(markers[index].getPosition());
-//
-//
-//   }, function() {
-//     var index = $( "h2" ).index( this );
-//     markers[index - 1 ].setAnimation(null);
-//   }
-// );
+
+$( "h2.questionlist" ).hover(
+  function() {
+    var index = $( "h2.questionlist" ).index( this );
+    markers[index].setAnimation(google.maps.Animation.BOUNCE);
+    // map.panTo(markers[index].getPosition());
+
+
+  }, function() {
+    var index = $( "h2.questionlist" ).index( this );
+    markers[index].setAnimation(null);
+  }
+);
 
 //------------------------------------------------------------------------------
 
