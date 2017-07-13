@@ -20,6 +20,10 @@
           });
           google.maps.event.addListener(marker, 'dragend', function(){
             geocodePosition(marker.getPosition());
+            var savedInfo = (marker.getPosition());
+            var savedLat = savedInfo.lat()
+            console.log(savedLat);
+          // debugger;
           });
 
           function geocodePosition(pos){
