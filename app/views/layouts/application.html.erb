@@ -6,20 +6,22 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <!-- Julian - Header with links and logins-->
     <div class="headercolumns">
     <div id='fragaTitle' class="col1">
       <h1 id='fragaAnimation' class="fraga">FRÅGA</h1>
-
-
 </div>
 
-    <div class="col2">
-      <% if @current_user %>
-      <h2 class="fraga"><i class="search icon" id='navOpen'></i><%= link_to '🙋🏻', new_post_path%></h2>
+  <div class="col2"><h2 class="fraga">
+    <% if controller_name == 'posts' && action_name == 'map' %>
+      <i class="search icon" id='navOpen'></i>
+    <% else %>
+      <%= link_to main_map_path do %>
+        <i class="search icon"></i>
       <% end %>
-    </div>
+    <% end %>
+    <%= link_to '🙋🏻', new_post_path%></h2>
+  </div>
 
     <div class="col3">
         <div class="loginright">
@@ -33,10 +35,8 @@
       </div>
     </div>
   </div>
-
   <!-- James - Sliding Nav Bar -->
   <div id="mySidenav" class="sidenav">
-
     <div id="hedNav">
       <div id="questButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float: left; display:inline">Question</div>
       <div id="locButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float:right; display:inline">Location</div>
@@ -61,10 +61,7 @@
         <div id="results"></div>
     </div>
   </div>
-
   <%= yield %>
-
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
-
   </body>
 </html>

@@ -26,7 +26,7 @@ var markers = [];
 
 var marker;
 var question;
-var infowindow;
+// var infowindow;
 
 function setMarkers(map) {
 
@@ -40,8 +40,18 @@ function setMarkers(map) {
       position: {lat: question[1], lng: question[2]},
       map: map,
       icon: '/assets/mapicons/' + question[4] + '.png',
-      title: question[0],
-      zIndex: question[3]
+      // title: question[0],
+      zIndex: question[3],
+      // hello:
+
+      // This ID is used to contruct the correct show page URL in the click event
+      fragaID: question[3],
+
+      // This property defines an InfoWindow which the hover event uses
+      fragaInfo: new google.maps.InfoWindow({
+        content: question[0]
+      })
+
     });
 
 
@@ -49,29 +59,38 @@ function setMarkers(map) {
     // console.log(marker);
 
 
-
+// ----------------------------------------------------------------------------
     // Julian --- add series of event listener to created marker
+    // closure problem
 
-
-    (function () {
 
       google.maps.event.addListener(marker, 'click', function () {
-        window.location.href = '/posts/' + question[3];
-        });
+        window.location.href = '/posts/' + this.fragaID;
+      });
 
-         infowindow = new google.maps.InfoWindow({
-         content: question[0]
-       });
+
 
        google.maps.event.addListener(marker, 'mouseover', function() {
-         infowindow.open(map, this)
+         if(this.timerID){
+           clearTimeout(this.timerID);
+         }
+        //  map.panTo(this.getPosition());
+         this.setAnimation(google.maps.Animation.BOUNCE);
+         this.fragaInfo.open(map, this);
        });
 
        google.maps.event.addListener(marker, 'mouseout', function() {
-         infowindow.close(map, this)
+         var m = this;
+         this.timerID = setTimeout(function () {
+           m.fragaInfo.close(map, m);
+           m.setAnimation(null);
+         }, 500);
        });
 
+<<<<<<< HEAD
     })();
+=======
+>>>>>>> d0d96a3451db78f9a6732a86b5a23582dd33e296
 
 
 
@@ -82,6 +101,7 @@ function setMarkers(map) {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -104,6 +124,8 @@ function setMarkers(map) {
     // google.maps.event.addListener(marker, 'mouseover', function() {
     // map.panTo(this.getPosition());
     // });
+=======
+>>>>>>> d0d96a3451db78f9a6732a86b5a23582dd33e296
 
     // Julian push created marker to markers array
     markers.push( marker );
@@ -314,11 +336,33 @@ $('#locationSearchbutton').click(function(){
 
 
 
+/* -------------------------------------------------------------------------------
 
-  /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
-  $("#navOpen").click(function(){
-    $('#mySidenav').css('width', "550px").toggle();
-  })
+      /* James: sliding side bar */
+
+      // Julian on search click open search slide
+
+      $("#navOpen").click(function(){
+
+        // check to see if we are on the map page or not
+
+        // if (window.location.href==="/posts/map") {
+        // alert('on the map page');
+        // //
+        //
+        // };
+
+
+
+
+
+
+        $('#mySidenav').css('width', "544px");
+        // $('#mySidenav').css('width', "32wh");
+        $('#map').css('display', "absolute");
+        $('#map').css('width', "68wh");
+        $('#map').css('left', "34%");
+
 
   $("#questButt").click(function(){
     $('#locNav').css('display', "none")
@@ -329,6 +373,11 @@ $('#locationSearchbutton').click(function(){
     $('#locNav').css('display', "block")
     $('#searchNav').css('display', "none")
   })
+
+
+
+
+
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
     $("#navClose").click(function(){
@@ -341,6 +390,9 @@ $('#locationSearchbutton').click(function(){
       console.log('close, says me');
     })
 
+
+
+// -------------------------------------------------------------------------------
   // Michelle: Translate text
 
 var translateRequest = function(location, text, lang) {
@@ -366,20 +418,27 @@ var translateRequest = function(location, text, lang) {
   })
 }
 
-  $('#postLanguageButton').click(function(){
-    var languageRequest = $('#language').val();
+  $('#toLanguageButton').click(function(){
+    $('.translated').empty();
+    var languageRequest = $('#languageTo').val();
     console.log(languageRequest);
     submitPost(languageRequest)
   })
 
   var submitPost = function(languageRequest){
-    var line = $('h2').html();
-    var location = 'h2';
-    var lang = languageRequest;
-    translateRequest(location, line,languageRequest)
+    var locationToTranslate = $(".translateComment");
+     var lang = navigator.language;
+     var browserLanguageConv = ("en"+languageRequest);
+     for (var i = 0; i < locationToTranslate.length; i++) {
+    console.log(locationToTranslate[i]);
+       var line = locationToTranslate[i].innerText;
+       translateRequest(locationToTranslate[i], line, browserLanguageConv)
+     }
   };
 
-  $('#commentsLanguageButton').click(function(){
+  $('#languageButton').click(function(){
+    $('.translated').empty();
+
     var languageRequest = $('#language').val();
     console.log(languageRequest);
     submitComments(languageRequest)
@@ -388,22 +447,41 @@ var translateRequest = function(location, text, lang) {
 // Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
     var locationToTranslate = $(".translateComment");
+    var lang = navigator.language;
+ var browserLanguageConv = (languageRequest+ "-" + lang.split("-")[0])
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, languageRequest)
+      translateRequest(locationToTranslate[i], line, browserLanguageConv)
     }
   };
 
+// Michelle - get location for new post
+$('.locationButton').click(function(){
+  console.log('works');
+  console.log('lat:', savedLat);
+  console.log('long:', savedLng);
+  $('.long').text(savedLng)
+  $('.lat').text(savedLat)
+  // debugger;
+
+
+
+})
 
 
   $('.questionlist').click(function() {
  // initMap();
 });
+
 });
+
+
+
+
 
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
 "សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",
 "Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
-"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
+"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"];
