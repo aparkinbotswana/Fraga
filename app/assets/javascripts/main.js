@@ -369,20 +369,27 @@ var translateRequest = function(location, text, lang) {
   })
 }
 
-  $('#postLanguageButton').click(function(){
-    var languageRequest = $('#language').val();
+  $('#toLanguageButton').click(function(){
+    $('.translated').empty();
+    var languageRequest = $('#languageTo').val();
     console.log(languageRequest);
     submitPost(languageRequest)
   })
 
   var submitPost = function(languageRequest){
-    var line = $('h2').html();
-    var location = 'h2';
-    var lang = languageRequest;
-    translateRequest(location, line,languageRequest)
+    var locationToTranslate = $(".translateComment");
+     var lang = navigator.language;
+     var browserLanguageConv = ("en"+languageRequest);
+     for (var i = 0; i < locationToTranslate.length; i++) {
+    console.log(locationToTranslate[i]);
+       var line = locationToTranslate[i].innerText;
+       translateRequest(locationToTranslate[i], line, browserLanguageConv)
+     }
   };
 
-  $('#commentsLanguageButton').click(function(){
+  $('#languageButton').click(function(){
+    $('.translated').empty();
+
     var languageRequest = $('#language').val();
     console.log(languageRequest);
     submitComments(languageRequest)
@@ -391,19 +398,35 @@ var translateRequest = function(location, text, lang) {
 // Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
     var locationToTranslate = $(".translateComment");
+    var lang = navigator.language;
+ var browserLanguageConv = (languageRequest+ "-" + lang.split("-")[0])
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, languageRequest)
+      translateRequest(locationToTranslate[i], line, browserLanguageConv)
     }
   };
 
+// Michelle - get location for new post
+$('.locationButton').click(function(){
+  console.log('works');
+  console.log('lat:', savedLat);
+  console.log('long:', savedLng);
+  $('.long').text(savedLng)
+  $('.lat').text(savedLat)
+  // debugger;
+
+
+
+})
 
 
   $('.questionlist').click(function() {
  // initMap();
 });
 });
+
+
 
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
