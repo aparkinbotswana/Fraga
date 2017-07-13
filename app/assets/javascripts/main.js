@@ -252,18 +252,18 @@ $( document ).ready(function() {
 //------------------------------------------------------------------------------
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
 
-$( "h2" ).hover(
-  function() {
-    var index = $( "h2" ).index( this );
-    markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
-    // map.panTo(markers[index].getPosition());
-
-
-  }, function() {
-    var index = $( "h2" ).index( this );
-    markers[index - 1 ].setAnimation(null);
-  }
-);
+// $( "h2" ).hover(
+//   function() {
+//     var index = $( "h2" ).index( this );
+//     markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
+//     // map.panTo(markers[index].getPosition());
+//
+//
+//   }, function() {
+//     var index = $( "h2" ).index( this );
+//     markers[index - 1 ].setAnimation(null);
+//   }
+// );
 
 //------------------------------------------------------------------------------
 
