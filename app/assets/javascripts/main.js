@@ -227,8 +227,6 @@ $( "h2.questionlist" ).hover(
 
 
 
-
-
     $("#questButt").click(function(){
       $('#locNav').css('display', "none")
       $('#searchNav').css('display', "block")
@@ -275,9 +273,9 @@ var translateRequest = function(location, text, lang) {
   //      translateRequest(locationToTranslate[i], line, browserLanguageConv)
   //    }
   // };
-  $('#languageButton').click(function(){
+  $('#toLanguageButton').click(function(){
     $('.translated').empty();
-    var languageRequest = $('#language').val();
+    var languageRequest = $('#languageTo').val();
     console.log(languageRequest);
     submitComments(languageRequest)
   });
