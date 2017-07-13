@@ -79,35 +79,66 @@ function setMarkers(map) {
 $( document ).ready(function() {
   // James: title fade in and fade out
   var count = 0;
-   var fader = function () {
-     $('#fragaAnimation').fadeOut(3000, function () {
-       // after fade out:
-       if (count === 0) {
-         // random language
-         var title = _.sample(ask).toUpperCase();
-         $('#fragaAnimation').html(title).fadeIn(3000);
-       } else {
-         // FRAGA
-         $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
-       }
-       count = 1 - count;
-     });
-   }
-$('#searchbutton').click(function(){
-  mapload();
-});
-// Julian - search results
-  var mapload = function(){
-    $('#results').empty();
-    var queryinput = $('#queryinput').val();
-    $('#queryinput').empty();
-    $.ajax({
-      url: "/posts/search",
-      dataType: "json",
-      method: "POST",
-      data: {
-        query: queryinput
-      }
+
+ // var fader = function () {
+ //    $(‘#fragaAnimation’).fadeOut(3000, function () {
+ //      // after fade out:
+ //      if (count === 0) {
+ //        // random language
+ //        var title = _.sample(ask).toUpperCase();
+ //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
+ //      } else {
+ //        // FRAGA
+ //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
+ //      }
+ //      count = 1 - count;
+ //
+ //   })
+ //  };
+ //
+ // setInterval(fader, 6000);
+
+
+ $('#querySearchbutton').click(function(){
+   $('#results').empty();
+
+   var queryinput = $('#queryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     query: queryinput
+   };
+   mapload(data);
+ });
+
+ $('#locationSearchbutton').click(function(){
+   $('#results').empty();
+
+   var locqueryinput = $('#locqueryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     locquery: locqueryinput
+   };
+   mapload(data);
+ });
+
+ // Julian - search results
+
+   var mapload = function(data){
+
+       $('#results').empty();
+
+       var queryinput = $('#queryinput').val();
+       var queryinput = $('#queryinput').is(':visible')
+       // var locqueryinput = $('#locqueryinput').val();
+
+       $('#queryinput').empty();
+       // $('#locqueryinput').empty();
+
+       $.ajax({
+         url: "/posts/search",
+         dataType: "json",
+         method: "POST",
+         data
     }).done(function(data){
       // remove existing markers
       questionz = [];
@@ -135,7 +166,6 @@ $( "h2" ).hover(
   function() {
     var index = $( "h2" ).index( this );
     markers[index].setAnimation(google.maps.Animation.BOUNCE);
-    map.panTo(markers[index].getPosition());
   }, function() {
     var index = $( "h2" ).index( this );
     markers[index].setAnimation(null);
@@ -154,30 +184,26 @@ $( "h2" ).hover(
     var url = '/posts/' + $(this).attr('post-id');
     document.location.href = url;
   });
-/* -------------------------------------------------------------------------------
       /* James: sliding side bar */
       // Julian on search click open search slide
 
-$("#slide").animate({width:'toggle'},350);
-
-      $("#navOpen").click(function(){
-        $('#mySidenav').css('width', "544px");
-        $('#map').css('display', "absolute");
-        $('#map').css('width', "68wh");
-        $('#map').css('left', "34%");
-
-      console.log('open, says me');
+    $("#navOpen").click(function(){
+      $('#mySidenav').css('width', "544px").toggle;
+      // $('#mySidenav').css('width', "32wh");
+      // $('#map').css('display', "absolute");
+      // $('#map').css('width', "68wh");
+      // $('#map').css('left', "34%");
     })
-  /* James: Set the width of the side navigation to 0 for sliding nav bar*/
-    $("#navClose").click(function(){
-        $('#mySidenav').css('width', "0");
-        $('#map').css('display', "relative");
-        $('#map').css('width', "100wh");
-        $('#map').css('left', "0%");
 
-      console.log('close, says me');
+    $("#questButt").click(function(){
+      $('#locNav').css('display', "none")
+      $('#searchNav').css('display', "block")
     })
-// -------------------------------------------------------------------------------
+
+    $("#locButt").click(function(){
+      $('#locNav').css('display', "block")
+      $('#searchNav').css('display', "none")
+    })
   // Michelle: Translate text
 var translateRequest = function(location, text, lang) {
   var baseURL = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
@@ -244,6 +270,7 @@ $('.locationButton').click(function(){
   $('.questionlist').click(function() {
  // initMap();
 });
+
 });
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
