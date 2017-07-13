@@ -1,4 +1,3 @@
-
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -87,10 +86,6 @@ function setMarkers(map) {
          }, 500);
        });
 
-<<<<<<< HEAD
-    })();
-=======
->>>>>>> d0d96a3451db78f9a6732a86b5a23582dd33e296
 
 
 
@@ -101,31 +96,6 @@ function setMarkers(map) {
 
 
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-      google.maps.event.addListener(marker, 'mouseover', function () {
-        this.setAnimation(google.maps.Animation.BOUNCE);
-    });
-
-
-      google.maps.event.addListener(marker, 'mouseout', function () {
-        this.setAnimation(null);
-    });
-
-    // google.maps.event.addListener(marker, 'mouseover', function() {
-    // map.panTo(this.getPosition());
-    // });
-=======
->>>>>>> d0d96a3451db78f9a6732a86b5a23582dd33e296
 
     // Julian push created marker to markers array
     markers.push( marker );
@@ -168,117 +138,95 @@ function setMarkers(map) {
 $( document ).ready(function() {
 
   // James: title fade in and fade out
-  // var count = 0;
-  //
-  //
-  // var fader = function () {
-  //   $('#fragaAnimation').fadeOut(3000, function () {
-  //     // after fade out:
-  //     if (count === 0) {
-  //       // random language
-  //       var title = _.sample(ask).toUpperCase();
-  //       $('#fragaAnimation').html(title).fadeIn(3000);
-  //     } else {
-  //       // FRAGA
-  //       $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
-  //     }
-  //     count = 1 - count;
-  //
-  //   });
-  // };
+  var count = 0;
 
-  // var askFunction = function () {
-  //   if (count === 1) {
-  //     console.log('set FRAGA');
-  //     $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeIn(3000,function () {
-  //     $(this).fadeOut(3000);
-  //   });
-  //     count = 0
-  //   } else {
-  //     $(this).fadeOut(3000);
-  //     var title = ask[ _.random(ask.length)].toUpperCase()
-  //     $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeIn(3000, function () {
-  //   });
-  //     count = 1
-  //     console.log('animationelse');
-  //
-  //   }
-  //
-  // }
-  // setInterval(fader, 6000);
+ // var fader = function () {
+ //    $(‘#fragaAnimation’).fadeOut(3000, function () {
+ //      // after fade out:
+ //      if (count === 0) {
+ //        // random language
+ //        var title = _.sample(ask).toUpperCase();
+ //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
+ //      } else {
+ //        // FRAGA
+ //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
+ //      }
+ //      count = 1 - count;
+ //
+ //   })
+ //  };
+ //
+ // setInterval(fader, 6000);
 
-$('#querySearchbutton').click(function(){
-  $('#results').empty();
 
-  var queryinput = $('#queryinput').val();
-  // var locqueryinput = $('#locqueryinput').val();
-  var data = {
-    query: queryinput
-  };
-  mapload(data);
-});
+ $('#querySearchbutton').click(function(){
+   $('#results').empty();
 
-$('#locationSearchbutton').click(function(){
-  $('#results').empty();
+   var queryinput = $('#queryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     query: queryinput
+   };
+   mapload(data);
+ });
 
-  var locqueryinput = $('#locqueryinput').val();
-  // var locqueryinput = $('#locqueryinput').val();
-  var data = {
-    locquery: locqueryinput
-  };
-  mapload(data);
-});
+ $('#locationSearchbutton').click(function(){
+   $('#results').empty();
 
-// Julian - search results
+   var locqueryinput = $('#locqueryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     locquery: locqueryinput
+   };
+   mapload(data);
+ });
 
-  var mapload = function(data){
+ // Julian - search results
 
-      $('#results').empty();
+   var mapload = function(data){
 
-      var queryinput = $('#queryinput').val();
-      var queryinput = $('#queryinput').is(':visible')
-      // var locqueryinput = $('#locqueryinput').val();
+       $('#results').empty();
 
-      $('#queryinput').empty();
-      // $('#locqueryinput').empty();
+       var queryinput = $('#queryinput').val();
+       var queryinput = $('#queryinput').is(':visible')
+       // var locqueryinput = $('#locqueryinput').val();
 
-      $.ajax({
-        url: "/posts/search",
-        dataType: "json",
-        method: "POST",
-        data
-          // else
-          // locquery: queryinput
+       $('#queryinput').empty();
+       // $('#locqueryinput').empty();
 
-      }).done(function(data){
+       $.ajax({
+         url: "/posts/search",
+         dataType: "json",
+         method: "POST",
+         data
+    }).done(function(data){
 
-        // remove existing markers
+      // remove existing markers
 
-        questionz = [];
+      questionz = [];
 
-        for (var i = 0; i < data.length; i++) {
-          console.log('added one');
+      for (var i = 0; i < data.length; i++) {
+        console.log('added one');
 
-          var post = data[i];
+        var post = data[i];
 
-          var user = $('<p>').text(post.username);
-          var location= post.location;
-          var userid = post.user_id;
-          var user = post.user.username;
-          var emoji = post.emjoi;
-          var $question = $('<h2>').text(post.question)
-                                  .addClass("questionlist")
-                                  .attr('post-id', post.id);
+        var user = $('<p>').text(post.username);
+        var location= post.location;
+        var userid = post.user_id;
+        var user = post.user.username;
+        var emoji = post.emjoi;
+        var $question = $('<h2>').text(post.question)
+                                .addClass("questionlist")
+                                .attr('post-id', post.id);
 
-          // julian // append emoji image works but commented out...
+        // julian // append emoji image works but commented out...
 
-          // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
 
-          var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
-          $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
+        var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
+        $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
 
-          questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
-
+        questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
 
 
 
@@ -294,18 +242,18 @@ $('#locationSearchbutton').click(function(){
 //------------------------------------------------------------------------------
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
 
-    $( "h2" ).hover(
-      function() {
-        var index = $( "h2" ).index( this );
-        markers[index].setAnimation(google.maps.Animation.BOUNCE);
-        // map.panTo(markers[index].getPosition());
+$( "h2" ).hover(
+  function() {
+    var index = $( "h2" ).index( this );
+    markers[index].setAnimation(google.maps.Animation.BOUNCE);
 
 
-      }, function() {
-        var index = $( "h2" ).index( this );
-        markers[index].setAnimation(null);
-      }
-    );
+
+  }, function() {
+    var index = $( "h2" ).index( this );
+    markers[index].setAnimation(null);
+  }
+);
 
 //------------------------------------------------------------------------------
 
@@ -337,59 +285,27 @@ $('#locationSearchbutton').click(function(){
 
 
 /* -------------------------------------------------------------------------------
-
       /* James: sliding side bar */
 
       // Julian on search click open search slide
 
-      $("#navOpen").click(function(){
-
-        // check to see if we are on the map page or not
-
-        // if (window.location.href==="/posts/map") {
-        // alert('on the map page');
-        // //
-        //
-        // };
-
-
-
-
-
-
-        $('#mySidenav').css('width', "544px");
-        // $('#mySidenav').css('width', "32wh");
-        $('#map').css('display', "absolute");
-        $('#map').css('width', "68wh");
-        $('#map').css('left', "34%");
-
-
-  $("#questButt").click(function(){
-    $('#locNav').css('display', "none")
-    $('#searchNav').css('display', "block")
-  })
-
-  $("#locButt").click(function(){
-    $('#locNav').css('display', "block")
-    $('#searchNav').css('display', "none")
-  })
-
-
-
-
-
-
-  /* James: Set the width of the side navigation to 0 for sliding nav bar*/
-    $("#navClose").click(function(){
-        $('#mySidenav').css('width', "0");
-        $('#map').css('display', "relative");
-        $('#map').css('width', "100wh");
-        $('#map').css('left', "0%");
-
-
-      console.log('close, says me');
+    $("#navOpen").click(function(){
+      $('#mySidenav').css('width', "544px");
+      // $('#mySidenav').css('width', "32wh");
+      $('#map').css('display', "absolute");
+      $('#map').css('width', "68wh");
+      $('#map').css('left', "34%");
     })
 
+    $("#questButt").click(function(){
+      $('#locNav').css('display', "none")
+      $('#searchNav').css('display', "block")
+    })
+
+    $("#locButt").click(function(){
+      $('#locNav').css('display', "block")
+      $('#searchNav').css('display', "none")
+    })
 
 
 // -------------------------------------------------------------------------------
