@@ -1,4 +1,10 @@
 
+/*show page name and up and down votes*/
+
+.questionvotes{
+  font-size: 20px;
+
+}
 
 /*Julian - Application.html.erb file layout*/
 .signUpButton{
@@ -162,8 +168,17 @@ table{
 #userMap {
   height: 450px;
   width: 100%;
-
 }
+
+#showmap {
+  height: 450px;
+  width: 100%;
+}
+
+
+
+
+
 .userPickMap{
   height: 500px;
   width: 800px;

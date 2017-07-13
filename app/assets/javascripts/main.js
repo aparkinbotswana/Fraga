@@ -176,10 +176,26 @@ $( document ).ready(function() {
    }
 
 
+// Julian - on searchbutton click render the map again with mapload function
+  $('#searchbutton').click(function(){
+    mapload();
+  });
 
-$('#searchbutton').click(function(){
-  mapload();
-});
+// make enter button submit search button
+
+  $(document).bind('keypress', function(e) {
+  if(e.keyCode==13){
+    $('#searchbutton').trigger('click');}
+  });
+
+
+
+
+
+
+
+
+
 
 // Julian - search results
 
@@ -217,9 +233,8 @@ $('#searchbutton').click(function(){
                                 .addClass("questionlist")
                                 .attr('post-id', post.id);
 
-        // julian // append emoji image works but commented out...
 
-        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+
 
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
@@ -243,13 +258,13 @@ $('#searchbutton').click(function(){
 $( "h2" ).hover(
   function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(google.maps.Animation.BOUNCE);
-    map.panTo(markers[index].getPosition());
+    markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
+    // map.panTo(markers[index].getPosition());
 
 
   }, function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(null);
+    markers[index - 1 ].setAnimation(null);
   }
 );
 
@@ -290,28 +305,12 @@ $( "h2" ).hover(
 
       $("#navOpen").click(function(){
 
-        // check to see if we are on the map page or not
-
-        // if (window.location.href==="/posts/map") {
-        // alert('on the map page');
-        // //
-        //
-        // };
-
-
-
-
-
-
         $('#mySidenav').css('width', "544px");
         // $('#mySidenav').css('width', "32wh");
         $('#map').css('display', "absolute");
         $('#map').css('width', "68wh");
         $('#map').css('left', "34%");
-
-
-      console.log('open, says me');
-
+        console.log('open, says me');
     })
 
 
@@ -349,7 +348,7 @@ var translateRequest = function(location, text, lang) {
   })
   .done(function(res){
     console.log(res);
-    var $div = $('<div>').html("Translation (" + lang + "): "+ res.text[0]);
+    var $div = $('<div class="translated">').html("Translation (" + lang + "): "+ res.text[0]);
     $(location).append($div);
     console.log($div);
   })
@@ -410,9 +409,10 @@ $('.locationButton').click(function(){
 })
 
 
-  $('.questionlist').click(function() {
- // initMap();
-});
+
+
+
+
 
 });
 

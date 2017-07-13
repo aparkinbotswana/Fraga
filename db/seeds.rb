@@ -11,6 +11,7 @@ u1 = User.create username: "Boolean", latitude: "-33.868820", longitude: "151.20
 u2 = User.create username: "Mad Slingshot", latitude: "-33.869795", longitude: "151.206410", password: "chicken", is_admin: false
 u3 = User.create username: "Ruler Monarch", latitude: "-33.873157", longitude: "151.206116", password: "chicken", is_admin: false
 u4 = User.create username: "chicken",latitude: "-33.873157", longitude: "151.206116", password: "chicken", is_admin: true
+u5 = User.create username: "Robbo",latitude: "54.664097", longitude: "-2.752708", password: "chicken", is_admin: true
 
 puts "Created #{ User.all.length } users."
 
@@ -19,6 +20,8 @@ p1 = Post.create question: "What is the meaning of life?", latitude: "-33.869795
 p2 = Post.create question: "Where can I buy stuff?", latitude: "-33.891475", longitude: "151.276684", active: false, emjoi: "happy"
 p3 = Post.create question: "Any recommendations for cool shit?", latitude: "-33.893340", longitude: "151.204610", active: true, emjoi: "happy"
 p4 = Post.create question: "Kyrka-nyckel varg destillery direkt handel ironi estetiska banjo varje dag bär varm kyckling ", latitude: "-33.898340", longitude: "151.204250", active: true, emjoi: "sad"
+p5 = Post.create question: "Where is the best food around here bruh? School me bruzzy", latitude: "54.664097", longitude: "-2.752708", active: true, emjoi: "bored"
+p5 = Post.create question: "Any cheap food around these parts bro? Hungover as...", latitude: "-33.771000", longitude: "150.906300", active: true, emjoi: "devo"
 
 puts "Created #{ Post.all.length } users."
 
@@ -38,6 +41,7 @@ puts "Created #{ Comment.all.length } users."
 
 u1.posts << p1 << p2
 u2.posts << p3 << p4
+u5.posts << p5
 
 p1.comments << c2 << c3
 p2.comments << c1 << c7 << c8 << c9
