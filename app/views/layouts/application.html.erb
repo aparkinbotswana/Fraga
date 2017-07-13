@@ -27,10 +27,10 @@
         <div class="loginright">
         <% unless @current_user.present? %>
           <%= link_to 'Login',  login_path, class: "ui button" %>
-          <%= link_to 'Signup', new_user_path, class: "ui primary button" %>
+          <%= link_to 'Signup', new_user_path, class: "signUpButton" %>
         <% else %>
           Welcome,<%= @current_user.username %>
-          <%= link_to 'Logout', login_path, class: "ui primary button",  method: :delete %>
+          <%= link_to 'Logout', login_path, class: "signUpButton",  method: :delete %>
         <% end %>
       </div>
     </div>
