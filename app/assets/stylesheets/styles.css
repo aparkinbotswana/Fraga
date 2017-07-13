@@ -1,4 +1,10 @@
 
+/*show page name and up and down votes*/
+
+.questionvotes{
+  font-size: 20px;
+
+}
 
 /*Julian - Application.html.erb file layout*/
 .signUpButton{
@@ -162,16 +168,32 @@ table{
 #userMap {
   height: 800px;
   width: 100%;
-
 }
+
+#showmap {
+  height: 450px;
+  width: 100%;
+}
+
+
+
 .userPickMap{
   height: 800px;
   width: 800px;
-  border: 1px
-  solid black;
+  border: 1px;
   display: inline;
   float:right;
   margin-right: 10px;
+}
+
+.userPostList{
+  height: 500px;
+  width: 800px;
+  border: 1px black;
+  display: inline;
+  float: center;
+  margin: auto;
+
 }
 
 /*James: CSS for sliding nav bar*/

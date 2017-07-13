@@ -16,20 +16,28 @@
 
 
 
-
-
-
 <div class="page">
   <div class="headercolumns">
     <div class="col4">
+
+
+
       <p id="notice"><%= notice %></p>
 
       <!-- Andy - Show question -->
       <h2 class="translateComment"><%= @post.question %></h2>
+      <div class="translatedtext"></div>
 
-      <div>
+
+      <!-- <div> -->
       <!--Michelle - translation options (user's language to chosen lanugage)  -->
-      <select id="language">
+
+  <!-- keep this - michelles detect default language  -->
+
+      <!-- <select id="language" class="ui search dropdown">
+        <i class="world icon"></i>
+        <span class="text">Translane From:</span>
+        <div class="menu">
         <option value="fr">Translate from French</option>
         <option value="de">Translate from German</option>
         <option value="el">Translate from Greek</option>
@@ -38,38 +46,27 @@
         <option value="zh">Translate from Mandarin</option>
         <option value="sv">Translate from Swedish</option>
         <option value="en">Translate from English</option>
+        </div>
+      </select> -->
 
-      </select>
-
-      <!--Michelle - button to trigger translation of post (see application.js file)  -->
-      <button id="languageButton">translate text to your default language</button>
-      <!-- <button id="detect">detect local language</button> -->
-      </div>
-      <div>
-      <!--Michelle - translation options (translate to user language) -->
-      <select id="languageTo">
-        <option value="-fr">Translate to French</option>
-        <option value="-de">Translate to German</option>
-        <option value="-el">Translate to Greek</option>
-        <option value="-ja">Translate to Japanese</option>
-        <option value="-no">Translate to Norwegian</option>
-        <option value="-zh">Translate to Mandarin</option>
-        <option value="-sv">Translate to Swedish</option>
-        <option value="-en">Translate to English</option>
-
-      </select>
 
       <!--Michelle - button to trigger translation of post (see application.js file)  -->
-      <button id="toLanguageButton">translate current page to selected language</button>
-      </div>
-      <p class="text-center">Powered by Yandex.Translate</p>
+      <!-- <button id="languageButton">translate text to your default language</button> -->
+
+      <!-- </div> -->
+
+
+
+
+      <!-- <p class="text-center">Powered by Yandex.Translate</p> -->
       <!-- Andy - Show post details score and link to edit -->
       <table>
         <tbody>
-          <tr>
+          <tr class="questionvotes">
             <td>
               <strong>Posted by:</strong>
               <%= @user.find(@post.user_id).username %>
+              <br>
             </td>
               <%= render 'votes', post: @post %>
             <td>
@@ -78,24 +75,55 @@
           </tr>
         </tbody>
       </table>
-      <br><br><br>
 
-      <h3 class="ui dividing header">Comments</h3>
+      <br>
 
+      <div>
+      <!--Michelle - translation options (translate to user language) -->
+      <select id="languageTo" class="ui search dropdown">
+        <option value="-fr">French</option>
+        <option value="-de">German</option>
+        <option value="-el">Greek</option>
+        <option value="-ja">Japanese</option>
+        <option value="-no">Norwegian</option>
+        <option value="-zh">Mandarin</option>
+        <option value="-sv">Swedish</option>
+        <option value="-en">English</option>
+
+      </select>
+
+      <!-- <button id="toLanguageButton">Translate</button> -->
+      <button class="ui button" id="toLanguageButton">
+       <i class="shuffle icon"></i>
+       Translate
+       </button>
       <!--Michelle - button to trigger translation of post (see application.js file)  -->
-      <!-- <button id="commentsLanguageButton">translate comments</button> -->
+
+      </div>
+
+
+
+
+
+
+
+
+
+
 
       <!-- Andy - Form to render first level comment on post -->
       <% if @current_user %>
         <ul style="list-style-type: none; padding: 0;">
           <%= form_for [@post, Comment.new] do |f| %>
-            <%= f.text_area :content, placeholder: "Add a comment" %><br/>
-            <%= f.hidden_field :user_id, :value => @current_user.id %>
-            <%= f.submit "Add Comment" %>
+            <%= f.text_area :content, placeholder: "Share your wisdom.." %><br/>
+            <%= f.hidden_field :user_id, :value => @current_user.id, :class => 'field' %>
+            <%= f.submit "Post", :class => 'ui secondary button' %>
           <% end %>
         </ul>
       <% end %>
-      <div id='commentViewport'>
+
+
+      <div id='commentViewport' style="overflow:scroll; height:400px;">
 
       <!-- Andy - Display all comments for the current post -->
 
@@ -103,35 +131,89 @@
         <%= render(partial: 'comments/comment', collection: @post.comments) %>
       </ul>
 
-      <!-- Andy - Click handlers to toggle reply box and collapse comments -->
-
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $('.reply').click(function() {
-            $(this).closest('.content').find('.comment-submit').show();
-            $(this).hide();
-           });
-           $('.collapse-comments').click(function() {
-             $(this).parent().children('.in-content').toggle()
-             $(this).closest('li').children('ul').toggle();
-             $(this).html($(this).text() == '[+]' ? '[-]' : '[+]');
-            });
-        });
-      </script>
     </div>
+
   </div>
 
     <div class='col5'>
-      <h1>WHAT IS GOING ON!</h1>
-
-      s
+      <div id="showmap"></div>
+      <!-- <h1>WHAT IS GOING ON!</h1> -->
 
     </div>
+
   </div>
+
 </div>
 
 
-<script>
+
+
+
+
+<!-- Andy - Click handlers to toggle reply box and collapse comments -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.reply').click(function() {
+      $(this).closest('.content').find('.comment-submit').show();
+      $(this).hide();
+     });
+     $('.collapse-comments').click(function() {
+       $(this).parent().children('.in-content').toggle()
+       $(this).closest('li').children('ul').toggle();
+       $(this).html($(this).text() == '[+]' ? '[-]' : '[+]');
+      });
+  });
+
+
+
+
+  //
+  // var map;
+  // var savedLat;
+  // var savedLng;
+  // function initMap() {
+  //   map = new google.maps.Map(document.getElementById('showmap'), {
+  //     center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+  //     zoom: 15,
+  //     styles: myStyle
+  //   });
+  //   marker = new google.maps.Marker({
+  //       map:map,
+  //       draggable:true,
+  //       animation: google.maps.Animation.DROP,
+  //       position: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>}
+  //   });
+  //   google.maps.event.addListener(marker, 'dragend', function(){
+  //     geocodePosition(marker.getPosition());
+  //     var savedInfo = (marker.getPosition());
+  //      savedLat = savedInfo.lat();
+  //      savedLng = savedInfo.lng();
+  //
+  //     // console.log(savedLat);
+  //   // debugger;
+  //   });
+  //
+  //   function geocodePosition(pos){
+  //      geocoder = new google.maps.Geocoder();
+  //      geocoder.geocode({
+  //           latLng: pos
+  //       },
+  //           function(results, status){
+  //               if (status == google.maps.GeocoderStatus.OK){
+  //                   $("#mapSearchInput").val(results[0].formatted_address);
+  //                   $("#mapErrorMsg").hide(100);
+  //               }
+  //               else {
+  //                   $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
+  //               }
+  //           }
+  //       );
+  //   };
+  // };
+  //
+  //
+
 
 
 

@@ -1,3 +1,4 @@
+
 function initMap() {
   var myLatlng = {lat: -33.9, lng: 151.2};
   var mapOptions = {
@@ -101,6 +102,15 @@ $( document ).ready(function() {
 
  setInterval(fader, 6000);
 
+ $('#fragaAnimation').click(function(){
+   window.location = '/';
+ });
+
+ $(document).bind('keypress', function(e) {
+ if(e.keyCode==13){
+   $('#querySearchbutton').trigger('click');}
+ });
+
 
  $('#querySearchbutton').click(function(){
    $('#results').empty();
@@ -168,10 +178,13 @@ $( document ).ready(function() {
 $( "h2" ).hover(
   function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(google.maps.Animation.BOUNCE);
+    markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
+    // map.panTo(markers[index].getPosition());
+
+
   }, function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(null);
+    markers[index - 1 ].setAnimation(null);
   }
 );
 //------------------------------------------------------------------------------
@@ -220,7 +233,7 @@ var translateRequest = function(location, text, lang) {
   })
   .done(function(res){
     console.log(res);
-    var $div = $('<div>').html("Translation (" + lang + "): "+ res.text[0]);
+    var $div = $('<div class="translated">').html("Translation (" + lang + "): "+ res.text[0]);
     $(location).append($div);
     console.log($div);
   })
@@ -261,20 +274,12 @@ var translateRequest = function(location, text, lang) {
       translateRequest(locationToTranslate[i], line, browserLanguageConv)
     }
   };
-// Michelle - get location for new post
-$('.locationButton').click(function(){
-  console.log('works');
-  console.log('lat:', savedLat);
-  console.log('long:', savedLng);
-  $('.long').text(savedLng)
-  $('.lat').text(savedLat)
-  // debugger;
-})
+
+});
   $('.questionlist').click(function() {
  // initMap();
 });
 
-});
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
 "សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",

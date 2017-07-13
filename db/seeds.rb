@@ -12,6 +12,7 @@ u2 = User.create username: "Mad Slingshot", latitude: "-33.869795", longitude: "
 u3 = User.create username: "Ruler Monarch", latitude: "-33.873157", longitude: "151.206116", password: "chicken", is_admin: false
 u4 = User.create username: "chicken",latitude: "-33.873157", longitude: "151.206116", password: "chicken", is_admin: true
 
+
 puts "Created #{ User.all.length } users."
 
 Post.destroy_all
@@ -19,6 +20,7 @@ p1 = Post.create question: "What is the meaning of life?", latitude: "-33.869795
 p2 = Post.create question: "Where can I buy stuff?", latitude: "-33.891475", longitude: "151.276684", active: false, emjoi: "happy"
 p3 = Post.create question: "Any recommendations for cool shit?", latitude: "-33.893340", longitude: "151.204610", active: true, emjoi: "happy"
 p4 = Post.create question: "Kyrka-nyckel varg destillery direkt handel ironi estetiska banjo varje dag bär varm kyckling ", latitude: "-33.898340", longitude: "151.204250", active: true, emjoi: "sad"
+
 
 puts "Created #{ Post.all.length } users."
 

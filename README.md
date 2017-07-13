@@ -1,24 +1,13 @@
-# README
+# FRÅGA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The FRÅGA app is a collaboration to make a social app. The concept behind the app is to allow users to post any sort of question and attach a geographical tag to the question. Users within geographical vicinity of the posted question will be able to see the question and post an answer to it.
 
-Things you may want to cover:
+Our live, [Fraga](https://fraga-app.herokuapp.com/login) site can be found here.
 
-* Ruby version
+## Features
 
-* System dependencies
+- Geographical detection of users when making a post.
+- upvoting and downvoting on posts and comments.
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Bugs
