@@ -144,6 +144,28 @@ function setMarkers(map) {
 
 $( document ).ready(function() {
 
+  var count = 1
+
+  var askFunction = function () {
+    if (count === 1) {
+      $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeIn(3000,function () {
+      $(this).fadeOut(3000);
+    });
+      count = 0
+    } else {
+      var title = ask[ _.random(ask.length)].toUpperCase()
+      $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeIn(3000, function () {
+      $(this).fadeOut(3000);
+    });
+      count = 1
+      console.log('animationelse');
+
+    }
+
+  }
+  // askFunction()
+  setInterval(askFunction, 6000);
+
 
   //
   $('.questionlist').hover(
@@ -319,21 +341,3 @@ var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জ�
 "សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",
 "Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
 "hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
-
-count = 0
-
-var askFunction = function () {
-  count
-  if (count === 1) {
-    $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeToggle(8000)
-    count = 0
-
-  } else {
-    var title = ask[ _.random(ask.length)].toUpperCase()
-    $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeToggle(8000)
-    count = 1
-
-  }
-}
-
-setInterval(askFunction, 8000);

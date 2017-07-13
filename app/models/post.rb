@@ -41,6 +41,7 @@ class Post < ApplicationRecord
   # end
   #end julian code
 
+
   def self.location_search(query, user)
 
   # raise 'hell'
