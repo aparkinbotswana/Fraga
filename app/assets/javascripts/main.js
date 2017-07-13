@@ -1,22 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -27,16 +8,12 @@ function initMap() {
   };
 
 
-
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
   // var map2 = new google.maps.Map(document.getElementById("mapshow"), mapOptions);
 
   setMarkers(map);
   // setMarkers(map2);
 }
-
-
-
 
 var questionz = [];
 
@@ -47,8 +24,6 @@ var question;
 var infowindow;
 
 function setMarkers(map) {
-
-
 
   var bounds = new google.maps.LatLngBounds();
 
@@ -62,15 +37,7 @@ function setMarkers(map) {
       zIndex: question[3]
     });
 
-
-
-    // console.log(marker);
-
-
-
     // Julian --- add series of event listener to created marker
-
-
     (function () {
 
       google.maps.event.addListener(marker, 'click', function () {
@@ -91,29 +58,9 @@ function setMarkers(map) {
 
     })();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       google.maps.event.addListener(marker, 'mouseover', function () {
         this.setAnimation(google.maps.Animation.BOUNCE);
     });
-
 
       google.maps.event.addListener(marker, 'mouseout', function () {
         this.setAnimation(null);
@@ -123,20 +70,8 @@ function setMarkers(map) {
     map.panTo(this.getPosition());
     });
 
-
-
-
-
-
-
-
-
-
-
-
     // Julian push created marker to markers array
     markers.push( marker );
-
 
     // Julian change zoom of map to a minimum zoom
 
@@ -153,14 +88,9 @@ function setMarkers(map) {
     });
     map.initialZoom = true;
 
-
-
     // Julian set bounds position of marker
 
     bounds.extend( marker.getPosition() );
-
-
-
 
   } // for
 
@@ -170,13 +100,10 @@ function setMarkers(map) {
 
 };
 
-
-
 $( document ).ready(function() {
 
   // James: title fade in and fade out
   var count = 0;
-
 
   var fader = function () {
     $('#fragaAnimation').fadeOut(3000, function () {
@@ -194,24 +121,6 @@ $( document ).ready(function() {
     });
   };
 
-  var askFunction = function () {
-    if (count === 1) {
-      console.log('set FRAGA');
-      $('#fragaAnimation').html("FRÅGA").appendTo('#fragaTitle').fadeIn(3000,function () {
-      $(this).fadeOut(3000);
-    });
-      count = 0
-    } else {
-      $(this).fadeOut(3000);
-      var title = ask[ _.random(ask.length)].toUpperCase()
-      $('#fragaAnimation').html(title).appendTo('#fragaTitle').fadeIn(3000, function () {
-    });
-      count = 1
-      console.log('animationelse');
-
-    }
-
-  }
   setInterval(fader, 6000);
 
 $('#searchbutton').click(function(){
@@ -256,25 +165,15 @@ $('#searchbutton').click(function(){
 
         // julian // append emoji image works but commented out...
 
-        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
-
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
 
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
 
-
-
-
-
       } // for data.posts
 
       initMap();
 
-
-
-
-//------------------------------------------------------------------------------
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
 
 $( "h2" ).hover(
@@ -283,16 +182,11 @@ $( "h2" ).hover(
     markers[index].setAnimation(google.maps.Animation.BOUNCE);
     map.panTo(markers[index].getPosition());
 
-
   }, function() {
     var index = $( "h2" ).index( this );
     markers[index].setAnimation(null);
   }
 );
-
-//------------------------------------------------------------------------------
-
-
 
     })
     .fail(function(xhr, err, status) {
@@ -304,21 +198,11 @@ $( "h2" ).hover(
   // call the rendering map function
   mapload();
 
-
   // Julian on click a item in the question list... go to its matching post
   $(document).on('click', '.questionlist', function(){
     var url = '/posts/' + $(this).attr('post-id');
     document.location.href = url;
   });
-
-
-
-
-
-
-
-
-
 
   /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
       $("#navOpen").click(function(){
@@ -416,10 +300,7 @@ $('.locationButton').click(function(){
   $('.lat').text(savedLat)
   // debugger;
 
-
-
 })
-
 
   $('.questionlist').click(function() {
  // initMap();
@@ -427,9 +308,8 @@ $('.locationButton').click(function(){
 });
 
 
-
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
 "សួរ", "ಕೇಳಿ", "청하다","ຖາມ", "Paklausk", "Jautāt", "manontany", "ui", "Прашајте", "ചോദിക്കൂ","Гэж асуув", "विचारा", "Tanya", "Staqsi", "မေးမြန်း", "सोध्नु", "vragen", "spørre", "Funsani", "ਪੁੱਛੋ", "zapytać",
 "Pergunte", "cere", "просить", "අහන්න", "opýtať sa", "Vprašajte", "weydii", "kërkoj", "питати", "Botsa", "nanya", "Kuuliza","கேட்க", "అడగండి", "пурсидан", "ถาม", "Magtanong", "sormak", "Запитай", "پوچھو",
-"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"]
+"hỏi", "פרעגן", "beere", "问", "问", "問", "Buza"];
