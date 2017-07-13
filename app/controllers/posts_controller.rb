@@ -17,12 +17,14 @@ class PostsController < ApplicationController
 
    def do_search
 
-      # if (  )
+      if params[:query].present?
         @posts = Post.text_search(params[:query], @current_user)
-      # else
-        # loc = Geocoder.search(params[:locquery])
-        # @posts = Post.location_search(loc)
-      # end
+      elsif params[:locquery].present?
+        loc = Geocoder.search(params[:locquery])
+        @posts = Post.location_search(loc)
+      else
+        @posts = Post.all.order(:created_at).reverse_order.limit(5)
+      end
 
      respond_to do |format|
        format.html { render :do_search }

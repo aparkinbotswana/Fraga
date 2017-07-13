@@ -290,11 +290,11 @@ $( "h2" ).hover(
       // Julian on search click open search slide
 
     $("#navOpen").click(function(){
-      $('#mySidenav').css('width', "544px");
+      $('#mySidenav').css('width', "544px").toggle;
       // $('#mySidenav').css('width', "32wh");
-      $('#map').css('display', "absolute");
-      $('#map').css('width', "68wh");
-      $('#map').css('left', "34%");
+      // $('#map').css('display', "absolute");
+      // $('#map').css('width', "68wh");
+      // $('#map').css('left', "34%");
     })
 
     $("#questButt").click(function(){
