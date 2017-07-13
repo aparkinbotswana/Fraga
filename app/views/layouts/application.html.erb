@@ -11,11 +11,18 @@
     <div id='fragaTitle' class="col1">
       <h1 id='fragaAnimation' class="fraga">FRÅGA</h1>
 </div>
-    <div class="col2">
-      <% if @current_user %>
-      <h2 class="fraga"><i class="search icon" id='navOpen'></i><%= link_to '🙋🏻', new_post_path%></h2>
+
+  <div class="col2"><h2 class="fraga">
+    <% if controller_name == 'posts' && action_name == 'map' %>
+      <i class="search icon" id='navOpen'></i>
+    <% else %>
+      <%= link_to main_map_path do %>
+        <i class="search icon"></i>
       <% end %>
-    </div>
+    <% end %>
+    <%= link_to '🙋🏻', new_post_path%></h2>
+  </div>
+
     <div class="col3">
         <div class="loginright">
         <% unless @current_user.present? %>
@@ -35,21 +42,23 @@
       <div id="questButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float: left; display:inline">Question</div>
       <div id="locButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float:right; display:inline">Location</div>
     </div>
+
     <!-- Julian - Search bar -->
     <div id="searchNav">
       <div class="ui icon input">
         <input class="prompt" type="text" placeholder="Search Questions..." id="queryinput">
         <i class="search icon"></i>
       </div>
-        <button id="searchbutton">Search</button>
+        <button id="querySearchbutton">Search</button>
       <div id="results"></div>
     </div>
+
     <!-- Julian - Search bar -->
     <div id="locNav">
       <div class="ui icon input">
         <input class="prompt" type="text" placeholder="Search By Location..." id="locqueryinput">
       </div>
-        <button id="searchbutton">Search</button>
+        <button id="locationSearchbutton">Search</button>
         <div id="results"></div>
     </div>
   </div>

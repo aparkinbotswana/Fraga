@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a99d5e6a4a2d5c44c951eb1707277669249f686
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -142,47 +145,74 @@ $( document ).ready(function() {
   var count = 0;
 
 
-  var fader = function () {
-    $('#fragaAnimation').fadeOut(3000, function () {
-      // after fade out:
-      if (count === 0) {
-        // random language
-        var title = _.sample(ask).toUpperCase();
-        $('#fragaAnimation').html(title).fadeIn(3000);
-      } else {
-        // FRAGA
-        $('#fragaAnimation').html("FRÅGA").fadeIn(3000);
-      }
-      count = 1 - count;
-    });
-  };
+ // var fader = function () {
+ //    $(‘#fragaAnimation’).fadeOut(3000, function () {
+ //      // after fade out:
+ //      if (count === 0) {
+ //        // random language
+ //        var title = _.sample(ask).toUpperCase();
+ //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
+ //      } else {
+ //        // FRAGA
+ //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
+ //      }
+ //      count = 1 - count;
+ //
+ //   })
+ //  };
+ //
+ // setInterval(fader, 6000);
+ $('#fragaAnimation').click(function(){
+   window.location = '/';
+ });
 
-setInterval(fader(), 6000);
+ $(document).bind('keypress', function(e) {
+ if(e.keyCode==13){
+   $('#querySearchbutton').trigger('click');}
+ });
 
-$('#fragaAnimation').click(function(){
-  window.location = '/';
-})
 
-$('#searchbutton').click(function(){
-  mapload();
-});
 
-// Julian - search results
+ $('#querySearchbutton').click(function(){
+   $('#results').empty();
 
-  var mapload = function(){
+   var queryinput = $('#queryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     query: queryinput
+   };
+   mapload(data);
+ });
 
-    $('#results').empty();
+ $('#locationSearchbutton').click(function(){
+   $('#results').empty();
 
-    var queryinput = $('#queryinput').val();
-    $('#queryinput').empty();
+   var locqueryinput = $('#locqueryinput').val();
+   // var locqueryinput = $('#locqueryinput').val();
+   var data = {
+     locquery: locqueryinput
+   };
+   mapload(data);
+ });
 
-    $.ajax({
-      url: "/posts/search",
-      dataType: "json",
-      method: "POST",
-      data: {
-        query: queryinput
-      }
+ // Julian - search results
+
+   var mapload = function(data){
+
+       $('#results').empty();
+
+       var queryinput = $('#queryinput').val();
+       var queryinput = $('#queryinput').is(':visible')
+       // var locqueryinput = $('#locqueryinput').val();
+
+       $('#queryinput').empty();
+       // $('#locqueryinput').empty();
+
+       $.ajax({
+         url: "/posts/search",
+         dataType: "json",
+         method: "POST",
+         data
     }).done(function(data){
 
       // remove existing markers
@@ -203,9 +233,8 @@ $('#searchbutton').click(function(){
                                 .addClass("questionlist")
                                 .attr('post-id', post.id);
 
-        // julian // append emoji image works but commented out...
 
-        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+
 
         var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
         $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
@@ -229,13 +258,13 @@ $('#searchbutton').click(function(){
 $( "h2" ).hover(
   function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(google.maps.Animation.BOUNCE);
-    map.panTo(markers[index].getPosition());
+    markers[index - 1].setAnimation(google.maps.Animation.BOUNCE);
+    // map.panTo(markers[index].getPosition());
 
 
   }, function() {
     var index = $( "h2" ).index( this );
-    markers[index].setAnimation(null);
+    markers[index - 1 ].setAnimation(null);
   }
 );
 
@@ -269,53 +298,27 @@ $( "h2" ).hover(
 
 
 /* -------------------------------------------------------------------------------
-
       /* James: sliding side bar */
 
       // Julian on search click open search slide
 
-      $("#navOpen").click(function(){
-
-        // check to see if we are on the map page or not
-
-        // if (window.location.href==="/posts/map") {
-        // alert('on the map page');
-        // //
-        //
-        // };
-
-
-
-
-
-
-        $('#mySidenav').css('width', "544px");
-        // $('#mySidenav').css('width', "32wh");
-        $('#map').css('display', "absolute");
-        $('#map').css('width', "68wh");
-        $('#map').css('left', "34%");
-
-
-      console.log('open, says me');
-
+    $("#navOpen").click(function(){
+      $('#mySidenav').css('width', "544px").toggle;
+      // $('#mySidenav').css('width', "32wh");
+      // $('#map').css('display', "absolute");
+      // $('#map').css('width', "68wh");
+      // $('#map').css('left', "34%");
     })
 
-
-
-
-
-
-  /* James: Set the width of the side navigation to 0 for sliding nav bar*/
-    $("#navClose").click(function(){
-        $('#mySidenav').css('width', "0");
-        $('#map').css('display', "relative");
-        $('#map').css('width', "100wh");
-        $('#map').css('left', "0%");
-
-
-      console.log('close, says me');
+    $("#questButt").click(function(){
+      $('#locNav').css('display', "none")
+      $('#searchNav').css('display', "block")
     })
 
+    $("#locButt").click(function(){
+      $('#locNav').css('display', "block")
+      $('#searchNav').css('display', "none")
+    })
 
 
 // -------------------------------------------------------------------------------
@@ -335,7 +338,7 @@ var translateRequest = function(location, text, lang) {
   })
   .done(function(res){
     console.log(res);
-    var $div = $('<div>').html("Translation (" + lang + "): "+ res.text[0]);
+    var $div = $('<div class="translated">').html("Translation (" + lang + "): "+ res.text[0]);
     $(location).append($div);
     console.log($div);
   })
@@ -398,9 +401,20 @@ var translateRequest = function(location, text, lang) {
 });
 
 
+<<<<<<< HEAD
   $('.questionlist').click(function() {
  // initMap();
 });
+
+=======
+
+
+
+
+
+});
+>>>>>>> 0a99d5e6a4a2d5c44c951eb1707277669249f686
+
 
 
 
