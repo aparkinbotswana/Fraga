@@ -14,13 +14,22 @@
 <div class="leftContainer" style="width: 70%; height: 100%; display: inline; float: left; padding: 30px; text-align: left">
   <div class="topContent" style="padding-left: 30px; text-align: left">
       <!-- Andy - Show question -->
-      <h2 class="translateComment"><%= @post.question %></h2>
+
       <div class="translatedtext"></div>
 
-      <strong>Posted by:</strong>
-      <%= @user.find(@post.user_id).username %>
+      <table>
+          <tr>
+            <td rowspan="2" style="padding-right:20px"><%= render 'votes', post: @post %></td>
+            <td><h2 class="translateComment"><%= @post.question %></h2></td>
+          </tr>
+          <tr>
+            <td><strong>Posted by:</strong><%= @user.find(@post.user_id).username %></td>
+          </tr>
+      </table>
+
+
       <br>
-      <%= render 'votes', post: @post %>
+
       <%= link_to 'Edit', edit_post_path(@post) %>
 
       <br>
@@ -77,10 +86,15 @@
   var map;
   function initMap() {
     map = new google.maps.Map(document.getElementById('postMap'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8,
+      center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      zoom: 16,
       styles: myStyle
     });
+    marker = new google.maps.Marker({
+      map: map,
+      icon: '/assets/mapicons/<%= @post.emjoi %>.png',
+      position: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>}
+});
   }
 
 </script>
