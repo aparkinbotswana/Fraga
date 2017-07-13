@@ -12,7 +12,16 @@
     <div id='fragaTitle' class="col1">
       <h1 id='fragaAnimation' class="fraga">FRÅGA</h1></div>
 
-    <div class="col2"><h2 class="fraga"><i class="search icon" id='navOpen'></i><%= link_to '🙋🏻', new_post_path%></h2></div>
+    <div class="col2"><h2 class="fraga">
+      <% if controller_name == 'posts' && action_name == 'map' %>
+        <i class="search icon" id='navOpen'></i>
+      <% else %>
+        <%= link_to main_map_path do %>
+          <i class="search icon"></i>
+        <% end %>
+      <% end %>
+      <%= link_to '🙋🏻', new_post_path%></h2>
+    </div>
 
     <div class="col3">
         <div class="loginright">

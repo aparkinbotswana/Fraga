@@ -44,7 +44,7 @@ var markers = [];
 
 var marker;
 var question;
-var infowindow;
+// var infowindow;
 
 function setMarkers(map) {
 
@@ -58,8 +58,18 @@ function setMarkers(map) {
       position: {lat: question[1], lng: question[2]},
       map: map,
       icon: '/assets/mapicons/' + question[4] + '.png',
-      title: question[0],
-      zIndex: question[3]
+      // title: question[0],
+      zIndex: question[3],
+      // hello:
+
+      // This ID is used to contruct the correct show page URL in the click event
+      fragaID: question[3],
+
+      // This property defines an InfoWindow which the hover event uses
+      fragaInfo: new google.maps.InfoWindow({
+        content: question[0]
+      })
+
     });
 
 
@@ -67,61 +77,33 @@ function setMarkers(map) {
     // console.log(marker);
 
 
-
+// ----------------------------------------------------------------------------
     // Julian --- add series of event listener to created marker
+    // closure problem
 
-
-    (function () {
 
       google.maps.event.addListener(marker, 'click', function () {
-        window.location.href = '/posts/' + question[3];
-        });
+        window.location.href = '/posts/' + this.fragaID;
+      });
 
-         infowindow = new google.maps.InfoWindow({
-         content: question[0]
-       });
+
 
        google.maps.event.addListener(marker, 'mouseover', function() {
-         infowindow.open(map, this)
+         if(this.timerID){
+           clearTimeout(this.timerID);
+         }
+        //  map.panTo(this.getPosition());
+         this.setAnimation(google.maps.Animation.BOUNCE);
+         this.fragaInfo.open(map, this);
        });
 
        google.maps.event.addListener(marker, 'mouseout', function() {
-         infowindow.close(map, this)
+         var m = this;
+         this.timerID = setTimeout(function () {
+           m.fragaInfo.close(map, m);
+           m.setAnimation(null);
+         }, 500);
        });
-
-    })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      google.maps.event.addListener(marker, 'mouseover', function () {
-        this.setAnimation(google.maps.Animation.BOUNCE);
-    });
-
-
-      google.maps.event.addListener(marker, 'mouseout', function () {
-        this.setAnimation(null);
-    });
-
-    google.maps.event.addListener(marker, 'mouseover', function() {
-    map.panTo(this.getPosition());
-    });
 
 
 
@@ -174,18 +156,6 @@ function setMarkers(map) {
 
 $( document ).ready(function() {
 
-
-
-
-
-
-  //
-
-
-
-
-
-  // debugger;
 
 $('#searchbutton').click(function(){
   mapload();
@@ -292,9 +262,27 @@ $( "h2" ).hover(
 
 
 
+/* -------------------------------------------------------------------------------
 
-  /* James: Set the width of the side navigation to 250px for Sliding nav bar*/
+      /* James: sliding side bar */
+
+      // Julian on search click open search slide
+
       $("#navOpen").click(function(){
+
+        // check to see if we are on the map page or not
+
+        // if (window.location.href==="/posts/map") {
+        // alert('on the map page');
+        // //
+        //
+        // };
+
+
+
+
+
+
         $('#mySidenav').css('width', "544px");
         // $('#mySidenav').css('width', "32wh");
         $('#map').css('display', "absolute");
@@ -305,6 +293,11 @@ $( "h2" ).hover(
       console.log('open, says me');
 
     })
+
+
+
+
+
 
   /* James: Set the width of the side navigation to 0 for sliding nav bar*/
     $("#navClose").click(function(){
@@ -317,6 +310,9 @@ $( "h2" ).hover(
       console.log('close, says me');
     })
 
+
+
+// -------------------------------------------------------------------------------
   // Michelle: Translate text
 
 var translateRequest = function(location, text, lang) {

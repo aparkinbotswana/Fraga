@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/users/:id' => 'users#show'
 
   # route map erb to map controller - Andy
-  get '/posts/map' => 'posts#map'
+  get '/posts/map' => 'posts#map', as: 'main_map'
 
   post '/posts/search' => 'posts#do_search'
   # post '/posts/search' => 'posts#do_search'
