@@ -1,3 +1,4 @@
+
 function initMap() {
 
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -141,25 +142,26 @@ $( document ).ready(function() {
   var count = 0;
 
 
-  // var fader = function () {
-  //    $(‘#fragaAnimation’).fadeOut(3000, function () {
-  //      // after fade out:
-  //      if (count === 0) {
-  //        // random language
-  //        var title = _.sample(ask).toUpperCase();
-  //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
-  //      } else {
-  //        // FRAGA
-  //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
-  //      }
-  //      count = 1 - count;
-  //
-  //   });
-  //  };
-  //
-  // setInterval(fader, 6000);
-
-
+ // var fader = function () {
+ //    $(‘#fragaAnimation’).fadeOut(3000, function () {
+ //      // after fade out:
+ //      if (count === 0) {
+ //        // random language
+ //        var title = _.sample(ask).toUpperCase();
+ //        $(‘#fragaAnimation’).html(title).fadeIn(3000);
+ //      } else {
+ //        // FRAGA
+ //        $(‘#fragaAnimation’).html(“FRÅGA”).fadeIn(3000);
+ //      }
+ //      count = 1 - count;
+ //
+ //   })
+ //  };
+ //
+ // setInterval(fader, 6000);
+ $('#fragaAnimation').click(function(){
+   window.location = '/';
+ });
 
  $(document).bind('keypress', function(e) {
  if(e.keyCode==13){
@@ -380,25 +382,24 @@ var translateRequest = function(location, text, lang) {
     }
   };
 
+//
+// $( "marker" ).on( "dragstop", function( ) {console.log('works');
+// console.log('lat:', savedLat);
+// console.log('long:', savedLng);
+// $('.long').val(savedLng)
+// $('.lat').val(savedLat)} );
 // Michelle - get location for new post
-$('.locationButton').click(function(){
-  console.log('works');
-  console.log('lat:', savedLat);
-  console.log('long:', savedLng);
-  $('.long').text(savedLng)
-  $('.lat').text(savedLat)
+// $('.locationButton').click(function(){
+
   // debugger;
 
 
 
-})
+});
 
 
-
-
-
-
-
+  $('.questionlist').click(function() {
+ // initMap();
 });
 
 

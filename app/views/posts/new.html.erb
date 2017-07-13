@@ -1,13 +1,11 @@
 
-
-      <h2>New Post</h2>
-
       <!-- Andy- Google maps marker -->
 
       <script>
         var map;
         var savedLat;
         var savedLng;
+        var marker;
         function initMap() {
           map = new google.maps.Map(document.getElementById('userMap'), {
             center: {lat: <%= @current_user.latitude %>, lng: <%= @current_user.longitude %>},
@@ -23,8 +21,12 @@
           google.maps.event.addListener(marker, 'dragend', function(){
             geocodePosition(marker.getPosition());
             var savedInfo = (marker.getPosition());
-             savedLat = savedInfo.lat();
-             savedLng = savedInfo.lng();
+            savedLat = savedInfo.lat();
+            savedLng = savedInfo.lng();
+            console.log(savedLng + savedLat);
+            $('#post_longitude').val(savedLng);
+            $('#post_latitude').val(savedLat);
+            $('.location-box').text("Obtained from marker").prop("disabled", true);
 
             // console.log(savedLat);
           // debugger;
@@ -49,12 +51,20 @@
         };
       </script>
 
-<div style="height: 500px; width: 400px; border: 1px solid black; display: inline; float:right; margin-right: 100px">
-  <h2>My Location</h2>
-  <form action="/action_page.php" style="left:0">
-    <input type="radio" name="userLoc" value="male"> Default (based on your IP address)<br><br>
-    <input type="radio" name="userLoc" value="female"> <input type="text" placeholder="Address" name="Address"><br><br>
-    <input type="radio" name="userLoc" value="other">Map: <div id="userMap"></div><br>
-    <input type="submit" value="Submit">
-  </form>
-</div>
+      <div class="userPickMap">
+        <div>
+        </div>
+
+
+<div id="userMap"></div>
+      </div>
+      <div class="page">
+        <div class="headercolumns">
+          <div class="col1">
+            <div class="newPost">
+              <%= render 'form', post: @post %>
+            </div>
+            <%= link_to 'Back', posts_path %>
+          </div>
+        </div>
+      </div>

@@ -23,58 +23,27 @@
 
 
   <div class="ui form">
-    <div class="field emoji-picker-container">
-      <%= f.label :latitude %>
-      <%= f.text_area :latitude, placeholder: "move the marker on the map and click 'Set location below'", class: 'form-control long', :disabled => true %>
-      <!-- <%= button_to "get location", class: 'locationButton' %> -->
+    <div class="field">
+      <%= f.hidden_field :latitude %>
     </div>
   </div>
 
   <div class="ui form">
     <div class="field">
-      <%= f.label :longitude %>
-      <%= f.text_area :longitude, placeholder: "move the marker on the map and click 'Set location below'", class: 'form-control lat', :disabled => true %>
-      <!-- <%= button_to "get location", class: 'locationButton' %> -->
+      <%= f.hidden_field :longitude%>
     </div>
   </div>
-  <a class='locationButton' href="#">Set Location</a>
 
   <div class="ui form">
     <div class="field">
       <%= f.label :location %>
-      <%= f.text_area :location, placeholder: "Where are you?", class: 'form-control'  %>
-      <!-- <%= button_to "get location", class: 'locationButton' %> -->
+      <%= f.text_area :location, placeholder: "Drag the marker on the map, or type here", class: 'form-control location-box', rows: 1 %>
     </div>
   </div>
 
-    <!-- <input type="radio" name="userLoc" value="userIPInput"> Default (based on your IP address)<br><br>
-    <input type="radio" name="userLoc" value="userAddressInput"> <input type="text" placeholder="Address" name="Address"><br><br>
-    <input type="radio" name="userLoc" value="userMapSelectInput"><br>
-    <input type="submit" value="Submit"> -->
-
-
-    <!-- <%= radio_button_tag(:location, "userIPInput") %> <%= label_tag(:location, "Default (based on your IP address)") %>
-    <%= radio_button_tag(:location, "userAddressInput") %> <%= label_tag(:location, "Input taken from marker (right)") %> -->
-<!--
-<hr>
-    EXAMPLE
-    <%= radio_button_tag(:age, "child") %>
-    <%= label_tag(:age_child, "I am younger than 21") %>
-    <%= radio_button_tag(:age, "adult") %>
-    <%= label_tag(:age_adult, "I'm over 21") %>
-    Output:
-
-    <input id="age_child" name="age" type="radio" value="child" />
-    <label for="age_child">I am younger than 21</label>
-    <input id="age_adult" name="age" type="radio" value="adult" />
-    <label for="age_adult">I'm over 21</label>
-    <hr>
-
- -->
-
-
   <div class="ui form">
     <div class="field">
+      <%= f.label "Pick an emoji"%>
       <%= f.select :emjoi, options_for_select([["How ya feel??", ""], "happy", "sad", "angry", "bored", "cheeky", "confused", "cool", "devo", "joy", "love", "sad", "sick", "silly", "thinking", "unhappy", "veryhappy", "wasted"])%>
     </div>
   </div>
