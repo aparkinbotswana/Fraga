@@ -78,8 +78,8 @@ function setMarkers(map) {
   map.fitBounds(bounds);
 };
 $( document ).ready(function() {
+
   // James: title fade in and fade out
-  var count = 0;
 
   var count = 0;
 
