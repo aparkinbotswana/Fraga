@@ -21,7 +21,7 @@ class SessionController < ApplicationController
     else
       #mitmatch/bad credentials
       flash[:error] = "Incorrect email address and/or password"
-      redirect_to login_path
+      redirect_to root_path
     end
 
 
@@ -29,6 +29,6 @@ class SessionController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_path
+    redirect_to root_path
   end
 end

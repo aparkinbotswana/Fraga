@@ -7,7 +7,8 @@ Our live, [Fraga](https://fraga-app.herokuapp.com/login) site can be found here.
 ## Features
 
 - Geographical detection of users when making a post.
-- upvoting and downvoting on posts and comments.
+- Voting on posts and comments.
+- Emoji markers to display your question on Google maps.
 
 
 ## Bugs
