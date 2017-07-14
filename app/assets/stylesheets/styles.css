@@ -1,4 +1,13 @@
 
+.padleft {
+  padding-left: 10px;
+}
+
+.centering {
+  text-align: center;
+
+}
+
 .usertext {
   font-size: 15px;
   padding-bottom: 15px;
