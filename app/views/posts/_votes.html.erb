@@ -5,11 +5,21 @@
   <td><%=button_to 'vote', upvote_post_path(post), method: :post, :class=> 'vote-button', remote: true%></td> -->
 <!-- end upvote -->
 
-<td id="p<%=post.id%>"><%="#{post.score}"%></td>
-<span class="upvote-post">
-  <td><%= link_to "👍🏼", upvote_post_path(post), method: :post, remote: true %></td>
-</span>
 
-<span class="downvote-post">
-  <td><%= link_to "👎🏼", downvote_post_path(post), method: :post, remote: true %></td>
-</span>
+<table style="display:inline">
+  <tbody>
+    <tr style="text-align: center; margin: 0 auto">
+      <span>
+        <td><%= link_to '<i class="angle up icon" style="text-align: center; margin: 0 auto"></i>'.html_safe, upvote_post_path(post), method: :post, remote: true %></td>
+      </span>
+    </tr>
+    <tr style="text-align: center; margin: 0 auto">
+      <td id="p<%=post.id%>"><%="#{post.score}"%></td>
+    </tr>
+    <tr style="text-align: center; margin: 0 auto">
+      <span class="downvote-comment">
+        <td><%= link_to '<i class="angle down icon" style="text-align: center; margin: 0 auto"></i>'.html_safe, downvote_post_path(post), method: :post, remote: true %></td>
+      </span>
+    </tr>
+  </tbody>
+  </table>

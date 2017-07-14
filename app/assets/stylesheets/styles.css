@@ -113,8 +113,8 @@ html,
 body,
 .page {
   height: 100%; /* needed for proper layout */
-  justify-content: center;
-  text-align: center;
+  /*justify-content: center;
+  text-align: center;*/
 }
 
 body {
@@ -190,7 +190,7 @@ p {
 }
 
 table{
-  margin: auto;
+  /*margin: auto;*/
 }
 
 

@@ -240,8 +240,6 @@ $( "h2.questionlist" ).hover(
 
 
 
-
-
     $("#questButt").click(function(){
       $('#locNav').css('display', "none")
       $('#searchNav').css('display', "block")
@@ -283,37 +281,35 @@ var translateRequest = function(location, text, lang) {
     console.log(xhr, status, err);
   })
 }
+  // $('#toLanguageButton').click(function(){
+  //   $('.translated').empty();
+  //   var languageRequest = $('#languageTo').val();
+  //   console.log(languageRequest);
+  //   submitPost(languageRequest)
+  // })
+  // var submitPost = function(languageRequest){
+  //   var locationToTranslate = $(".translateComment");
+  //    var lang = navigator.language;
+  //    var browserLanguageConv = ("en"+languageRequest);
+  //    for (var i = 0; i < locationToTranslate.length; i++) {
+  //   console.log(locationToTranslate[i]);
+  //      var line = locationToTranslate[i].innerText;
+  //      translateRequest(locationToTranslate[i], line, browserLanguageConv)
+  //    }
+  // };
   $('#toLanguageButton').click(function(){
     $('.translated').empty();
     var languageRequest = $('#languageTo').val();
-    console.log(languageRequest);
-    submitPost(languageRequest)
-  })
-  var submitPost = function(languageRequest){
-    var locationToTranslate = $(".translateComment");
-     var lang = navigator.language;
-     var browserLanguageConv = ("en"+languageRequest);
-     for (var i = 0; i < locationToTranslate.length; i++) {
-    console.log(locationToTranslate[i]);
-       var line = locationToTranslate[i].innerText;
-       translateRequest(locationToTranslate[i], line, browserLanguageConv)
-     }
-  };
-  $('#languageButton').click(function(){
-    $('.translated').empty();
-    var languageRequest = $('#language').val();
     console.log(languageRequest);
     submitComments(languageRequest)
   });
 // Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
     var locationToTranslate = $(".translateComment");
-    var lang = navigator.language;
- var browserLanguageConv = (languageRequest+ "-" + lang.split("-")[0])
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, browserLanguageConv)
+      translateRequest(locationToTranslate[i], line, languageRequest)
     }
   };
 
@@ -321,6 +317,17 @@ var translateRequest = function(location, text, lang) {
   $('.questionlist').click(function() {
  // initMap();
 });
+
+// Comments collapse - Andy
+
+
+   $('.collapse-comments').click(function() {
+     $(this).parent().children('.in-content').toggle()
+     $(this).closest('li').children('ul').toggle();
+     $(this).html($(this).text() == '[+]' ? '[-]' : '[+]');
+    });
+
+
 
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",

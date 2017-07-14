@@ -1,156 +1,103 @@
 <style>
-
-  #showmap {
+  #postMap {
     height: 100%;
     width: 100%;
     top: 0;
-    left: 0;
+    right: 0;
+    /*position: absloute;*/
+    float: right;
   }
-
 
 
 </style>
 
-
-
-
-
-
-<div class="page">
-  <div class="headercolumns">
-    <div class="col4">
-
-
-
-      <p id="notice"><%= notice %></p>
-
+<div class="leftContainer" style="width: 70%; height: 100%; display: inline; float: left; padding: 30px; text-align: left">
+  <div class="topContent" style="padding-left: 30px; text-align: left">
       <!-- Andy - Show question -->
-      <h2 class="translateComment"><%= @post.question %></h2>
+
       <div class="translatedtext"></div>
 
-
-      <!-- <div> -->
-      <!--Michelle - translation options (user's language to chosen lanugage)  -->
-
-  <!-- keep this - michelles detect default language  -->
-
-      <!-- <select id="language" class="ui search dropdown">
-        <i class="world icon"></i>
-        <span class="text">Translane From:</span>
-        <div class="menu">
-        <option value="fr">Translate from French</option>
-        <option value="de">Translate from German</option>
-        <option value="el">Translate from Greek</option>
-        <option value="ja">Translate from Japanese</option>
-        <option value="no">Translate from Norwegian</option>
-        <option value="zh">Translate from Mandarin</option>
-        <option value="sv">Translate from Swedish</option>
-        <option value="en">Translate from English</option>
-        </div>
-      </select> -->
-
-
-      <!--Michelle - button to trigger translation of post (see application.js file)  -->
-      <!-- <button id="languageButton">translate text to your default language</button> -->
-
-      <!-- </div> -->
-
-
-
-
-      <!-- <p class="text-center">Powered by Yandex.Translate</p> -->
-      <!-- Andy - Show post details score and link to edit -->
       <table>
-        <tbody>
-          <tr class="questionvotes">
-            <td>
-              <strong>Posted by:</strong>
-              <%= @user.find(@post.user_id).username %>
-              <br>
-            </td>
-              <%= render 'votes', post: @post %>
-            <td>
-              <%= link_to 'Edit', edit_post_path(@post) %>
-            </td>
+          <tr>
+            <td rowspan="2" style="padding-right:20px"><%= render 'votes', post: @post %></td>
+            <td><h2 class="translateComment"><%= @post.question %></h2></td>
           </tr>
-        </tbody>
+          <tr>
+            <td><strong>Posted by:</strong><%= @user.find(@post.user_id).username %></td>
+          </tr>
       </table>
+
+
+      <br>
+
+      <%= link_to 'Edit', edit_post_path(@post) %>
 
       <br>
 
       <div>
       <!--Michelle - translation options (translate to user language) -->
       <select id="languageTo" class="ui search dropdown">
-        <option value="-fr">French</option>
-        <option value="-de">German</option>
-        <option value="-el">Greek</option>
-        <option value="-ja">Japanese</option>
-        <option value="-no">Norwegian</option>
-        <option value="-zh">Mandarin</option>
-        <option value="-sv">Swedish</option>
-        <option value="-en">English</option>
-
+        <option value="en-fr">English to French</option>
+        <option value="en-de">English to German</option>
+        <option value="en-el">English to Greek</option>
+        <option value="en-ja">English to Japanese</option>
+        <option value="en-no">English to Norwegian</option>
+        <option value="en-zh">English to Mandarin</option>
+        <option value="en-sv">English to Swedish</option>
+        <option value="fr-en">French to English</option>
+        <option value="sv-en">Swedish to English</option>
       </select>
 
       <!-- <button id="toLanguageButton">Translate</button> -->
       <button class="ui button" id="toLanguageButton">
-       <i class="shuffle icon"></i>
-       Translate
+         <i class="shuffle icon"></i>
+         Translate
        </button>
       <!--Michelle - button to trigger translation of post (see application.js file)  -->
 
       </div>
-
-
-
-
-
-
-
-
-
-
+    </div><!--topcontent-->
 
       <!-- Andy - Form to render first level comment on post -->
       <% if @current_user %>
         <ul style="list-style-type: none; padding: 0;">
           <%= form_for [@post, Comment.new] do |f| %>
-            <%= f.text_area :content, placeholder: "Share your wisdom.." %><br/>
+            <%= f.text_area :content, size: "70x3", placeholder: "Post a comment..." %><br/>
             <%= f.hidden_field :user_id, :value => @current_user.id, :class => 'field' %>
             <%= f.submit "Post", :class => 'ui secondary button' %>
           <% end %>
         </ul>
       <% end %>
 
-
-      <div id='commentViewport' style="overflow:scroll; height:400px;">
-
-      <!-- Andy - Display all comments for the current post -->
-
-      <ul style="list-style-type: none; padding: 0;">
-        <%= render(partial: 'comments/comment', collection: @post.comments) %>
-      </ul>
-
-    </div>
-
-  </div>
-
-    <div class='col5'>
-      <div id="showmap"></div>
-      <!-- <h1>WHAT IS GOING ON!</h1> -->
-
-    </div>
-
-  </div>
-
+      <div id='commentViewport' style="overflow:scroll; height:400px; text-align: left">
+        <!-- Andy - Display all comments for the current post -->
+        <ul style="list-style-type: none; padding: 0;">
+          <%= render(partial: 'comments/comment', collection: @post.comments) %>
+        </ul>
+      </div>
 </div>
 
-
-
-
-
-
 <!-- Andy - Click handlers to toggle reply box and collapse comments -->
+<div class="rightContainer" style="width: 30%; height: 100%; display: inline; float: right">
+  <div id="postMap"></div>
+</div>
+
+<script type="text/javascript">
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('postMap'), {
+      center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      zoom: 16,
+      styles: myStyle
+    });
+    marker = new google.maps.Marker({
+      map: map,
+      icon: '/assets/mapicons/<%= @post.emjoi %>.png',
+      position: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>}
+});
+  }
+
+</script>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -164,59 +111,4 @@
        $(this).html($(this).text() == '[+]' ? '[-]' : '[+]');
       });
   });
-
-
-
-
-  //
-  // var map;
-  // var savedLat;
-  // var savedLng;
-  // function initMap() {
-  //   map = new google.maps.Map(document.getElementById('showmap'), {
-  //     center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
-  //     zoom: 15,
-  //     styles: myStyle
-  //   });
-  //   marker = new google.maps.Marker({
-  //       map:map,
-  //       draggable:true,
-  //       animation: google.maps.Animation.DROP,
-  //       position: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>}
-  //   });
-  //   google.maps.event.addListener(marker, 'dragend', function(){
-  //     geocodePosition(marker.getPosition());
-  //     var savedInfo = (marker.getPosition());
-  //      savedLat = savedInfo.lat();
-  //      savedLng = savedInfo.lng();
-  //
-  //     // console.log(savedLat);
-  //   // debugger;
-  //   });
-  //
-  //   function geocodePosition(pos){
-  //      geocoder = new google.maps.Geocoder();
-  //      geocoder.geocode({
-  //           latLng: pos
-  //       },
-  //           function(results, status){
-  //               if (status == google.maps.GeocoderStatus.OK){
-  //                   $("#mapSearchInput").val(results[0].formatted_address);
-  //                   $("#mapErrorMsg").hide(100);
-  //               }
-  //               else {
-  //                   $("#mapErrorMsg").html('Cannot determine address at this location.'+status).show(100);
-  //               }
-  //           }
-  //       );
-  //   };
-  // };
-  //
-  //
-
-
-
-
-
-
 </script>
