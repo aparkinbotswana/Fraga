@@ -217,15 +217,15 @@ table{
   height: 85%;
   width: 35%;
   margin: 0 auto;
-  left: 0;
+  left: 1px;
 }
 
 .newPost{
   justify-content: center;
   text-align: center;
   margin: auto;
-  width: 75%
-  left: 0;
+  width: 75%;
+  left: 1px;
 }
 
 .userPickMap{
