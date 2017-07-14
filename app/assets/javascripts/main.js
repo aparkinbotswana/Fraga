@@ -1,6 +1,23 @@
 
 
 
+
+
+
+
+// //play corresponding audio
+// var audio = ["andyvoice.mp3", "jamesvoice.mp3", "julianvoice.mp3", "michellevoice.mp3"];
+//
+// $('#querySearchbutton').click(function() {
+//   $('#fragaudio')[0].play();
+//   alert('clicked');
+//   // var fragasample = _.sample(audio);
+//   // new Audio(fragasample).play();
+// });
+
+
+
+
 // julian question and search location script
 $('.top.menu .item').tab();
 
@@ -118,6 +135,9 @@ $( document ).ready(function() {
 
 
  $('#querySearchbutton').click(function(){
+
+   $('#fragaudio')[0].play();
+
    $('#results').empty();
 
    var queryinput = $('#queryinput').val();
@@ -129,6 +149,9 @@ $( document ).ready(function() {
  });
 
  $('#locationSearchbutton').click(function(){
+
+   $('#fragaudio2')[0].play();
+
    $('#results').empty();
 
    var locqueryinput = $('#locqueryinput').val();

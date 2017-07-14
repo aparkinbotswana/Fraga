@@ -92,6 +92,18 @@
   </div>
   <%= yield %>
 
+  <audio id="fragaudio">
+  <source src="<%= audio_path 'andyvoice2.mp3'%>" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="fragaudio2">
+  <source src="<%= audio_path 'jamesvoice.mp3'%>" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+
+
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
 
