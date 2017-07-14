@@ -1,4 +1,9 @@
 
+
+
+// julian question and search location script
+$('.top.menu .item').tab();
+
 function initMap() {
   var myLatlng = {lat: -33.9, lng: 151.2};
   var mapOptions = {
@@ -167,11 +172,15 @@ $( document ).ready(function() {
         var emoji = post.emjoi;
         var $question = $('<h2>').text(post.question)
                                 .addClass("questionlist")
+                                .addClass("header")
                                 .attr('post-id', post.id);
+
+
         // julian // append emoji image works but commented out...
         // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
-        var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
-        $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
+        var $usertext = $('<div class="description">').text(user + ": " + location).addClass("usertext");
+        $('#results').append('<div class="questionbox">').append($question).append($usertext).addClass("questiondiv");
+
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
       } // for data.posts
       initMap();
@@ -204,26 +213,53 @@ $( "h2.questionlist" ).hover(
     var url = '/posts/' + $(this).attr('post-id');
     document.location.href = url;
   });
-      /* James: sliding side bar */
-      // Julian on search click open search slide
 
-    $("#navOpen").click(function(){
-      // $('#mySidenav').css('width', "544px").toggle;
-      $('#mySidenav').css('width', "32wh");
+    // Julian on click magnify icon, open slider, on click again close slider
+
+    $('#navOpen').on('click',function(){
+      $('#locNav').css('display', "none");
+      if($(this).attr('data-click-state') == 1) {
+      $(this).attr('data-click-state', 0)
+
+      $('#mySidenav').css('width', "34%");
       $('#map').css('display', "absolute");
       $('#map').css('width', "68wh");
       $('#map').css('left', "34%");
-    })
+
+      } else {
+      $(this).attr('data-click-state', 1)
+      $('#mySidenav').css('width', "0%");
+      $('#map').css('width', "100wh");
+      $('#map').css('left', "0%");
+
+      }
+
+    });
+
+
+
+
 
     $("#questButt").click(function(){
       $('#locNav').css('display', "none")
       $('#searchNav').css('display', "block")
+      $(this).addClass("active");
+      $('#locButt').removeClass("active");
+
     })
 
     $("#locButt").click(function(){
       $('#locNav').css('display', "block")
       $('#searchNav').css('display', "none")
+      $(this).addClass("active");
+      $('#questButt').removeClass("active");
+
     })
+
+
+
+
+
   // Michelle: Translate text
 var translateRequest = function(location, text, lang) {
   var baseURL = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
@@ -245,37 +281,35 @@ var translateRequest = function(location, text, lang) {
     console.log(xhr, status, err);
   })
 }
+  // $('#toLanguageButton').click(function(){
+  //   $('.translated').empty();
+  //   var languageRequest = $('#languageTo').val();
+  //   console.log(languageRequest);
+  //   submitPost(languageRequest)
+  // })
+  // var submitPost = function(languageRequest){
+  //   var locationToTranslate = $(".translateComment");
+  //    var lang = navigator.language;
+  //    var browserLanguageConv = ("en"+languageRequest);
+  //    for (var i = 0; i < locationToTranslate.length; i++) {
+  //   console.log(locationToTranslate[i]);
+  //      var line = locationToTranslate[i].innerText;
+  //      translateRequest(locationToTranslate[i], line, browserLanguageConv)
+  //    }
+  // };
   $('#toLanguageButton').click(function(){
     $('.translated').empty();
     var languageRequest = $('#languageTo').val();
-    console.log(languageRequest);
-    submitPost(languageRequest)
-  })
-  var submitPost = function(languageRequest){
-    var locationToTranslate = $(".translateComment");
-     var lang = navigator.language;
-     var browserLanguageConv = ("en"+languageRequest);
-     for (var i = 0; i < locationToTranslate.length; i++) {
-    console.log(locationToTranslate[i]);
-       var line = locationToTranslate[i].innerText;
-       translateRequest(locationToTranslate[i], line, browserLanguageConv)
-     }
-  };
-  $('#languageButton').click(function(){
-    $('.translated').empty();
-    var languageRequest = $('#language').val();
     console.log(languageRequest);
     submitComments(languageRequest)
   });
 // Michelle - loop through class="translateComment" from show page to translate individual comments.
   var submitComments = function(languageRequest){
     var locationToTranslate = $(".translateComment");
-    var lang = navigator.language;
- var browserLanguageConv = (languageRequest+ "-" + lang.split("-")[0])
     for (var i = 0; i < locationToTranslate.length; i++) {
       console.log(locationToTranslate[i]);
       var line = locationToTranslate[i].innerText;
-      translateRequest(locationToTranslate[i], line, browserLanguageConv)
+      translateRequest(locationToTranslate[i], line, languageRequest)
     }
   };
 
@@ -283,6 +317,17 @@ var translateRequest = function(location, text, lang) {
   $('.questionlist').click(function() {
  // initMap();
 });
+
+// Comments collapse - Andy
+
+
+   $('.collapse-comments').click(function() {
+     $(this).parent().children('.in-content').toggle()
+     $(this).closest('li').children('ul').toggle();
+     $(this).html($(this).text() == '[+]' ? '[-]' : '[+]');
+    });
+
+
 
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
