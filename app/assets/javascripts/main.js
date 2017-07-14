@@ -166,7 +166,11 @@ $( document ).ready(function() {
         console.log('added one');
         var post = data[i];
         var user = $('<p>').text(post.username);
-        var location= post.location;
+        var location = post.location;
+
+
+
+
         var userid = post.user_id;
         var user = post.user.username;
         var emoji = post.emjoi;
@@ -178,7 +182,7 @@ $( document ).ready(function() {
 
         // julian // append emoji image works but commented out...
         // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
-        var $usertext = $('<div class="description">').text(user + ": " + location).addClass("usertext");
+        var $usertext = $('<div class="description">').text(" " + user).addClass("usertext");
         $('#results').append('<div class="questionbox">').append($question).append($usertext).addClass("questiondiv");
 
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
