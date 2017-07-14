@@ -217,7 +217,7 @@ table{
   height: 85%;
   width: 35%;
   margin: 0 auto;
-  left: 1px;
+  left: 0px;
 }
 
 .newPost{
@@ -225,7 +225,7 @@ table{
   text-align: center;
   margin: auto;
   width: 75%;
-  left: 1px;
+  left: 0px;
 }
 
 .userPickMap{
