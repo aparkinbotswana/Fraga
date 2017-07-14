@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
 
   def check_score
     score = @comment.upvotes - @comment.downvotes
-    # raise 'hell'
     @comment.update_attribute(:score, score)
   end
 
