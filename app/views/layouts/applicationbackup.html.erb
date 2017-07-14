@@ -9,34 +9,29 @@
   <!-- Julian - Header with links and logins-->
     <div class="headercolumns">
     <div id='fragaTitle' class="col1">
-      <h1 id='fragaAnimation' style="color: #2C3E50" class="fraga">FRÅGA</h1>
+      <h1 id='fragaAnimation' class="fraga">FRÅGA</h1>
 </div>
 
   <div class="col2"><h2 class="fraga">
 
-  <% if @current_user.present? %>
-
+  <% if @current_user %>
     <% if controller_name == 'posts' && action_name == 'map' %>
-      <i class="search icon" style="color: #2C3E50" id='navOpen'></i>
+      <i class="search icon" id='navOpen'></i>
     <% else %>
       <%= link_to main_map_path do %>
         <i class="search icon"></i>
       <% end %>
     <% end %>
-
     <%= link_to new_post_path do %>
-      <i class="comment icon" style="background-color: none; color: #2C3E50; margin-left:30px"></i>
+      <i class="comment icon" style="margin-left:30px"></i>
     <% end %>
-  <% end %><%# if @current_user %>
     </h2>
   </div>
 
-    <div class="col3" class="ui modal">
+    <div class="col3">
         <div class="loginright">
         <% unless @current_user.present? %>
-        <div class="signUpButton" id="loginButton">
-          Login
-          </div>
+          <%= link_to 'Login',  login_path, class: "signUpButton" %>
           <%= link_to 'Signup', new_user_path, class: "signUpButton" %>
         <% else %>
           Welcome, <%= link_to @current_user.username, user_path(@current_user.id)
@@ -49,18 +44,9 @@
   <!-- James - Sliding Nav Bar -->
   <div id="mySidenav" class="sidenav">
     <div id="hedNav">
-
-      <div class="ui menu top">
-      <a id="questButt" class="item sidenavbuttons" data-tab="edit">Question</a>
-      <a id="locButt" class="item sidenavbuttons" data-tab="summary"><i class="icon world"></i>Location</a>
-     </div>
-
-      <!-- <button id="questButt" class="huge ui button" style="border:1px solid black; width: 49%; z-index:10; height:70px; float: left; display:inline">Question</button>
-      <button id="locButt" class="huge ui button" style="border:1px solid black; width: 49%; z-index:10; height:70px; float:right; display:inline">Location</button> -->
-
+      <div id="questButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float: left; display:inline">Question</div>
+      <div id="locButt" style="border:1px solid black; width: 50%; z-index:10; height:70px; float:right; display:inline">Location</div>
     </div>
-
-    <br>
 
     <!-- Julian - Search bar -->
     <div id="searchNav">
@@ -69,7 +55,7 @@
         <i class="search icon"></i>
       </div>
         <button id="querySearchbutton">Search</button>
-      <div id="results" class="ui relaxed divided list"></div>
+      <div id="results"></div>
     </div>
 
     <!-- Julian - Search bar -->
@@ -83,24 +69,8 @@
 
   </div>
 
-  <div class='ui modal'>
-    <%= render partial: "session/new"%>
-  </div>
   <%= yield %>
-
-
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
-
-<!--  click functions for modal-->
-  <script type="text/javascript">
-  <% if flash[:error] %>
-    $('.ui.modal').modal('show');
-  <% end %>
-
-    $('#loginButton').click(function(){
-        $('.ui.modal').modal('show');
-    });
-
-</script>
   </body>
-  </html>
+</html>
+<% end %>

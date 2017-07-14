@@ -1,4 +1,9 @@
 
+
+
+// julian question and search location script
+$('.top.menu .item').tab();
+
 function initMap() {
   var myLatlng = {lat: -33.9, lng: 151.2};
   var mapOptions = {
@@ -78,8 +83,8 @@ function setMarkers(map) {
   map.fitBounds(bounds);
 };
 $( document ).ready(function() {
+
   // James: title fade in and fade out
-  var count = 0;
 
   var count = 0;
 
@@ -167,11 +172,15 @@ $( document ).ready(function() {
         var emoji = post.emjoi;
         var $question = $('<h2>').text(post.question)
                                 .addClass("questionlist")
+                                .addClass("header")
                                 .attr('post-id', post.id);
+
+
         // julian // append emoji image works but commented out...
         // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
-        var $usertext = $('<p>').text(user + ": " + location).addClass("usertext");
-        $('#results').append('<div>').append($question).append($usertext).addClass("questiondiv");
+        var $usertext = $('<div class="description">').text(user + ": " + location).addClass("usertext");
+        $('#results').append('<div class="questionbox">').append($question).append($usertext).addClass("questiondiv");
+
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
       } // for data.posts
       initMap();
@@ -204,38 +213,53 @@ $( "h2.questionlist" ).hover(
     var url = '/posts/' + $(this).attr('post-id');
     document.location.href = url;
   });
-      /* James: sliding side bar */
-      // Julian on search click open search slide
 
-    $("#navOpen").click(function(){
-      // $('#mySidenav').css('width', "544px")
+    // Julian on click magnify icon, open slider, on click again close slider
+
+    $('#navOpen').on('click',function(){
+      $('#locNav').css('display', "none");
+      if($(this).attr('data-click-state') == 1) {
+      $(this).attr('data-click-state', 0)
+
       $('#mySidenav').css('width', "34%");
-
       $('#map').css('display', "absolute");
       $('#map').css('width', "68wh");
       $('#map').css('left', "34%");
-    })
 
-    $("#navClose").click(function(){
-      // $('#mySidenav').css('width', "544px")
+      } else {
+      $(this).attr('data-click-state', 1)
       $('#mySidenav').css('width', "0%");
-
-      // $('#map').css('display', "absolute");
       $('#map').css('width', "100wh");
       $('#map').css('left', "0%");
-    })
+
+      }
+
+    });
+
+
 
 
 
     $("#questButt").click(function(){
       $('#locNav').css('display', "none")
       $('#searchNav').css('display', "block")
+      $(this).addClass("active");
+      $('#locButt').removeClass("active");
+
     })
 
     $("#locButt").click(function(){
       $('#locNav').css('display', "block")
       $('#searchNav').css('display', "none")
+      $(this).addClass("active");
+      $('#questButt').removeClass("active");
+
     })
+
+
+
+
+
   // Michelle: Translate text
 var translateRequest = function(location, text, lang) {
   var baseURL = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
