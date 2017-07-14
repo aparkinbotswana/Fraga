@@ -197,6 +197,7 @@ $( document ).ready(function() {
         var userid = post.user_id;
         var user = post.user.username;
         var emoji = post.emjoi;
+        var score = post.score;
         var $question = $('<h2>').text(post.question)
                                 .addClass("questionlist")
                                 .addClass("header")
@@ -206,7 +207,7 @@ $( document ).ready(function() {
 
         // julian // append emoji image works but commented out...
         // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
-        var $usertext = $('<div class="description padleft">').text(" " + user).addClass("usertext");
+        var $usertext = $('<div class="description padleft">').text(" " + user + " " + score + " points").addClass("usertext");
         $('#results').append('<div class="questionbox">').append($question).append($usertext).addClass("questiondiv");
 
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);

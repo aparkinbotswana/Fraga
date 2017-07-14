@@ -16,16 +16,14 @@ class PostsController < ApplicationController
    end
 
    def do_search
-
       if params[:query].present?
         @posts = Post.text_search(params[:query], @current_user)
       elsif params[:locquery].present?
         loc = Geocoder.search(params[:locquery])
         @posts = Post.location_search(loc)
       else
-        @posts = Post.all.order(:created_at).reverse_order.limit(5)
+        @posts = Post.user_search(@current_user.latitude, @current_user.longitude)
       end
-
      respond_to do |format|
        format.html { render :do_search }
        format.json { render json: @posts, include: [:user] }
