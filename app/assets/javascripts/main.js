@@ -1,6 +1,23 @@
 
 
 
+
+
+
+
+// //play corresponding audio
+// var audio = ["andyvoice.mp3", "jamesvoice.mp3", "julianvoice.mp3", "michellevoice.mp3"];
+//
+// $('#querySearchbutton').click(function() {
+//   $('#fragaudio')[0].play();
+//   alert('clicked');
+//   // var fragasample = _.sample(audio);
+//   // new Audio(fragasample).play();
+// });
+
+
+
+
 // julian question and search location script
 $('.top.menu .item').tab();
 
@@ -118,6 +135,9 @@ $( document ).ready(function() {
 
 
  $('#querySearchbutton').click(function(){
+
+   $('#fragaudio')[0].play();
+
    $('#results').empty();
 
    var queryinput = $('#queryinput').val();
@@ -129,6 +149,9 @@ $( document ).ready(function() {
  });
 
  $('#locationSearchbutton').click(function(){
+
+   $('#fragaudio2')[0].play();
+
    $('#results').empty();
 
    var locqueryinput = $('#locqueryinput').val();
@@ -166,19 +189,25 @@ $( document ).ready(function() {
         console.log('added one');
         var post = data[i];
         var user = $('<p>').text(post.username);
-        var location= post.location;
+        var location = post.location;
+
+
+
+
         var userid = post.user_id;
         var user = post.user.username;
         var emoji = post.emjoi;
+        var score = post.score;
         var $question = $('<h2>').text(post.question)
                                 .addClass("questionlist")
                                 .addClass("header")
+                                .addClass("padleft")
                                 .attr('post-id', post.id);
 
 
         // julian // append emoji image works but commented out...
         // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
-        var $usertext = $('<div class="description">').text(user + ": " + location).addClass("usertext");
+        var $usertext = $('<div class="description padleft">').text(" " + user + " " + score + " points").addClass("usertext");
         $('#results').append('<div class="questionbox">').append($question).append($usertext).addClass("questiondiv");
 
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);

@@ -20,7 +20,6 @@ u9 = User.create username: "Fred 'Smokes' Carr", latitude: "34.7777158", longitu
 # PARIS
 u10 = User.create username: "Pierre 'Ambush' Durham", latitude: "48.864796", longitude: "2.349014", password: "chicken", is_admin: false
 puts "Created #{ User.all.length } users."
-
 Post.destroy_all
 # SYDNEY
 p1 = Post.create question: "What is the meaning of life?", latitude: "-33.869795", longitude: "151.206410", active: true, emjoi: "happy"
@@ -29,18 +28,17 @@ p3 = Post.create question: "Any recommendations for cool shit?", latitude: "-33.
 p4 = Post.create question: "Kyrka-nyckel varg destillery direkt handel ironi estetiska banjo varje dag bär varm kyckling ", latitude: "-33.898340", longitude: "151.204250", active: true, emjoi: "sad"
 p5 = Post.create question: "Where is the best food around here bruh? School me bruzzy", latitude: "54.664097", longitude: "-2.752708", active: true, emjoi: "bored"
 # NEW YORK
-p6 = Post.create question: "I lost my camera, has anyone found it?", latitude: "40.71916083", longitude: "-118.89404297", active: true, emjoi: "devo"
-p7 = Post.create question: "Where can I get a drink?", latitude: "40.71916023", longitude: "-118.89404254", active: true, emjoi: "wasted"
-p8 = Post.create question: "When do shops close around here?", latitude: "40.7143528", longitude: "-74.0059731", active: true, emjoi: "devo"
-p9 = Post.create question: "What can I do around here on weekends?", latitude: "40.7143598", longitude: "74.0059736", active: true, emjoi: "devo"
-p10 = Post.create question: "Where can I learn Welsh?", latitude: "40.05800144", longitude: "74.10705566", active: true, emjoi: "thinking"
+p6 = Post.create question: "I lost my camera, has anyone found it?", latitude: "40.779437", longitude: "-73.963244", active: true, emjoi: "devo"
+p7 = Post.create question: "Where can I get a drink?", latitude: "40.748817", longitude: "-73.985428", active: true, emjoi: "wasted"
+p8 = Post.create question: "When do shops close around here?", latitude: "40.777305", longitude: "-73.961401", active: true, emjoi: "devo"
+p9 = Post.create question: "What can I do around here on weekends?", latitude: "40.758895", longitude: "-73.985131", active: true, emjoi: "devo"
+p10 = Post.create question: "Where can I learn Welsh?", latitude: "40.726477", longitude: "-73.981534", active: true, emjoi: "thinking"
 # PARIS
-p11 = Post.create question: "Avez-vous des animaux domestiques?", latitude: "‎48.864716", longitude: "2.349014", active: true, emjoi: "cheeky"
-p12 = Post.create question: "La Tour Eiffel est-elle bonne?", latitude: "‎48.864720", longitude: "2.349024", active: true, emjoi: "happy"
-p13 = Post.create question: "Quel est le meilleur, étant le patron ou un employé?", latitude: "‎48.864720", longitude: "2.349024", active: true, emjoi: "confused"
-p14 = Post.create question: "Où puis-je obtenir un plat maison?", latitude: "‎48.8647215", longitude: "2.349027", active: true, emjoi: "silly"
+p11 = Post.create question: "Avez-vous des animaux domestiques?", latitude: "48.856614", longitude: "2.352222", active: true, emjoi: "cheeky"
+p12 = Post.create question: "La Tour Eiffel est-elle bonne?", latitude: "‎48.858370", longitude: "2.294481", active: true, emjoi: "happy"
+p13 = Post.create question: "Quel est le meilleur, étant le patron ou un employé?", latitude: "‎48.860674", longitude: "2.298406", active: true, emjoi: "confused"
+p14 = Post.create question: "Où puis-je obtenir un plat maison?", latitude: "‎48.854649", longitude: "2.306292", active: true, emjoi: "silly"
 puts "Created #{ Post.all.length } users."
-
 Comment.destroy_all
 c1 = Comment.create content: "Westfield has shops"
 c2 = Comment.create content: "You should quit your job and learn coding"
@@ -78,14 +76,12 @@ c32 = Comment.create content: "Il vit sur Internet à travers tout le réseau. C
 c33 = Comment.create content: "Je m’en rappellerais si j’avais créé un programme capable de parler. Et puis tiens, je suis en train de taper"
 c34 = Comment.create content: "Il y a bien l’amour physique, mais sans les sentiments, cela ressemble davantage à un instinct de reproduction qu’à de l’amour. Un ordinateur n’a pas ce besoin de reproduction. Et pourquoi m’avoir choisi"
 puts "Created #{ Comment.all.length } users."
-
 u1.posts << p1 << p2
 u2.posts << p3 << p4 << p6
 u3.posts << p5 << p11 << p12
 u4.posts << p7 << p14
 u6.posts << p8 << p10
 u10.posts << p9 << p13
-
 p1.comments << c2 << c3
 p2.comments << c1
 p3.comments << c4 << c5 << c6
@@ -100,7 +96,6 @@ p11.comments << c27 << c28
 p12.comments << c29 << c30
 p13.comments << c31 << c32
 p14.comments << c33 << c34
-
 u1.comments << c4 << c8 << c24
 u2.comments << c1 << c2 << c25
 u3.comments << c3 << c26

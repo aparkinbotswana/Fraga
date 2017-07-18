@@ -55,30 +55,34 @@
       <a id="locButt" class="item sidenavbuttons" data-tab="summary"><i class="icon world"></i>Location</a>
      </div>
 
-      <!-- <button id="questButt" class="huge ui button" style="border:1px solid black; width: 49%; z-index:10; height:70px; float: left; display:inline">Question</button>
-      <button id="locButt" class="huge ui button" style="border:1px solid black; width: 49%; z-index:10; height:70px; float:right; display:inline">Location</button> -->
+
 
     </div>
 
     <br>
 
     <!-- Julian - Search bar -->
-    <div id="searchNav">
-        <div class="ui icon input" class='searchBar'>
+    <div id="searchNav" >
+      <div class="centering">
+        <div class="ui icon input">
           <input class="prompt" type="text" placeholder="Search Questions..." id="queryinput">
           <i class="search icon"></i>
         </div>
           <button id="querySearchbutton">Search</button>
-      <div id="results" class="ui relaxed divided list"></div>
+      </div>
+        <div id="results" class="ui relaxed divided list padleft"></div>
+
     </div>
 
     <!-- Julian - Search bar -->
-    <div id="locNav">
+    <div id="locNav" >
+      <div class="centering">
       <div class="ui icon input">
         <input class="prompt" type="text" placeholder="Search By Location..." id="locqueryinput">
       </div>
         <button id="locationSearchbutton">Search</button>
         <div id="results"></div>
+      </div>
     </div>
 
   </div>
@@ -87,6 +91,18 @@
     <%= render partial: "session/new"%>
   </div>
   <%= yield %>
+
+  <audio id="fragaudio">
+  <source src="<%= audio_path 'andyvoice2.mp3'%>" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio id="fragaudio2">
+  <source src="<%= audio_path 'jamesvoice.mp3'%>" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+
+
 
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDszsd-A3xq3L1pfFC4iX2n5aVA9cDjqwo&callback=initMap"></script>
