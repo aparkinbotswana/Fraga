@@ -1,25 +1,9 @@
 
 
-
-
-
-
-
-// //play corresponding audio
-// var audio = ["andyvoice.mp3", "jamesvoice.mp3", "julianvoice.mp3", "michellevoice.mp3"];
-//
-// $('#querySearchbutton').click(function() {
-//   $('#fragaudio')[0].play();
-//   alert('clicked');
-//   // var fragasample = _.sample(audio);
-//   // new Audio(fragasample).play();
-// });
-
-
-
-
 // julian question and search location script
 $('.top.menu .item').tab();
+
+// initialize google maps api
 
 function initMap() {
   var myLatlng = {lat: -33.9, lng: 151.2};
@@ -33,11 +17,17 @@ function initMap() {
   setMarkers(map);
   // setMarkers(map2);
 }
+
+// questionz is an array that has data pushed to it from the ajax call in mapload function
 var questionz = [];
+
 var markers = [];
 var marker;
 var question;
 // var infowindow;
+
+// dynamically create google maps marker
+
 function setMarkers(map) {
   var bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < questionz.length; i++) {
@@ -46,9 +36,7 @@ function setMarkers(map) {
       position: {lat: question[1], lng: question[2]},
       map: map,
       icon: '/assets/mapicons/' + question[4] + '.png',
-      // title: question[0],
       zIndex: question[3],
-      // hello:
       // This ID is used to contruct the correct show page URL in the click event
       fragaID: question[3],
       // This property defines an InfoWindow which the hover event uses
@@ -56,10 +44,10 @@ function setMarkers(map) {
         content: question[0]
       })
     });
-    // console.log(marker);
+
 // ----------------------------------------------------------------------------
-    // Julian --- add series of event listener to created marker
-    // closure problem
+    // Julian --- add series of event listeners to created marker
+
       google.maps.event.addListener(marker, 'click', function () {
         window.location.href = '/posts/' + this.fragaID;
       });
@@ -67,7 +55,7 @@ function setMarkers(map) {
          if(this.timerID){
            clearTimeout(this.timerID);
          }
-        //  map.panTo(this.getPosition());
+
          this.setAnimation(google.maps.Animation.BOUNCE);
          this.fragaInfo.open(map, this);
        });
@@ -124,14 +112,21 @@ $( document ).ready(function() {
 
  setInterval(fader, 6000);
 
+
+// On click fraga animation go to root page
+
  $('#fragaAnimation').click(function(){
    window.location = '/';
  });
+
+// On enter click the query search button
 
  $(document).bind('keypress', function(e) {
  if(e.keyCode==13){
    $('#querySearchbutton').trigger('click');}
  });
+
+ // On click search button trigger mapload function
 
 
  $('#querySearchbutton').click(function(){
@@ -148,6 +143,8 @@ $( document ).ready(function() {
    mapload(data);
  });
 
+  // On click search button trigger mapload function
+
  $('#locationSearchbutton').click(function(){
 
    $('#fragaudio2')[0].play();
@@ -162,7 +159,8 @@ $( document ).ready(function() {
    mapload(data);
  });
 
- // Julian - search results
+// -------------------------------------------------
+ // Julian - On map load render map via ajax
 
    var mapload = function(data){
 
@@ -170,12 +168,9 @@ $( document ).ready(function() {
 
        var queryinput = $('#queryinput').val();
        var queryinput = $('#queryinput').is(':visible')
-       // var locqueryinput = $('#locqueryinput').val();
-
        $('#queryinput').empty();
-       // $('#locqueryinput').empty();
 
-       console.log('do ajax');
+       // make ajax call
        $.ajax({
          url: "/posts/search",
          dataType: "json",
@@ -185,15 +180,14 @@ $( document ).ready(function() {
 
       // remove existing markers
       questionz = [];
+
+      // run a for loop to dynamically make question search list
+
       for (var i = 0; i < data.length; i++) {
         console.log('added one');
         var post = data[i];
         var user = $('<p>').text(post.username);
         var location = post.location;
-
-
-
-
         var userid = post.user_id;
         var user = post.user.username;
         var emoji = post.emjoi;
@@ -204,26 +198,24 @@ $( document ).ready(function() {
                                 .addClass("padleft")
                                 .attr('post-id', post.id);
 
-
-        // julian // append emoji image works but commented out...
-        // $('#results').append('<img src="/assets/mapicons/' + emoji + '.png" height="20" width="20" />');
+        // create user text in search list
         var $usertext = $('<div class="description padleft">').text(" " + user + " " + score + " points").addClass("usertext");
+
+        // append to results list
         $('#results').append('<div class="questionbox">').append($question).append($usertext).addClass("questiondiv");
 
+        // push data from ajax call to questionz array
         questionz.push([post.question,post.latitude,post.longitude,post.id,post.emjoi]);
       } // for data.posts
+      // call google maps initMap() api call
       initMap();
 //------------------------------------------------------------------------------
+
 // Julian -- when hovering over the search results --- the corresponding emoji bounces on the map
-
-
 $( "h2.questionlist" ).hover(
   function() {
     var index = $( "h2.questionlist" ).index( this );
     markers[index].setAnimation(google.maps.Animation.BOUNCE);
-    // map.panTo(markers[index].getPosition());
-
-
   }, function() {
     var index = $( "h2.questionlist" ).index( this );
     markers[index].setAnimation(null);
@@ -267,7 +259,7 @@ $( "h2.questionlist" ).hover(
 
 
 
-
+    // toggle between question and location tabs
 
     $("#questButt").click(function(){
       $('#locNav').css('display', "none")
@@ -310,22 +302,7 @@ var translateRequest = function(location, text, lang) {
     console.log(xhr, status, err);
   })
 }
-  // $('#toLanguageButton').click(function(){
-  //   $('.translated').empty();
-  //   var languageRequest = $('#languageTo').val();
-  //   console.log(languageRequest);
-  //   submitPost(languageRequest)
-  // })
-  // var submitPost = function(languageRequest){
-  //   var locationToTranslate = $(".translateComment");
-  //    var lang = navigator.language;
-  //    var browserLanguageConv = ("en"+languageRequest);
-  //    for (var i = 0; i < locationToTranslate.length; i++) {
-  //   console.log(locationToTranslate[i]);
-  //      var line = locationToTranslate[i].innerText;
-  //      translateRequest(locationToTranslate[i], line, browserLanguageConv)
-  //    }
-  // };
+
   $('#toLanguageButton').click(function(){
     $('.translated').empty();
     var languageRequest = $('#languageTo').val();
@@ -356,7 +333,7 @@ var translateRequest = function(location, text, lang) {
      $(this).html($(this).text() == '[+]' ? '[-]' : '[+]');
     });
 
-
+// array for fraga animation
 
 var ask = ["vra", "يطلب", "Soruşun", "спытаць", "питам", "জিজ্ঞাসা করা", "Pitajte", "Preguntar", "Pangutana", "dotázat se", "gofyn", "Spørg", "Fragen", "παρακαλώ", "ask", "demandu", "pedir", "Küsi", "Galdetu",
 "پرسیدن", "kysyä", "demander", "a iarraidh", "Preguntar", "પુછવું", "tambaye", "पूछना", "pitati", "mande", "kérdez", "Հարցրեք", "meminta", "jụọ", "Spyrja","Chiedere", "לִשְׁאוֹל", "尋ねる","Takon", "ვკითხე", "Сұраңыз",
