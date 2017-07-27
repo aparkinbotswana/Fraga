@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
-  # before_action :check_if_logged_in, except: [:show]
+  before_action :check_if_logged_in, except: [:show]
   before_action :check_if_admin, only: [:index]
 
   def get_user
-    @user = User.find params["id"]
+  @user = User.find params["id"]
   end
 
   # GET /users
@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-
     @posts = Post.where user_id: @current_user
 
   end
@@ -24,7 +23,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-
   end
 
   # GET /users/1/edit
@@ -34,8 +32,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-  @user = User.create (user_params) #julian changed
-  @user.save
+  @user = User.create user_params #julian changed
+
   if @user.id.present?
     session[:user_id] = @user.id # log in using when making a new account
     redirect_to root_path   # /users/17

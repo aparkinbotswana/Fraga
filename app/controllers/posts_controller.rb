@@ -23,7 +23,7 @@ class PostsController < ApplicationController
         loc = Geocoder.search(params[:locquery])
         @posts = Post.location_search(loc)
       else
-        @posts = Post.all.order(:created_at).reverse_order.limit(5)
+        @posts = Post.user_search(@current_user.latitude, @current_user.longitude)
       end
 
      respond_to do |format|
@@ -45,8 +45,8 @@ class PostsController < ApplicationController
 
     # Detect IP and obtain location information through Geocoder
     ip = request.remote_ip;
-    loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
-    # loc = Geocoder.search(ip)
+    # loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
+    loc = Geocoder.search(ip)
     # raise 'hell'
 
     @questions = []
