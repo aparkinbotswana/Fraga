@@ -49,8 +49,6 @@ class Post < ApplicationRecord
   end
 
   def self.user_search(lat, lng)
-    # puts loc
-    # binding.pry
     Post.near([lat, lng], 3, :units => :km)
   end
 
