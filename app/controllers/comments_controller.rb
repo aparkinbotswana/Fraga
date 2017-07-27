@@ -76,7 +76,7 @@ class CommentsController < ApplicationController
 
       # the following line to be uncommented when we go live to allow for 1 vote per user
       # Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
-      Vote.create(upvote: 1, comment: @comment, user: @current_user)
+      Vote.find_or_create_by(upvote: 1, comment: @comment, user: @current_user)
       check_score()
       respond_to do |format|
       #   # if the response format is html, redirect as usual
@@ -92,7 +92,7 @@ class CommentsController < ApplicationController
     def downvote
       @comment = Comment.find_by(id: params[:id])
       # Vote.find_or_create_by(downvote: 1, post: @post, user: @current_user)
-      Vote.create(downvote: 1, comment: @comment, user: @current_user)
+      Vote.find_or_create_by(downvote: 1, comment: @comment, user: @current_user)
       check_score()
       make_request()
     end

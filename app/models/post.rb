@@ -52,6 +52,11 @@ class Post < ApplicationRecord
     Post.near([lat, lng], 3, :units => :km)
   end
 
+  def self.user_search(lat, lng)
+    Post.near([lat, lng], 3, :units => :km)
+  end
+
+
   def self.text_search(query, user)
     # old new code
     # if query.present?

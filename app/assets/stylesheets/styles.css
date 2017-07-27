@@ -1,4 +1,13 @@
 
+.padleft {
+  padding-left: 10px;
+}
+
+.centering {
+  text-align: center;
+
+}
+
 .usertext {
   font-size: 15px;
   padding-bottom: 15px;
@@ -222,15 +231,15 @@ table{
   height: 85%;
   width: 35%;
   margin: 0 auto;
-  left: 0;
+  left: 0px;
 }
 
 .newPost{
   justify-content: center;
   text-align: center;
   margin: auto;
-  width: 75%
-  left: 0;
+  width: 75%;
+  left: 0px;
 }
 
 .userPickMap{
