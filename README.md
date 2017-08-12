@@ -4,7 +4,7 @@ The FRÅGA app is a collaboration to make a social app. The concept behind the a
 
 Our live, [Fraga](https://fraga-app.herokuapp.com) site can be found here.
 
-![Alt text](assets/images/Fraga.png?raw=true "Optional Title")
+![Alt text](app/assets/images/Fraga.png?raw=true "Optional Title")
 
 ## Features
 
