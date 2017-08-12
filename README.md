@@ -6,10 +6,10 @@ Our live, [Fraga](https://fraga-app.herokuapp.com) site can be found here.
 
 ## Features
 
-- Geographical detection of users when making a post.
+- Users can set their geographical location when searching for and creating posts.
 - Voting on posts and comments.
 - Emoji markers to display your question on Google maps.
-- translation of posts from other languages.
+- Translation of posts from other languages.
 
 ## Bugs
-- Probably.
+- User have to manually type their location in the location search bar to view questions in their area. A geolocation column must be added to the User model to fix this issue.
