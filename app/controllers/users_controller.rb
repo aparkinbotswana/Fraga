@@ -32,10 +32,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-  @user = User.create user_params #julian changed
+  @user = User.create (user_params) #julian changed
+  @user.save
 
-  raise 'hell'
-  if @user.id.present?
+  # raise 'hell'
+
+    if @user.id.present?
     session[:user_id] = @user.id # log in using when making a new account
     redirect_to root_path   # /users/17
   else
@@ -79,6 +81,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation, :latitude, :longitude, :image)
+      params.require(:user).permit(:username, :password, :password_confirmation, :latitude, :longitude, :image, :location)
     end
 end

@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
 
+  # Andy Brown adding location to users while a bit tipsy
+  geocoded_by :location
+  after_validation :geocode
+
 
   has_secure_password
   validates :username, presence: true, uniqueness: true, length: {minimum: 2}
