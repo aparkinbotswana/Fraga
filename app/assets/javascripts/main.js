@@ -6,7 +6,7 @@ $('.top.menu .item').tab();
 // initialize google maps api
 
 function initMap() {
-  var myLatlng = {lat: -33.9, lng: 151.2};
+  var myLatlng = {lat: -33.8688, lng: 151.2093};
   var mapOptions = {
   zoom: 12,
   center: myLatlng,
@@ -20,7 +20,6 @@ function initMap() {
 
 // questionz is an array that has data pushed to it from the ajax call in mapload function
 var questionz = [];
-
 var markers = [];
 var marker;
 var question;

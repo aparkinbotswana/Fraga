@@ -27,7 +27,6 @@
   </div>
 <% end  %>
 <!--  -->
-<a href="posts/map">OH! THE HUMANITY!</a>
 <div class="page-login">
   <div class="ui centered grid container">
     <div class="nine wide column">
@@ -35,7 +34,7 @@
       <div class="ui fluid card">
         <div class="content">
 
-        <%= form_tag login_path, class: "ui form" do %>
+        <%= form_tag users_path, class: "ui form" do %>
         <!-- <form class="ui form" method="POST"> -->
 
           <div class="field">
@@ -46,6 +45,11 @@
           <div class="field">
           <%= label_tag 'Password' %>
           <%= password_field_tag :password, nil %>
+          </div>
+
+          <div class="field">
+          <%= label_tag 'Confirm Password' %>
+          <%= password_field_tag :password_confirmation, nil %>
           </div>
 
           <%= submit_tag 'Login', class:"signUpButton" %>

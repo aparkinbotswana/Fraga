@@ -16,14 +16,16 @@ class PostsController < ApplicationController
    end
 
    def do_search
+
       if params[:query].present?
         @posts = Post.text_search(params[:query], @current_user)
       elsif params[:locquery].present?
         loc = Geocoder.search(params[:locquery])
         @posts = Post.location_search(loc)
       else
-        @posts = Post.user_search(@current_user.latitude, @current_user.longitude)
+        @posts = Post.user_search(-33.8688, 151.2093)
       end
+
      respond_to do |format|
        format.html { render :do_search }
        format.json { render json: @posts, include: [:user] }
@@ -39,23 +41,23 @@ class PostsController < ApplicationController
   end
 
   def map
-    @location = Post.all
 
-    # Detect IP and obtain location information through Geocoder
-    ip = request.remote_ip;
-    # loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
-    loc = Geocoder.search(ip)
-    # raise 'hell'
+    if @current_user.present?
+      # @location = Post.all
+      # Detect IP and obtain location information through Geocoder
+      # ip = request.remote_ip;
+      # loc = Geocoder.search('114.75.87.227') #for local server testing, comment this out and use line below before deployment to Heroku
+      # loc = Geocoder.search(ip)
+      # raise 'hell'
+      @questions = []
+    else
+      @location = Post.all
+      # @current_user = User.first
+      # loc = Geocoder.search('114.75.87.227')
+      # raise 'hell'
 
-    @questions = []
+    end
 
-    # @posts.each_with_index {|array.question, index| puts "#{array.question} => #{index}" }
-      # question = []
-      # question << post.question
-      # question << post.latitude
-      # question << post.longitude
-      # question << post.id
-      # @questions << question
   end
 
   # GET /posts/new
@@ -143,7 +145,7 @@ class PostsController < ApplicationController
       # the following line to be uncommented when we go live to allow for 1 vote per user
       # Vote.find_or_create_by(post: @post, user: @current_user)
       # Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
-      Vote.find_or_create_by(upvote: 1, post: @post, user: @current_user)
+      Vote.create(upvote: 1, post: @post, user: @current_user)
       check_score()
       make_request()
     end
@@ -154,7 +156,7 @@ class PostsController < ApplicationController
     def downvote
       @post = Post.find_by(id: params[:id])
       # Vote.find_or_create_by(downvote: 1, post: @post, user: @current_user)
-      Vote.find_or_create_by(downvote: 1, post: @post, user: @current_user)
+      Vote.create(downvote: 1, post: @post, user: @current_user)
       check_score()
       make_request()
     end
