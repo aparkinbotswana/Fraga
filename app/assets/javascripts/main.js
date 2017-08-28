@@ -55,7 +55,7 @@ function setMarkers(map) {
            clearTimeout(this.timerID);
          }
 
-         this.setAnimation(google.maps.Animation.BOUNCE);
+        //  this.setAnimation(google.maps.Animation.DROP);
          this.fragaInfo.open(map, this);
        });
        google.maps.event.addListener(marker, 'mouseout', function() {
@@ -63,7 +63,7 @@ function setMarkers(map) {
          this.timerID = setTimeout(function () {
            m.fragaInfo.close(map, m);
            m.setAnimation(null);
-         }, 500);
+         }, 50);
        });
     // Julian push created marker to markers array
     markers.push( marker );
